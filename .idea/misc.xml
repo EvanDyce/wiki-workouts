@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Workout/app/src/main/res/drawable/ic_menu_exercises.xml" value="0.2942708333333333" />
+        <entry key="..\:/Workout/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Workout/app/src/main/res/layout/app_bar_main.xml" value="0.278125" />
         <entry key="..\:/Workout/app/src/main/res/layout/content_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Workout/app/src/main/res/layout/fragment_gallery.xml" value="0.278125" />
+        <entry key="..\:/Workout/app/src/main/res/layout/fragment_home.xml" value="0.278125" />
+        <entry key="..\:/Workout/app/src/main/res/layout/fragment_slideshow.xml" value="0.278125" />
+        <entry key="..\:/Workout/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
+        <entry key="..\:/Workout/app/src/main/res/menu/activity_main_drawer.xml" value="0.278125" />
+        <entry key="..\:/Workout/app/src/main/res/menu/main.xml" value="0.278125" />
       </map>
     </option>
   </component>
