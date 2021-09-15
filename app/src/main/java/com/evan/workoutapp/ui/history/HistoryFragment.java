@@ -1,2 +1,48 @@
-package com.evan.workoutapp.ui.history;public class HistoryFragment {
+package com.evan.workoutapp.ui.history;
+
+import androidx.fragment.app.Fragment;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.evan.workoutapp.databinding.FragmentHistoryBinding;
+import com.evan.workoutapp.ui.history.HistoryViewModel;
+
+public class HistoryFragment extends Fragment {
+
+    private HistoryViewModel exerciseViewModel;
+    private FragmentHistoryBinding binding;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        exerciseViewModel =
+                new ViewModelProvider(this).get(HistoryViewModel.class);
+
+        binding = FragmentHistoryBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        final TextView textView = binding.textHistory;
+        exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });
+        return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

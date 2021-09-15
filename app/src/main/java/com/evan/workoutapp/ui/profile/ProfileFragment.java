@@ -1,2 +1,43 @@
-package com.evan.workoutapp.ui.profile;public class ProfileFragment {
+package com.evan.workoutapp.ui.profile;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.evan.workoutapp.databinding.FragmentProfileBinding;
+
+public class ProfileFragment extends Fragment {
+
+    private ProfileViewModel profileViewModel;
+    private FragmentProfileBinding binding;
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+
+        profileViewModel =
+                new ViewModelProvider(this).get(ProfileViewModel.class);
+
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+//        gets the textview from fragment_profilei.xml file
+        final TextView textView = binding.textProfile;
+//        if the data is changed then update teh textview
+//        checks the viewmodel for the mutable live data class and then attatches observer so if it changes it will updata
+        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                textView.setText(s);
+            }
+        });
+
+        return root;
+    }
 }

@@ -1,16 +1,16 @@
-package com.evan.workoutapp.ui.home;
+package com.evan.workoutapp.ui.exercises;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class ExerciseViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public ExerciseViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is exercise fragment");
     }
 
     public LiveData<String> getText() {

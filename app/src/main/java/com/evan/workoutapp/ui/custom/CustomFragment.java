@@ -1,4 +1,4 @@
-package com.evan.workoutapp.ui.slideshow;
+package com.evan.workoutapp.ui.custom;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.evan.workoutapp.R;
-import com.evan.workoutapp.databinding.FragmentSlideshowBinding;
+import com.evan.workoutapp.databinding.FragmentCustomWorkoutsBinding;
 
-public class SlideshowFragment extends Fragment {
+public class CustomFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
-    private FragmentSlideshowBinding binding;
+    private CustomViewModel customViewModel;
+    private FragmentCustomWorkoutsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
+        customViewModel =
+                new ViewModelProvider(this).get(CustomViewModel.class);
 
-        binding = FragmentSlideshowBinding.inflate(inflater, container, false);
+        binding = FragmentCustomWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textCustomWorkouts;
+        customViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

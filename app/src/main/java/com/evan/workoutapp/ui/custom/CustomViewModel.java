@@ -1,16 +1,16 @@
-package com.evan.workoutapp.ui.slideshow;
+package com.evan.workoutapp.ui.custom;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class CustomViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public CustomViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is custom workout fragment");
     }
 
     public LiveData<String> getText() {

@@ -1,4 +1,4 @@
-package com.evan.workoutapp.ui.home;
+package com.evan.workoutapp.ui.exercises;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.evan.workoutapp.R;
-import com.evan.workoutapp.databinding.FragmentHomeBinding;
+import com.evan.workoutapp.databinding.FragmentExercisesBinding;
 
-public class HomeFragment extends Fragment {
+public class ExerciseFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private ExerciseViewModel exerciseViewModel;
+    private FragmentExercisesBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        exerciseViewModel =
+                new ViewModelProvider(this).get(ExerciseViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentExercisesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textExercises;
+        exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
