@@ -19,19 +19,19 @@ import com.evan.workoutapp.ui.history.HistoryViewModel;
 
 public class HistoryFragment extends Fragment {
 
-    private HistoryViewModel exerciseViewModel;
+    private HistoryViewModel historyViewModel;
     private FragmentHistoryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        exerciseViewModel =
+        historyViewModel =
                 new ViewModelProvider(this).get(HistoryViewModel.class);
 
         binding = FragmentHistoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHistory;
-        exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,5 @@
 ViewModel -> Manages all of teh data for the UI. Each fragment has their own viewmodel. 
 DataBinding -> Links the UI to the data sources directly so there is no need for a refresh
 
+changing the value using viewmodel wil update it in the rest
 ProfileFragment.java and ProfileViewModel.java have all the comments

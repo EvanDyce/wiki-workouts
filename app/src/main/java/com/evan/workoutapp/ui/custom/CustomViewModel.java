@@ -16,4 +16,8 @@ public class CustomViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
+    public void setText(String value) {
+        mText.setValue(value);
+    }
 }
