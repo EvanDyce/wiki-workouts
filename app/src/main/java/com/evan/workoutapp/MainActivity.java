@@ -1,9 +1,11 @@
 package com.evan.workoutapp;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.evan.workoutapp.volley.VolleyUtils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -15,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.evan.workoutapp.databinding.ActivityMainBinding;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
