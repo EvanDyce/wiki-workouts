@@ -10,18 +10,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Exercises {
     /**
      * Exercise Class for each individual exercise
      */
-    private static class Exercise {
+    public static class Exercise {
         private int id;
         private String name, descirption, category;
-        private String[] equipment;
+        private ArrayList<String> equipment;
 
-        public Exercise(int id, String name, String descirption, String category, String[] equipment) {
+        public Exercise(int id, String name, String descirption, String category, ArrayList<String> equipment) {
             this.id = id;
             this.name = name;
             this.descirption = descirption;
@@ -45,12 +46,20 @@ public class Exercises {
             return category;
         }
 
-        public String[] getEquipment() {
+        public ArrayList<String> getEquipment() {
             return equipment;
         }
     }
 
     private static Map<String, ArrayList<Exercise>> map = new HashMap<>();
+    private static ArrayList<Exercise> legExercises = new ArrayList<>();
+    private static ArrayList<Exercise> chestExercises = new ArrayList<>();
+    private static ArrayList<Exercise> abExercises = new ArrayList<>();
+    private static ArrayList<Exercise> shoulderExercises = new ArrayList<>();
+    private static ArrayList<Exercise> armExercises = new ArrayList<>();
+    private static ArrayList<Exercise> backExercises = new ArrayList<>();
+    private static ArrayList<Exercise> calfExercises = new ArrayList<>();
+
 
     /**
      * Adds exercise to correct list in hashmap
@@ -65,6 +74,7 @@ public class Exercises {
         }
         temp.add(e);
         map.put(e.getCategory(), temp);
+        addToCategoryExerciseList(e);
     }
 
     /**
@@ -87,10 +97,10 @@ public class Exercises {
                     String category = cat.getString("name");
 
                     JSONArray equip = exercise.getJSONArray("equipment");
-                    String[] equipment = new String[equip.length()];
+                    ArrayList<String> equipment = new ArrayList<>();
                     for (int j = 0; j < equip.length(); j++) {
                         JSONObject temp = (JSONObject) equip.get(j);
-                        equipment[j] = temp.getString("name");
+                        equipment.add(temp.getString("name"));
                     }
 
                     Exercises.addExercise(new Exercise(id, name, description, category, equipment));
@@ -103,5 +113,51 @@ public class Exercises {
 
     public static Map<String, ArrayList<Exercise>> getMap() {
         return map;
+    }
+
+    private static void addToCategoryExerciseList(Exercise exercise) {
+        switch (exercise.getCategory()) {
+            case "Legs":
+                legExercises.add(exercise);
+            case "Chest":
+                chestExercises.add(exercise);
+            case "Abs":
+                abExercises.add(exercise);
+            case "Shoulders":
+                shoulderExercises.add(exercise);
+            case "Arms":
+                armExercises.add(exercise);
+            case "Back":
+                backExercises.add(exercise);
+            case "Calves":
+                calfExercises.add(exercise);
+        }
+    }
+    public static ArrayList<Exercise> getLegExercises() {
+        return legExercises;
+    }
+
+    public static ArrayList<Exercise> getChestExercises() {
+        return chestExercises;
+    }
+
+    public static ArrayList<Exercise> getAbExercises() {
+        return abExercises;
+    }
+
+    public static ArrayList<Exercise> getShoulderExercises() {
+        return shoulderExercises;
+    }
+
+    public static ArrayList<Exercise> getArmExercises() {
+        return armExercises;
+    }
+
+    public static ArrayList<Exercise> getBackExercises() {
+        return backExercises;
+    }
+
+    public static ArrayList<Exercise> getCalfExercises() {
+        return calfExercises;
     }
 }

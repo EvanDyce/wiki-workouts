@@ -1,16 +1,10 @@
 package com.evan.workoutapp.ui.exercises;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +16,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.evan.workoutapp.data.Exercises;
+import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.FragmentExercisesBinding;
 import com.evan.workoutapp.volley.VolleyUtils;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
