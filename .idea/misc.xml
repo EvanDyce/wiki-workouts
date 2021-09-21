@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Evan Dyce/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_main.xml" value="0.39947916666666666" />
+        <entry key="..\:/Users/Evan Dyce/AndroidStudioProjects/workout-app/app/src/main/res/layout/app_bar_main.xml" value="0.33125" />
         <entry key="..\:/Users/Evan Dyce/AndroidStudioProjects/workout-app/app/src/main/res/layout/fragment_exercises.xml" value="0.23505434782608695" />
+        <entry key="..\:/Users/Evan Dyce/AndroidStudioProjects/workout-app/app/src/main/res/menu/activity_main_drawer.xml" value="0.33125" />
+        <entry key="..\:/Users/Evan Dyce/AndroidStudioProjects/workout-app/app/src/main/res/menu/main.xml" value="0.33125" />
+        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/layout/activity_main.xml" value="0.4005208333333333" />
+        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/layout/app_bar_main.xml" value="0.4005208333333333" />
+        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/layout/fragment_exercises.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/layout/fragment_history.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/menu/activity_main_drawer.xml" value="0.4005208333333333" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_menu_exercises.xml" value="0.2942708333333333" />
         <entry key="..\:/Workout/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Workout/app/src/main/res/layout/app_bar_main.xml" value="0.278125" />

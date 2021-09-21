@@ -65,6 +65,7 @@ public class ExerciseFragment extends Fragment {
                     @Override
                     public void onResponse(Object response) {
                         JSONObject obj = (JSONObject) response;
+
                         jsonObjectArrayList.add(obj);
 
                         try {
