@@ -1,5 +1,6 @@
 package com.evan.workoutapp.data;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,11 +19,10 @@ public class Exercises {
      * Exercise Class for each individual exercise
      */
     public static class Exercise {
-        private int id;
-        private String name, descirption, category;
+        private String id, name, descirption, category;
         private ArrayList<String> equipment;
 
-        public Exercise(int id, String name, String descirption, String category, ArrayList<String> equipment) {
+        public Exercise(String id, String name, String descirption, String category, ArrayList<String> equipment) {
             this.id = id;
             this.name = name;
             this.descirption = descirption;
@@ -30,7 +30,7 @@ public class Exercises {
             this.equipment = equipment;
         }
 
-        public int getId() {
+        public String getId() {
             return id;
         }
 
@@ -51,14 +51,8 @@ public class Exercises {
         }
     }
 
-    private static Map<String, ArrayList<Exercise>> map = new HashMap<>();
-    private static ArrayList<Exercise> legExercises = new ArrayList<>();
-    private static ArrayList<Exercise> chestExercises = new ArrayList<>();
-    private static ArrayList<Exercise> abExercises = new ArrayList<>();
-    private static ArrayList<Exercise> shoulderExercises = new ArrayList<>();
-    private static ArrayList<Exercise> armExercises = new ArrayList<>();
-    private static ArrayList<Exercise> backExercises = new ArrayList<>();
-    private static ArrayList<Exercise> calfExercises = new ArrayList<>();
+    private static final Map<String, ArrayList<Exercise>> map = new HashMap<>();
+    private static final String TAG = "EXERCISES";
 
 
     /**
@@ -74,7 +68,7 @@ public class Exercises {
         }
         temp.add(e);
         map.put(e.getCategory(), temp);
-        addToCategoryExerciseList(e);
+
     }
 
     /**
@@ -89,7 +83,7 @@ public class Exercises {
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject exercise = arr.getJSONObject(i);
 
-                    int id = (int) exercise.getLong("id");
+                    String id = ((Long)exercise.getLong("id")).toString();
                     String name = exercise.getString("name");
                     String description = exercise.getString("description").replaceAll("<[^>]*>", "");
 
@@ -115,49 +109,31 @@ public class Exercises {
         return map;
     }
 
-    private static void addToCategoryExerciseList(Exercise exercise) {
-        switch (exercise.getCategory()) {
-            case "Legs":
-                legExercises.add(exercise);
-            case "Chest":
-                chestExercises.add(exercise);
-            case "Abs":
-                abExercises.add(exercise);
-            case "Shoulders":
-                shoulderExercises.add(exercise);
-            case "Arms":
-                armExercises.add(exercise);
-            case "Back":
-                backExercises.add(exercise);
-            case "Calves":
-                calfExercises.add(exercise);
-        }
-    }
     public static ArrayList<Exercise> getLegExercises() {
-        return legExercises;
+        return map.get("Legs");
     }
 
     public static ArrayList<Exercise> getChestExercises() {
-        return chestExercises;
+        return map.get("Chest");
     }
 
     public static ArrayList<Exercise> getAbExercises() {
-        return abExercises;
+        return map.get("Abs");
     }
 
     public static ArrayList<Exercise> getShoulderExercises() {
-        return shoulderExercises;
+        return map.get("Shoulders");
     }
 
     public static ArrayList<Exercise> getArmExercises() {
-        return armExercises;
+        return map.get("Arms");
     }
 
     public static ArrayList<Exercise> getBackExercises() {
-        return backExercises;
+        return map.get("Back");
     }
 
     public static ArrayList<Exercise> getCalfExercises() {
-        return calfExercises;
+        return map.get("Calves");
     }
 }

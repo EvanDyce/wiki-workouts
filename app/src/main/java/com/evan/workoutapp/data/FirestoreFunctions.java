@@ -52,10 +52,10 @@ public class FirestoreFunctions {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId());
 
-                                int id = Integer.getInteger(document.getId());
+                                String id = document.getId();
                                 String name = document.getString("name");
                                 String description = document.getString("description");
-                                String category = document.getString("catergory");
+                                String category = document.getString("category");
                                 ArrayList<String> equipment = (ArrayList<String>) document.get("equipment");
 
                                 Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment);
