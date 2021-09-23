@@ -19,8 +19,8 @@ public class Exercises {
      * Exercise Class for each individual exercise
      */
     public static class Exercise {
-        private String id, name, descirption, category;
-        private ArrayList<String> equipment;
+        private final String id, name, descirption, category;
+        private final ArrayList<String> equipment;
 
         public Exercise(String id, String name, String descirption, String category, ArrayList<String> equipment) {
             this.id = id;
