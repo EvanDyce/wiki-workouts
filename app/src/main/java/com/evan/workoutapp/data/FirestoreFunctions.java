@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.evan.workoutapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -54,11 +55,53 @@ public class FirestoreFunctions {
 
                                 String id = document.getId();
                                 String name = document.getString("name");
+
                                 String description = document.getString("description");
+                                if (description == null || description.length() == 0) {
+                                    description = "No Description Available for this Exercise.";
+                                }
+
                                 String category = document.getString("category");
                                 ArrayList<String> equipment = (ArrayList<String>) document.get("equipment");
+                                if (equipment.size() == 0) {
+                                    equipment.add("No Equipment Information");
+                                }
 
-                                Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment);
+                                int image;
+                                switch (category) {
+                                    case "Arms":
+                                        image = R.drawable.arms_targeted_image;
+                                        break;
+
+                                    case "Abs":
+                                        image = R.drawable.abs_targeted_image;
+                                        break;
+
+                                    case "Back":
+                                        image = R.drawable.back_targeted_image;
+                                        break;
+
+                                    case "Calves":
+                                        image = R.drawable.calf_targeted_image;
+                                        break;
+
+                                    case "Legs":
+                                        image = R.drawable.legs_targeted_image;
+                                        break;
+
+                                    case "Shoulders":
+                                        image = R.drawable.shoulder_targeted_image;
+                                        break;
+
+                                    case "Chest":
+                                        image = R.drawable.titties_targetted_workout;
+                                        break;
+
+                                    default:
+                                        throw new IllegalStateException("Unexpected value: " + category);
+                                }
+
+                                Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
                                 Exercises.addExercise(exercise);
 
                             }
@@ -74,7 +117,7 @@ public class FirestoreFunctions {
                 Map<String, Object> data = new HashMap<>();
                 data.put("id", exercise.getId());
                 data.put("name", exercise.getName());
-                data.put("description", exercise.getDescirption());
+                data.put("description", exercise.getDescription());
                 data.put("category", exercise.getCategory());
                 data.put("equipment", exercise.getEquipment());
 

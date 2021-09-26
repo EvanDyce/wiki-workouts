@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.FirestoreFunctions;
@@ -38,14 +40,16 @@ public class ExerciseFragment extends Fragment {
         binding = FragmentExercisesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textExercises;
+        final RecyclerView exerciseRV = binding.exerciseRecyclerview;
+        // initialize adapter and pass arraylist with the data
+        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext(), Exercises.getAllExercises());
 
-        exerciseViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        // setting layout manager for the recycler view
+        // making a vertical list so passing that value
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+
+        exerciseRV.setLayoutManager(linearLayoutManager);
+        exerciseRV.setAdapter(exerciseAdapter);
 
         return root;
     }
