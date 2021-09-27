@@ -1,16 +1,12 @@
 package com.evan.workoutapp.data;
 
-import android.app.Activity;
-import androidx.fragment.app.Fragment;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.evan.workoutapp.R;
-import com.evan.workoutapp.ui.exercises.ExerciseFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -107,8 +103,8 @@ public class FirestoreFunctions {
 
                                 Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
                                 Exercises.addExercise(exercise);
-                            }
 
+                            }
                         }
                      }
                 });
