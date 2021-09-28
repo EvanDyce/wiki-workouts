@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LoginActivity">
 
     <ImageView
@@ -11,7 +12,7 @@
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:scaleType="fitXY"
-        android:src="@drawable/login_background" />
+        android:src="@drawable/angryimg" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,17 +29,45 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:drawableStart="@drawable/ic_email_black"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="10dp"
                 android:hint="Email"
                 android:layout_margin="@dimen/margin_bottom_8"
-                android:inputType="text"
+                android:inputType="textEmailAddress|textNoSuggestions"
                 android:maxLength="30"
                 android:maxLines="1"
                 android:padding="@dimen/padding_16"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
                 android:textSize="@dimen/text_20"/>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/ic_padlock"
+                android:drawablePadding="10dp"
+                android:inputType="textPassword"
+                android:layout_margin="@dimen/margin_bottom_8"
+                android:maxLength="20"
+                android:maxLines="1"
+                android:padding="@dimen/padding_16"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="@dimen/text_20"
+                android:hint="Password"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_signIn"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/custom_button"
+                android:text="Sign In"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_20"/>
+
 
         </LinearLayout>
 
