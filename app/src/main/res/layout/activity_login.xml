@@ -12,7 +12,7 @@
         android:adjustViewBounds="true"
         android:cropToPadding="false"
         android:scaleType="fitXY"
-        android:src="@drawable/angryimg" />
+        android:src="@drawable/login_background" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -68,8 +68,34 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_20"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/size_10"
+                android:weightSum="2">
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_createAccount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="3dp"
+                    android:background="@drawable/custom_button"
+                    android:text="Create Account"
+                    android:textColor="@color/white"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_forgotPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/custom_button"
+                    android:text="Forgot Password"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
 </RelativeLayout>
