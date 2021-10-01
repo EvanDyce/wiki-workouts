@@ -13,13 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WorkoutApp"
         tools:replace="android:icon">
+
         <activity
             android:name=".SignupActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.WorkoutApp.NoActionBar"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.WorkoutApp.NoActionBar"/>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -31,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
     </application>
 
 </manifest>
