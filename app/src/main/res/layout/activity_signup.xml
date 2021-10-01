@@ -4,20 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignupActivity">
+    tools:context=".SignupActivity"
+    android:background="@color/salmon">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:cropToPadding="false"
-        android:scaleType="fitXY"
-        android:src="@drawable/login_background"/>
 
-    <ScrollView
+    <Space
+        android:id="@+id/topSpacer"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"/>
+
+    <LinearLayout
+        android:id="@+id/titleLinearLayout"
+        android:layout_below="@+id/topSpacer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_padlock"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Workout App"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_50"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/titleLinearLayout"
+        android:padding="@dimen/padding_8">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,7 +52,7 @@
             <EditText
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_margin="@dimen/margin_bottom_8"
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_man_user"
@@ -45,7 +69,7 @@
             <EditText
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_margin="@dimen/margin_bottom_8"
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_email"
@@ -62,7 +86,7 @@
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_margin="@dimen/margin_bottom_8"
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_padlock"
@@ -79,7 +103,7 @@
             <EditText
                 android:id="@+id/et_confirmPassword"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_margin="@dimen/margin_bottom_8"
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_padlock"
@@ -93,10 +117,43 @@
                 android:textColorHint="@color/black"
                 android:textSize="@dimen/text_20" />
 
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="80dp"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:paddingTop="@dimen/size_10"-->
+            <!--                android:weightSum="2">-->
+
+            <!--                <androidx.appcompat.widget.AppCompatButton-->
+            <!--                    android:id="@+id/button_createAccount"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_marginEnd="1dp"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:background="@drawable/custom_button"-->
+            <!--                    android:text="Create Account"-->
+            <!--                    android:textColor="@color/white" />-->
+
+            <!--                <androidx.appcompat.widget.AppCompatButton-->
+            <!--                    android:id="@+id/button_forgotPassword"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_margin="1dp"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:background="@drawable/custom_button"-->
+            <!--                    android:text="Already Have Account?"-->
+            <!--                    android:textColor="@color/white" />-->
+
+            <!--            </LinearLayout>-->
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_createAccount"
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
+                android:layout_height="60dp"
                 android:background="@drawable/custom_button"
                 android:text="Create Account"
                 android:textColor="@color/white"
@@ -104,16 +161,35 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="5dp"/>
+                android:layout_height="10dp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_alreadyHaveAccount"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:background="@drawable/custom_button"
-                android:text="Already Have an Account?"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_20" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@color/transparent"
+                    android:text="Already Have an Account?"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_18" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_alreadyHaveAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:text="@string/sign_in"
+                    android:textAllCaps="false"
+                    android:textColor="#0645AD"
+                    android:textSize="@dimen/text_18" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
