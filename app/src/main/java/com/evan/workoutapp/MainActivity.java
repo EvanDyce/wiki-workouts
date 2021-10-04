@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirestoreFunctions.retrieveExercisesFromFirestore();
         // gets the binding and sets active fragment as first in activity_main_drawer.xml menu file
         binding = ActivityMainBinding.inflate(getLayoutInflater());
