@@ -23,6 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FirestoreFunctions {
+
+    public interface FirestoreCallback {
+        public void dataRetrieved();
+        public void dataRetrievalFailed();
+    }
+
     private static final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static final String TAG = "FIRESTORE";
 
@@ -46,7 +52,7 @@ public class FirestoreFunctions {
      * Retrieves all the exercises from firebase database
      * Loads into the full exercises list and into the category specific list
      */
-    public static void retrieveExercisesFromFirestore() {
+    public static void retrieveExercisesFromFirestore(FirestoreCallback callback) {
         db.collection("exercise")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -107,8 +113,10 @@ public class FirestoreFunctions {
                                 Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
                                 Exercises.addExercise(exercise);
                             }
+                            callback.dataRetrieved();
+                        } else {
+                            callback.dataRetrievalFailed();
                         }
-                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
                      }
                 });
     }

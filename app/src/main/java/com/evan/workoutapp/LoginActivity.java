@@ -25,11 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public interface FirestoreCallback {
-        public void dataRetrieved();
-        public void dataRetrievalFailed();
-    }
-
     private static final String TAG = "LOGINACTIVITY";
 
     private FirebaseAuth mAuth;
@@ -51,19 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = binding.etEmail.getText().toString();
                 String password = binding.etPassword.getText().toString();
 
-                signIn(email, password, new LoginActivity.FirestoreCallback() {
-
-                    @Override
-                    public void dataRetrieved() {
-                        FirebaseUser user = mAuth.getCurrentUser();
-
-                    }
-
-                    @Override
-                    public void dataRetrievalFailed() {
-
-                    }
-                });
+                signIn(email, password);
             }
         });
 
@@ -93,11 +76,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // check if the user is signed in (non-null) and update the UI
         FirebaseUser current = mAuth.getCurrentUser();
-        UI.updateUI(this, current);
+        if (current != null) {
+            setContentView(R.layout.loading_screen);
+
+            FirestoreFunctions.retrieveExercisesFromFirestore(new FirestoreFunctions.FirestoreCallback() {
+                @Override
+                public void dataRetrieved() {
+                    UI.updateUI(LoginActivity.this, current);
+                }
+
+                @Override
+                public void dataRetrievalFailed() {
+                    DialogMessage.Failure(LoginActivity.this, "This is google's fault not mine");
+                }
+            });
+        }
     }
 
 
-    private void signIn(String email, String password, final LoginActivity.FirestoreCallback callback) {
+    private void signIn(String email, String password) {
         if (email == null || email.length() == 0 || password == null || password.length() == 0) {
             DialogMessage.Failure(this, "Please enter a valid email and password");
             return;
@@ -107,12 +104,25 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        // if signed in properly
                         if (task.isSuccessful()) {
-                            callback.dataRetrieved();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            UI.updateUI(LoginActivity.this, user);
+                            // if user is signed in then retrieve the data from firestore
+                            FirestoreFunctions.retrieveExercisesFromFirestore(new FirestoreFunctions.FirestoreCallback() {
+                                @Override
+                                public void dataRetrieved() {
+                                    // exercise data got retrieved successfully
+                                    // updates UI to the main activity
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    UI.updateUI(LoginActivity.this, user);
+                                }
+
+                                @Override
+                                public void dataRetrievalFailed() {
+                                    DialogMessage.Failure(LoginActivity.this, "This is google's fault not me");
+                                }
+                            });
+
                         } else {
-                            callback.dataRetrievalFailed();
                             String errorCode;
                             if (task.getException() instanceof FirebaseAuthException) {
                                 errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
