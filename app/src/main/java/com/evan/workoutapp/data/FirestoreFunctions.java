@@ -6,11 +6,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.evan.workoutapp.LoginActivity;
 import com.evan.workoutapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -103,9 +106,9 @@ public class FirestoreFunctions {
 
                                 Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
                                 Exercises.addExercise(exercise);
-
                             }
                         }
+                        FirebaseAuth mAuth = FirebaseAuth.getInstance();
                      }
                 });
     }

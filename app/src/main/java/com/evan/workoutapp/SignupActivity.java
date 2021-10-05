@@ -13,6 +13,7 @@ import com.evan.workoutapp.databinding.ActivityLoginBinding;
 import com.evan.workoutapp.databinding.ActivitySignupBinding;
 import com.evan.workoutapp.user.User;
 import com.evan.workoutapp.utils.DialogMessage;
+import com.evan.workoutapp.utils.UI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -182,7 +183,7 @@ public class SignupActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         Log.d(TAG, "User added to firestore successfully");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        updateUI(user);
+                        UI.updateUI(SignupActivity.this, user);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -191,19 +192,5 @@ public class SignupActivity extends AppCompatActivity {
                         Log.e(TAG, "User couldn't be added to firestore.");
                     }
                 });
-    }
-
-
-    /**
-     * Will update the UI if user is signed in. Else if it is null it will reload the page
-     * @param user current user that is signed in
-     */
-    private void updateUI(FirebaseUser user) {
-        if (user == null) {
-            finish();
-            startActivity(getIntent());
-        } else {
-            startActivity(new Intent(this, MainActivity.class));
-        }
     }
 }

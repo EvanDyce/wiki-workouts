@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.ActivityLoginBinding;
 import com.evan.workoutapp.utils.DialogMessage;
+import com.evan.workoutapp.utils.UI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,6 +24,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class LoginActivity extends AppCompatActivity {
+
+    public interface FirestoreCallback {
+        public void dataRetrieved();
+        public void dataRetrievalFailed();
+    }
 
     private static final String TAG = "LOGINACTIVITY";
 
@@ -45,7 +51,19 @@ public class LoginActivity extends AppCompatActivity {
                 String email = binding.etEmail.getText().toString();
                 String password = binding.etPassword.getText().toString();
 
-                signIn(email, password);
+                signIn(email, password, new LoginActivity.FirestoreCallback() {
+
+                    @Override
+                    public void dataRetrieved() {
+                        FirebaseUser user = mAuth.getCurrentUser();
+
+                    }
+
+                    @Override
+                    public void dataRetrievalFailed() {
+
+                    }
+                });
             }
         });
 
@@ -75,26 +93,26 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         // check if the user is signed in (non-null) and update the UI
         FirebaseUser current = mAuth.getCurrentUser();
-        updateUI(current);
+        UI.updateUI(this, current);
     }
 
-    private void updateUI(FirebaseUser user) {
-        if (user == null) { return; }
 
-        startActivity(new Intent(this, MainActivity.class));
-    }
+    private void signIn(String email, String password, final LoginActivity.FirestoreCallback callback) {
+        if (email == null || email.length() == 0 || password == null || password.length() == 0) {
+            DialogMessage.Failure(this, "Please enter a valid email and password");
+            return;
+        }
 
-    private void signIn(String email, String password) {
-        Log.d(TAG, email);
-        Log.d(TAG, password);
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            callback.dataRetrieved();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            UI.updateUI(LoginActivity.this, user);
                         } else {
+                            callback.dataRetrievalFailed();
                             String errorCode;
                             if (task.getException() instanceof FirebaseAuthException) {
                                 errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
