@@ -74,7 +74,8 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         if (name.length() == 0 || email.length() == 0 || password.length() == 0 || confirmPassword.length() == 0) {
-            DialogMessage.Failure(this, "Please Fill Out ALl Fields");
+            DialogMessage.Failure(this, "Please Fill Out All Fields");
+            return;
         }
 
         mAuth.createUserWithEmailAndPassword(email, password)

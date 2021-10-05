@@ -77,16 +77,20 @@ public class LoginActivity extends AppCompatActivity {
         // check if the user is signed in (non-null) and update the UI
         FirebaseUser current = mAuth.getCurrentUser();
         if (current != null) {
+            // sets to loading screen if the user is logged in
             setContentView(R.layout.loading_screen);
 
+            // retrieve the exercise data from firestore
             FirestoreFunctions.retrieveExercisesFromFirestore(new FirestoreFunctions.FirestoreCallback() {
                 @Override
                 public void dataRetrieved() {
+                    // once teh data is retrieved start teh main activity and it will show teh data properly
                     UI.updateUI(LoginActivity.this, current);
                 }
 
                 @Override
                 public void dataRetrievalFailed() {
+                    // if firestore fails it is not my fault it is google
                     DialogMessage.Failure(LoginActivity.this, "This is google's fault not mine");
                 }
             });
