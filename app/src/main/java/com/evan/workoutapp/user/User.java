@@ -14,6 +14,13 @@ public class User {
         this.userWorkouts = new ArrayList<>();
     }
 
+    public User(String name, String email, ArrayList<Workouts> workouts, int workoutsCompleted) {
+        this.name = name;
+        this.email = email;
+        this.userWorkouts = workouts;
+        this.workouts_completed = workoutsCompleted;
+    }
+
     public String getName() {
         return name;
     }
@@ -22,7 +29,7 @@ public class User {
         return email;
     }
 
-    public int getWorkouts_completed() {
+    public int getWorkoutsCompleted() {
         return workouts_completed;
     }
 

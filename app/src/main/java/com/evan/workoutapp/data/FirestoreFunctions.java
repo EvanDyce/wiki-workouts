@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.evan.workoutapp.LoginActivity;
 import com.evan.workoutapp.R;
+import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -25,8 +26,8 @@ import java.util.Map;
 public class FirestoreFunctions {
 
     public interface FirestoreCallback {
-        public void dataRetrieved();
-        public void dataRetrievalFailed();
+        void dataRetrieved();
+        void dataRetrievalFailed();
     }
 
     private static final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -53,6 +54,12 @@ public class FirestoreFunctions {
      * Loads into the full exercises list and into the category specific list
      */
     public static void retrieveExercisesFromFirestore(FirestoreCallback callback) {
+
+        if (Exercises.getAllExercises().size() != 0) {
+            callback.dataRetrieved();
+            return;
+        }
+
         db.collection("exercise")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

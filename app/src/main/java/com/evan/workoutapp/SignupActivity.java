@@ -173,7 +173,7 @@ public class SignupActivity extends AppCompatActivity {
         Map<String, Object> data = new HashMap<>();
         data.put("name", user.getName());
         data.put("email", user.getEmail());
-        data.put("workouts_completed", user.getWorkouts_completed());
+        data.put("workouts_completed", user.getWorkoutsCompleted());
         data.put("custom_workouts", user.getUserWorkouts());
 
         db.collection("users")

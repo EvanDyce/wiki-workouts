@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.ActivityLoginBinding;
+import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.evan.workoutapp.utils.DialogMessage;
 import com.evan.workoutapp.utils.UI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -85,6 +86,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void dataRetrieved() {
                     // once teh data is retrieved start teh main activity and it will show teh data properly
+                    // get data on the current user as well
+                    CurrentUserSingleton.getInstance(mAuth);
                     UI.updateUI(LoginActivity.this, current);
                 }
 
