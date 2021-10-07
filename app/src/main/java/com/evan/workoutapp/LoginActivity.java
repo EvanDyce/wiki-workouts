@@ -87,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
                 public void dataRetrieved() {
                     // once teh data is retrieved start teh main activity and it will show teh data properly
                     // get data on the current user as well
-                    CurrentUserSingleton.getInstance(mAuth);
                     UI.updateUI(LoginActivity.this, current);
                 }
 
