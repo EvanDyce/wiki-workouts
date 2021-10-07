@@ -1,8 +1,6 @@
 package com.evan.workoutapp.user;
 
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -14,14 +12,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class CurrentUserSingleton {
     private final static String TAG = "USER SINGLETON";
     private static FirebaseFirestore db = FirebaseFirestore.getInstance();
     private static User instance;
+
 
     public static synchronized User getInstance() {
         if (instance == null) {
@@ -54,5 +51,9 @@ public class CurrentUserSingleton {
                     });
         }
         return instance;
+    }
+
+    public static void signOutCurrentUser() {
+        CurrentUserSingleton.instance = null;
     }
 }

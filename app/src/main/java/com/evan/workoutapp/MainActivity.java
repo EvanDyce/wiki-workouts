@@ -57,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
 //        accessing the drawer layout and the nav view
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
+        View headerView = navigationView.getHeaderView(0);
+
+//        TextView name = headerView.findViewById(R.id.navbarUsername);
+//        name.setText(CurrentUserSingleton.getInstance().getName());
+//
+//        TextView email = headerView.findViewById(R.id.navbarEmail);
+//        email.setText(CurrentUserSingleton.getInstance().getEmail());
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -68,11 +75,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-
-
-
     }
 
     @Override
@@ -81,10 +83,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         // update the text at teh top with the current user information
         // has to be here not onCreate because then View is null
-        TextView userName = findViewById(R.id.navbarUsername);
-        TextView userEmail = findViewById(R.id.navbarEmail);
-        userName.setText(CurrentUserSingleton.getInstance().getName());
-        userEmail.setText(CurrentUserSingleton.getInstance().getEmail());
         return true;
     }
 
@@ -100,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
      * @param item MenuItem reference to the sign_out item
      */
     public void onSignOutClicked(MenuItem item) {
+        CurrentUserSingleton.signOutCurrentUser();
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
     }
