@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.evan.workoutapp.data.FirestoreFunctions;
+import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.evan.workoutapp.volley.VolleyUtils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -68,12 +69,22 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+
+
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        // update the text at teh top with the current user information
+        // has to be here not onCreate because then View is null
+        TextView userName = findViewById(R.id.navbarUsername);
+        TextView userEmail = findViewById(R.id.navbarEmail);
+        userName.setText(CurrentUserSingleton.getInstance().getName());
+        userEmail.setText(CurrentUserSingleton.getInstance().getEmail());
         return true;
     }
 
