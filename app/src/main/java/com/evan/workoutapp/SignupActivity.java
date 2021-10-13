@@ -22,6 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -84,7 +85,23 @@ public class SignupActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "User created successfully");
-                            insertUserIntoFirestore(name, email);
+                            UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(name)
+                                    .build();
+
+                            mAuth.getCurrentUser().updateProfile(profileUpdate)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Log.d("Name Set", "Username set in auth");
+                                                insertUserIntoFirestore(name, email);
+                                            } else {
+                                                Log.e("USERNAME", "Username couldn't be set");
+                                            }
+                                        }
+                                    });
+//                            insertUserIntoFirestore(name, email);
                         } else {
                             Log.d(TAG, "User creation failed");
 

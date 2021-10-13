@@ -59,11 +59,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
         View headerView = navigationView.getHeaderView(0);
 
-//        TextView name = headerView.findViewById(R.id.navbarUsername);
-//        name.setText(CurrentUserSingleton.getInstance().getName());
-//
-//        TextView email = headerView.findViewById(R.id.navbarEmail);
-//        email.setText(CurrentUserSingleton.getInstance().getEmail());
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        TextView name = headerView.findViewById(R.id.navbarUsername);
+        name.setText(mAuth.getCurrentUser().getDisplayName());
+
+        TextView email = headerView.findViewById(R.id.navbarEmail);
+        email.setText(mAuth.getCurrentUser().getEmail());
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
