@@ -1,11 +1,13 @@
 package com.evan.workoutapp.user;
 
+import com.evan.workoutapp.data.Workout;
+
 import java.util.ArrayList;
 
 public class User {
     private String name, email;
     private int workouts_completed;
-    private ArrayList<Workouts> userWorkouts;
+    private ArrayList<Workout> userWorkouts;
 
     public User(String name, String email) {
         this.name = name;
@@ -14,7 +16,7 @@ public class User {
         this.userWorkouts = new ArrayList<>();
     }
 
-    public User(String name, String email, ArrayList<Workouts> workouts, int workoutsCompleted) {
+    public User(String name, String email, ArrayList<Workout> workouts, int workoutsCompleted) {
         this.name = name;
         this.email = email;
         this.userWorkouts = workouts;
@@ -33,7 +35,7 @@ public class User {
         return workouts_completed;
     }
 
-    public ArrayList<Workouts> getUserWorkouts() {
+    public ArrayList<Workout> getUserWorkouts() {
         return userWorkouts;
     }
 }

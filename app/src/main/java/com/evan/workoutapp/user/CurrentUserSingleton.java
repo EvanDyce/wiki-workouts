@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.evan.workoutapp.data.Workout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +40,7 @@ public class CurrentUserSingleton {
                                     String email = (String) map.get("email");
                                     String name = (String) map.get("name");
                                     int workouts_completed = ((Long) map.get("workouts_completed")).intValue();
-                                    ArrayList<Workouts> workouts = (ArrayList<Workouts>) map.get("custom_workouts");
+                                    ArrayList<Workout> workouts = (ArrayList<Workout>) map.get("custom_workouts");
                                     instance = new User(email, name, workouts, workouts_completed);
                                 } else {
                                     Log.e(TAG, "Document doesn't exist");
