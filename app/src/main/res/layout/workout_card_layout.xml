@@ -4,21 +4,18 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/workoutImage"
         android:layout_width="150px"
         android:layout_height="150px"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_padlock"
-        android:layout_marginHorizontal="@dimen/size_10"
-        android:padding="@dimen/size_10"/>
+        android:src="@drawable/abs_image"/>
 
     <TextView
         android:id="@+id/workoutTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/workoutImage"
-        android:text="CHEST BURNER"
+        android:text="ABS BURNER"
         android:textSize="30sp"
         android:gravity="center_vertical"
         android:layout_centerVertical="true"/>
