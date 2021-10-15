@@ -88,31 +88,31 @@ public class FirestoreFunctions {
                                 int image;
                                 switch (category) {
                                     case "Arms":
-                                        image = R.drawable.arms_targeted_image;
+                                        image = R.drawable.arms_image;
                                         break;
 
                                     case "Abs":
-                                        image = R.drawable.abs_targeted_image;
+                                        image = R.drawable.abs_image;
                                         break;
 
                                     case "Back":
-                                        image = R.drawable.back_targeted_image;
+                                        image = R.drawable.back_image;
                                         break;
 
                                     case "Calves":
-                                        image = R.drawable.calf_targeted_image;
+                                        image = R.drawable.calf_image;
                                         break;
 
                                     case "Legs":
-                                        image = R.drawable.legs_targeted_image;
+                                        image = R.drawable.legs_image;
                                         break;
 
                                     case "Shoulders":
-                                        image = R.drawable.shoulder_targeted_image;
+                                        image = R.drawable.shoulder_image;
                                         break;
 
                                     case "Chest":
-                                        image = R.drawable.titties_targetted_workout;
+                                        image = R.drawable.chest_image;
                                         break;
 
                                     default:
