@@ -1,5 +1,7 @@
 package com.evan.workoutapp.user;
 
+import androidx.annotation.NonNull;
+
 import com.evan.workoutapp.data.Workout;
 
 import java.util.ArrayList;
@@ -38,4 +40,11 @@ public class User {
     public ArrayList<Workout> getUserWorkouts() {
         return userWorkouts;
     }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.getName() + " is user with email " + this.getEmail() + ". They have completed " + this.getWorkoutsCompleted() + " workouts";
+    }
+
 }
