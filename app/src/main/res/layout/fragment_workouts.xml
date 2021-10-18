@@ -10,5 +10,5 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:scrollbars="vertical"
-        android:id="@+id/exercise_recyclerview"/>
+        android:id="@+id/workout_recyclerview"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
