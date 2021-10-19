@@ -72,6 +72,7 @@ public class FirestoreFunctions {
                                 Log.d(TAG, document.getId());
 
                                 String id = document.getId();
+
                                 String name = document.getString("name");
 
                                 String description = document.getString("description");
@@ -120,6 +121,36 @@ public class FirestoreFunctions {
                                 }
 
                                 Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
+                                // load into the premade workouts temporarily
+                                PremadeWorkouts premadeWorkouts = new PremadeWorkouts();
+
+                                if (premadeWorkouts.getListOfIDContainedInWorkout().contains(id)) {
+                                    if (premadeWorkouts.getAbsIDSArrayList().contains(id)) {
+                                        Log.d("ABS", id);
+                                        premadeWorkouts.absAdd(exercise);
+                                    }
+
+                                    if (premadeWorkouts.getArmsIDSArrayList().contains(id)) {
+                                        Log.d("ARMS", id);
+                                        premadeWorkouts.armsAdd(exercise);
+                                    }
+                                    if (premadeWorkouts.getBackIDSArrayList().contains(id)) {
+                                        Log.d("BACK", id);
+                                        premadeWorkouts.backAdd(exercise);
+                                    }
+                                    if (premadeWorkouts.getChestIDSArrayList().contains(id)) {
+                                        Log.d("CHEST", id);
+                                        premadeWorkouts.chestAdd(exercise);
+                                    }
+                                    if (premadeWorkouts.getLegsIDSArrayList().contains(id)) {
+                                        Log.d("LEGS1", id);
+                                        premadeWorkouts.legs1Add(exercise);
+                                    }
+                                    if (premadeWorkouts.getLegs2IDArrayList().contains(id)) {
+                                        Log.d("LEGS2", id);
+                                        premadeWorkouts.legs2Add(exercise);
+                                    }
+                                }
                                 Exercises.addExercise(exercise);
                             }
                             callback.dataRetrieved();
