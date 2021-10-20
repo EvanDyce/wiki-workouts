@@ -72,4 +72,7 @@ public class Workout {
     }
 
     public int getImageID() { return this.image_id; }
+
+    public ArrayList<Exercise> getExercisesInWorkout() { return this.exercisesInWorkout; }
+
 }

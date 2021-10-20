@@ -1,6 +1,16 @@
 package com.evan.workoutapp.data;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PremadeWorkouts {
     private  ArrayList<Workout> workouts;
@@ -30,6 +40,9 @@ public class PremadeWorkouts {
     private  ArrayList<Exercises.Exercise> abs = new ArrayList<>();
     private  ArrayList<Exercises.Exercise> back = new ArrayList<>();
 
+    ArrayList<ArrayList<Exercises.Exercise>> arrayListofArraylist = new ArrayList<>();
+
+
     public PremadeWorkouts() {
         for (String id : Legs1IDS) {
             legsIDSArrayList.add(id);
@@ -56,6 +69,14 @@ public class PremadeWorkouts {
             backIDSArrayList.add(id);
         }
 
+        arrayListofArraylist.add(legs1);
+        arrayListofArraylist.add(legs2);
+        arrayListofArraylist.add(chest);
+        arrayListofArraylist.add(shoulders);
+        arrayListofArraylist.add(back);
+        arrayListofArraylist.add(abs);
+        arrayListofArraylist.add(arms);
+
         listOfIDContainedInWorkout.addAll(legsIDSArrayList);
         listOfIDContainedInWorkout.addAll(legs2IDArrayList);
         listOfIDContainedInWorkout.addAll(chestIDSArrayList);
@@ -65,26 +86,68 @@ public class PremadeWorkouts {
         listOfIDContainedInWorkout.addAll(backIDSArrayList);
     }
 
+    public void pushToFirestore() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // maybe add it as a map?
+        ArrayList<Exercises.Exercise> legs = new ArrayList<>();
+        for (Exercises.Exercise exercise : back) {
+            legs.add(exercise);
+        }
+        Workout workout = new Workout("Back Workout", "Workout for your back", "Back", legs);
+        Map<String, Object> data = new HashMap<>();
+        data.put("name", workout.getName());
+        data.put("description", workout.getDescription());
+        data.put("image_id", workout.getImageID());
+        data.put("exercises", workout.getExercisesInWorkout());
+        db.collection("workouts")
+                .document(workout.getName())
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("FUCK", "DocumentSnapshot W");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("FUCK", "DocumentSnapshot L");
+                    }
+                });
+//        for (ArrayList<Exercises.Exercise> list : arrayListofArraylist) {
+//
+//            for (Exercises.Exercise exercise : list) {
+//                Map<String, Object> data = new HashMap<>();
+//                data.put("id", exercise.getId());
+//                data.put("name", exercise.getName());
+//                data.put("description", exercise.getDescription());
+//                data.put("category", exercise.getCategory());
+//                data.put("equipment", exercise.getEquipment());
+//            }
+//        }
+    }
+
     public  void legs1Add(Exercises.Exercise e) {
         legs1.add(e);
     }
     public  void legs2Add(Exercises.Exercise e) {
-        legs1.add(e);
+        legs2.add(e);
     }
     public  void chestAdd(Exercises.Exercise e) {
-        legs1.add(e);
+        chest.add(e);
     }
     public  void shouldersAdd(Exercises.Exercise e) {
-        legs1.add(e);
+        shoulders.add(e);
     }
     public  void armsAdd(Exercises.Exercise e) {
-        legs1.add(e);
+        arms.add(e);
     }
     public  void absAdd(Exercises.Exercise e) {
-        legs1.add(e);
+        abs.add(e);
     }
     public  void backAdd(Exercises.Exercise e) {
-        legs1.add(e);
+        back.add(e);
     }
 
     public  ArrayList<Workout> getWorkouts() {
@@ -122,4 +185,7 @@ public class PremadeWorkouts {
     public  ArrayList<String> getBackIDSArrayList() {
         return backIDSArrayList;
     }
+
+
+
 }

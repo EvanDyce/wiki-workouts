@@ -68,6 +68,7 @@ public class FirestoreFunctions {
                         if (task.isSuccessful()) {
                             CurrentUserSingleton.getInstance();
 
+                            PremadeWorkouts premadeWorkouts = new PremadeWorkouts();
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId());
 
@@ -122,7 +123,7 @@ public class FirestoreFunctions {
 
                                 Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
                                 // load into the premade workouts temporarily
-                                PremadeWorkouts premadeWorkouts = new PremadeWorkouts();
+//                                PremadeWorkouts premadeWorkouts = new PremadeWorkouts();
 
                                 if (premadeWorkouts.getListOfIDContainedInWorkout().contains(id)) {
                                     if (premadeWorkouts.getAbsIDSArrayList().contains(id)) {
@@ -150,9 +151,14 @@ public class FirestoreFunctions {
                                         Log.d("LEGS2", id);
                                         premadeWorkouts.legs2Add(exercise);
                                     }
+                                    if (premadeWorkouts.getShouldersIDSArrayList().contains(id)) {
+                                        Log.d("Shoulders", id);
+                                        premadeWorkouts.shouldersAdd(exercise);
+                                    }
                                 }
                                 Exercises.addExercise(exercise);
                             }
+                            premadeWorkouts.pushToFirestore();
                             callback.dataRetrieved();
                         } else {
                             callback.dataRetrievalFailed();
