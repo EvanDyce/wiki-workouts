@@ -11,10 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.R;
-import com.evan.workoutapp.data.Workout;
+import com.evan.workoutapp.ui.workouts.data.Workout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.Viewholder> {
 

@@ -1,4 +1,4 @@
-package com.evan.workoutapp.data;
+package com.evan.workoutapp.ui.workouts.data;
 
 import java.util.ArrayList;
 
