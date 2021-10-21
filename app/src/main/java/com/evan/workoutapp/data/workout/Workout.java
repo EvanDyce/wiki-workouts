@@ -6,7 +6,7 @@ import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises.Exercise;
 
 public class Workout {
-    private String name, description;
+    private String name, description, category;
     private ArrayList<Exercise> exercisesInWorkout;
     private int image_id;
 
@@ -14,6 +14,7 @@ public class Workout {
         this.name = name;
         this.description = description;
         this.exercisesInWorkout = exercises;
+        this.category = category;
 
         switch (category) {
             case "Arms":
@@ -50,6 +51,8 @@ public class Workout {
 
 
     }
+
+    public String getCategory() { return this.category; }
 
     public String getName() {
         return this.name;
