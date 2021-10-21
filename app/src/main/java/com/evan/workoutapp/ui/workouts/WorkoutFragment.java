@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.data.Exercises;
-import com.evan.workoutapp.ui.workouts.data.Workout;
+import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentWorkoutsBinding;
 
 import java.util.ArrayList;

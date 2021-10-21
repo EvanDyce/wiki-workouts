@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.R;
-import com.evan.workoutapp.ui.workouts.data.Workout;
+import com.evan.workoutapp.data.workout.Workout;
 
 import java.util.ArrayList;
 

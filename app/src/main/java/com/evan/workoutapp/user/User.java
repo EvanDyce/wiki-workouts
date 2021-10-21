@@ -2,7 +2,7 @@ package com.evan.workoutapp.user;
 
 import androidx.annotation.NonNull;
 
-import com.evan.workoutapp.ui.workouts.data.Workout;
+import com.evan.workoutapp.data.workout.Workout;
 
 import java.util.ArrayList;
 
