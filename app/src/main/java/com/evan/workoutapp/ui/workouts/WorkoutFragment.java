@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.data.Exercises;
+import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentWorkoutsBinding;
 
@@ -24,6 +25,7 @@ public class WorkoutFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         workoutViewModel =
                 new ViewModelProvider(this).get(WorkoutViewModel.class);
 
@@ -32,14 +34,8 @@ public class WorkoutFragment extends Fragment {
 
         final RecyclerView workoutRV = binding.workoutRecyclerview;
 
-        // temporary data just to test
-        ArrayList<Workout> workouts = new ArrayList<>();
-        workouts.add(new Workout("Booty Burner", "WOrks butt", "Legs", Exercises.getAllExercises()));
-        workouts.add(new Workout("Booty Burner", "WOrks butt", "Legs", Exercises.getAllExercises()));
-        workouts.add(new Workout("Booty Burner", "WOrks butt", "Legs", Exercises.getAllExercises()));
-        workouts.add(new Workout("Booty Burner", "WOrks butt", "Legs", Exercises.getAllExercises()));
         // init adapter and pass arraylist with the data
-        WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(), workouts);
+        WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(), PremadeWorkouts.getPremadeWorkoutsArraylist());
 
         // setting layout manager for recycler view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

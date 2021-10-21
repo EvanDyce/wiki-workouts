@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 
 import com.evan.workoutapp.LoginActivity;
 import com.evan.workoutapp.R;
+import com.evan.workoutapp.data.workout.PremadeWorkouts;
+import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -123,7 +125,8 @@ public class FirestoreFunctions {
                                 Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
                                 Exercises.addExercise(exercise);
                             }
-                            callback.dataRetrieved();
+                            retrieveWorkoutsFromFirestore(db, callback);
+//                            callback.dataRetrieved();
                         } else {
                             callback.dataRetrievalFailed();
                         }
@@ -131,6 +134,35 @@ public class FirestoreFunctions {
                 });
     }
 
+    /**
+     * function that retrieves the workouts from firestore and loads them into PremadeWorkouts.java
+     * @param db firestore reference for request
+     * @param callback callback for async response
+     */
+    public static void retrieveWorkoutsFromFirestore(FirebaseFirestore db, FirestoreCallback callback) {
+        db.collection("workouts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                Log.d(TAG, documentSnapshot.getId() + " retrieved");
+
+                                String name = documentSnapshot.getString("name");
+                                String category = documentSnapshot.getString("category");
+                                String description = documentSnapshot.getString("description");
+                                ArrayList<Exercises.Exercise> exerciseArrayList = (ArrayList<Exercises.Exercise>) documentSnapshot.get("exercises");
+
+                                PremadeWorkouts.addWorkoutToList(new Workout(name, description, category, exerciseArrayList));
+                            }
+                            callback.dataRetrieved();
+                        } else {
+                            Log.e("FUCKER", "WORKOUT RETRIEVAL FAIL");
+                        }
+                    }
+                });
+    }
 
     public static void loadExercisesIntoFirestore(HashMap<String, ArrayList<Exercises.Exercise>> map) {
         for (String category : map.keySet()) {
