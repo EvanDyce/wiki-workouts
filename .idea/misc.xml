@@ -39,9 +39,14 @@
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_button.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_input.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/edit_style.xml" value="0.19074074074074074" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/ic_email.xml" value="0.1" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/ic_email_salmon.xml" value="0.1" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/ic_man_user.xml" value="0.1" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/ic_man_user_salmon.xml" value="0.1" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_menu_exercises.xml" value="0.2942708333333333" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_menu_profile.xml" value="0.24635416666666668" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_mountain_profile_background.xml" value="0.24635416666666668" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/ic_phone_salmon.xml" value="0.2638888888888889" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_sign_out.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/image_mountain_background.xml" value="0.19537037037037036" />
         <entry key="..\:/Workout/app/src/main/res/drawable/line_below_view.xml" value="0.3828125" />
@@ -57,7 +62,7 @@
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_gallery.xml" value="0.278125" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_history.xml" value="0.17685185185185184" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_home.xml" value="0.278125" />
-        <entry key="..\:/Workout/app/src/main/res/layout/fragment_profile.xml" value="0.17685185185185184" />
+        <entry key="..\:/Workout/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_slideshow.xml" value="0.278125" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_workouts.xml" value="0.35104166666666664" />
         <entry key="..\:/Workout/app/src/main/res/layout/loading_screen.xml" value="0.36666666666666664" />
