@@ -28,15 +28,9 @@ public class ProfileFragment extends Fragment {
         View root = binding.getRoot();
 
 //        gets the textview from fragment_profilei.xml file
-        final TextView textView = binding.textProfile;
 //        if the data is changed then update teh textview
 //        checks the viewmodel for the mutable live data class and then attatches observer so if it changes it will updata
-        profileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                textView.setText(s);
-            }
-        });
+
 
         return root;
     }

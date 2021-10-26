@@ -12,35 +12,36 @@
         android:layout_height="405dp">
 
         <LinearLayout
-            android:background="@color/salmon"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="@dimen/size_300"
+            android:background="@color/salmon"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_marginTop="@dimen/size_38"
-                android:layout_gravity="center_horizontal"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/ic_man_user"
-                android:scaleType="centerCrop"/>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/size_38"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_man_user" />
 
             <TextView
-                android:layout_marginTop="@dimen/size_10"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_name_upper"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/size_10"
                 android:text="Evan Dyce"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_20"/>
+                android:textSize="35sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="390dp"
+            android:layout_width="@dimen/size_350"
             android:layout_height="120dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="275dp">
+            android:layout_marginTop="250dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,13 +54,16 @@
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Workouts Completed"
-                        android:textSize="@dimen/text_20"/>
+                        android:text="Finished Workouts"
+                        android:textSize="@dimen/text_18"
+                        android:textColor="@color/grey"/>
                     <TextView
+                        android:id="@+id/tv_workouts_completed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="100"
@@ -74,13 +78,16 @@
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Workouts Created"
-                        android:textSize="@dimen/text_20"/>
+                        android:textSize="@dimen/text_18"
+                        android:textColor="@color/grey"/>
                     <TextView
+                        android:id="@+id/tv_workouts_created"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="100"
@@ -99,8 +106,7 @@
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="45dp">
+        android:layout_gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
@@ -109,7 +115,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/size_20"
             android:textStyle="bold"
-            android:textSize="35sp"/>
+            android:textSize="35sp"
+            android:textColor="@color/grey"/>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -121,12 +128,14 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_man_user_salmon"/>
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/size_20"
                 android:text="Evan Dyce"
-                android:textSize="@dimen/text_20"/>
+                android:textSize="@dimen/text_20"
+                android:textColor="@color/grey"/>
         </LinearLayout>
 
         <LinearLayout
@@ -139,12 +148,14 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_email_salmon"/>
             <TextView
+                android:id="@+id/tv_email"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/size_20"
                 android:text="endyce@gmail.com"
-                android:textSize="@dimen/text_20"/>
+                android:textSize="@dimen/text_20"
+                android:textColor="@color/grey"/>
         </LinearLayout>
 
         <LinearLayout
@@ -157,14 +168,23 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_phone_salmon"/>
             <TextView
+                android:id="@+id/tv_phone_number"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/size_20"
                 android:text="No Phone Number Provided"
-                android:textSize="@dimen/text_20"/>
+                android:textSize="@dimen/text_20"
+                android:textColor="@color/grey"/>
         </LinearLayout>
-
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/size_20"
+        android:text="Leave a Review"
+        android:textStyle="bold"/>
 
 </LinearLayout>
