@@ -58,6 +58,7 @@ public class FirestoreFunctions {
     public static void retrieveExercisesFromFirestore(FirestoreCallback callback) {
 
         if (Exercises.getAllExercises().size() != 0) {
+            CurrentUserSingleton.getInstance();
             callback.dataRetrieved();
             return;
         }
