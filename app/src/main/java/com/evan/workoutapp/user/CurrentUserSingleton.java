@@ -41,7 +41,7 @@ public class CurrentUserSingleton {
                                     String name = (String) map.get("name");
                                     int workouts_completed = ((Long) map.get("workouts_completed")).intValue();
                                     ArrayList<Workout> workouts = (ArrayList<Workout>) map.get("custom_workouts");
-                                    instance = new User(email, name, workouts, workouts_completed);
+                                    instance = new User(name, email, workouts, workouts_completed);
                                 } else {
                                     Log.e(TAG, "Document doesn't exist");
                                 }
