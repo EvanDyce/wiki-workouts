@@ -2,6 +2,7 @@ package com.evan.workoutapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.evan.workoutapp.data.FirestoreFunctions;
+import com.evan.workoutapp.data.workout.PremadeWorkouts;
+import com.evan.workoutapp.data.workout.Workout;
+import com.evan.workoutapp.ui.workouts.WorkoutAdapter;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.evan.workoutapp.volley.VolleyUtils;
 import com.google.android.material.snackbar.Snackbar;
@@ -103,4 +107,5 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
     }
+
 }

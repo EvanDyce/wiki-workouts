@@ -1,16 +1,19 @@
 package com.evan.workoutapp.ui.workouts;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.R;
+import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
 
 import java.util.ArrayList;
@@ -19,10 +22,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.Viewhold
 
     private Context context;
     private ArrayList<Workout> listOfWorkouts;
+    private WorkoutClickedListener mWorkoutlickedListenter;
 
-    public WorkoutAdapter(Context context, ArrayList<Workout> workoutsArrayList) {
+    public WorkoutAdapter(Context context, ArrayList<Workout> workoutsArrayList, WorkoutClickedListener workoutClickedListener) {
         this.context = context;
         this.listOfWorkouts = workoutsArrayList;
+        this.mWorkoutlickedListenter = workoutClickedListener;
     }
 
     @Override
@@ -36,7 +41,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.Viewhold
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.workout_card_layout, parent, false);
-        return new Viewholder(view);
+        return new Viewholder(view, mWorkoutlickedListenter);
     }
 
     @Override
@@ -44,16 +49,29 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.Viewhold
         return listOfWorkouts.size();
     }
 
-    public class Viewholder extends RecyclerView.ViewHolder {
+    public class Viewholder extends RecyclerView.ViewHolder
+        implements View.OnClickListener {
         private ImageView workoutImageView;
         private TextView workoutTitleTextView;
+        WorkoutClickedListener workoutClickedListener;
 
-        public Viewholder(@NonNull View itemView) {
+        public Viewholder(@NonNull View itemView, WorkoutClickedListener workoutClickedListener) {
             super(itemView);
             workoutImageView = itemView.findViewById(R.id.workoutImageCategory);
             workoutTitleTextView = itemView.findViewById(R.id.workoutTitleCategory);
+
+            this.workoutClickedListener = workoutClickedListener;
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            this.workoutClickedListener.onWorkoutClicked(getAdapterPosition());
+        }
+    }
+
+    public interface WorkoutClickedListener{
+        void onWorkoutClicked(int position);
     }
 
 }

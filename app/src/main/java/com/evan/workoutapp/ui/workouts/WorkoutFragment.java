@@ -1,5 +1,6 @@
 package com.evan.workoutapp.ui.workouts;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.WorkoutInformationActivity;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
@@ -18,7 +20,7 @@ import com.evan.workoutapp.databinding.FragmentWorkoutsBinding;
 
 import java.util.ArrayList;
 
-public class WorkoutFragment extends Fragment {
+public class WorkoutFragment extends Fragment implements WorkoutAdapter.WorkoutClickedListener {
 
     private WorkoutViewModel workoutViewModel;
     private FragmentWorkoutsBinding binding;
@@ -35,7 +37,7 @@ public class WorkoutFragment extends Fragment {
         final RecyclerView workoutRV = binding.workoutRecyclerview;
 
         // init adapter and pass arraylist with the data
-        WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(), PremadeWorkouts.getPremadeWorkoutsArraylist());
+        WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(), PremadeWorkouts.getPremadeWorkoutsArraylist(), this::onWorkoutClicked);
 
         // setting layout manager for recycler view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -49,5 +51,18 @@ public class WorkoutFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    /**
+     * onClick for when a workout is clicked in the workout frag recycler view
+     * @param position position of workout in the recycler view so I know which one it
+     *                 is to start teh intent
+     */
+    @Override
+    public void onWorkoutClicked(int position) {
+        Workout workout = PremadeWorkouts.getPremadeWorkoutsArraylist().get(position);
+        Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
+        intent.putExtra("workout_position", position);
+        startActivity(intent );
     }
 }
