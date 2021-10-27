@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -60,9 +61,8 @@ public class WorkoutFragment extends Fragment implements WorkoutAdapter.WorkoutC
      */
     @Override
     public void onWorkoutClicked(int position) {
-        Workout workout = PremadeWorkouts.getPremadeWorkoutsArraylist().get(position);
         Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
-        intent.putExtra("workout_position", position);
+        intent.putExtra("workout_index", position);
         startActivity(intent );
     }
 }
