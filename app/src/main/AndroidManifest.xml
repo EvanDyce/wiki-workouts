@@ -15,7 +15,8 @@
         tools:replace="android:icon">
         <activity
             android:name=".WorkoutInformationActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/Theme.WorkoutApp"/>
         <activity
             android:name=".SignupActivity"
             android:exported="true"
