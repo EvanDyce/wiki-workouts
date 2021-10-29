@@ -16,7 +16,7 @@
         android:gravity="center"
         android:textSize="@dimen/text_50"
         android:textStyle="bold"
-        android:textColor="@color/salmon"/>
+        android:textColor="@color/black"/>
 
     <LinearLayout
         android:id="@+id/ll_workout_information"
@@ -152,7 +152,7 @@
             android:layout_marginTop="@dimen/size_50"
             android:layout_gravity="center_horizontal"
             android:text="Start Workout"/>
-        
+
     </LinearLayout>
 
 </RelativeLayout>
