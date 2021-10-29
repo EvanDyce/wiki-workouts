@@ -23,16 +23,23 @@ public class WorkoutInformationActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
 
+        // get the action bar and set teh color and home button
         if (actionBar == null) Log.e("FUCKER", "IT IS NULL");
         assert actionBar != null;
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
+
         // get intent so I can get teh index that was passed
         Intent intent = getIntent();
         int index = (int) intent.getExtras().get("workout_index");
         Toast.makeText(this, "Workout: " + PremadeWorkouts.getPremadeWorkoutsArraylist().get(index).getName(), Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * on click for the back button on action bar
+     * @param item menuitem that was clicked, always back button
+     * @return returns true
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
