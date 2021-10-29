@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FirestoreFunctions {
@@ -86,7 +87,7 @@ public class FirestoreFunctions {
                                 String category = document.getString("category");
                                 ArrayList<String> equipment = (ArrayList<String>) document.get("equipment");
                                 if (equipment.size() == 0) {
-                                    equipment.add("No Equipment Information");
+                                    equipment.add("No Equipment");
                                 }
 
                                 int image;
@@ -153,9 +154,21 @@ public class FirestoreFunctions {
                                 String name = documentSnapshot.getString("name");
                                 String category = documentSnapshot.getString("category");
                                 String description = documentSnapshot.getString("description");
-                                ArrayList<Exercises.Exercise> exerciseArrayList = (ArrayList<Exercises.Exercise>) documentSnapshot.get("exercises");
+                                ArrayList<HashMap<String, Object>> mapList = (ArrayList<HashMap<String, Object>>) documentSnapshot.get("exercises");
+                                ArrayList<Exercises.Exercise> exercises = new ArrayList<>();
+                                for (HashMap<String, Object> map : mapList) {
+                                    Long imageID = (Long) map.get("imageID");
+                                    String exerciseName = (String) map.get("name");
+                                    String exerciseDescription = (String) map.get("description");
+                                    String equipment = (String) map.get("equipment");
+                                    String id = (String) map.get("id");
+                                    String exerciseCategory = (String) map.get("category");
+                                    assert equipment != null;
+                                    exercises.add(new Exercises.Exercise(id, exerciseName, exerciseDescription, exerciseCategory, equipment, imageID.intValue()));
+                                }
+//                                ArrayList<Exercises.Exercise> exerciseArrayList = (ArrayList<Exercises.Exercise>) documentSnapshot.get("exercises");
 
-                                PremadeWorkouts.addWorkoutToList(new Workout(name, description, category, exerciseArrayList));
+                                PremadeWorkouts.addWorkoutToList(new Workout(name, description, category, exercises));
                             }
                             callback.dataRetrieved();
                         } else {

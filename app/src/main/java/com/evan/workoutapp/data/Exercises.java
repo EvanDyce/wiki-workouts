@@ -24,21 +24,25 @@ public class Exercises {
         private final String equipment;
         private final int image_id;
 
-        public Exercise(String id, String name, String description, String category, ArrayList<String> equipment, int image_id) {
-            String equipment1;
+        public Exercise(String id, String name, String description, String category, String equipment, int image_id) {
             this.id = id;
             this.name = name;
             this.description = description;
             this.category = category;
-            equipment1 = "Equipment: ";
-            for (String equip : equipment) {
-                if (equipment1.length() > 12) {
-                    equipment1 += ", ";
-                }
-                equipment1 += equip;
-            }
+            this.equipment = equipment;
+            this.image_id = image_id;
+        }
 
-            this.equipment = equipment1;
+        public Exercise(String id, String name, String description, String category, ArrayList<String> equipment, int image_id) {
+            this.id = id;
+            this.name = name;
+            this.description = description;
+            this.category = category;
+            String cat1 = "Equipment: ";
+            for (String equip : equipment) {
+                cat1 += equip + ", ";
+            }
+            this.equipment = cat1;
             this.image_id = image_id;
         }
 
@@ -111,7 +115,7 @@ public class Exercises {
                         equipment.add(temp.getString("name"));
                     }
 
-                    Exercises.addExercise(new Exercise(id, name, description, category, equipment, 10));
+//                    Exercises.addExercise(new Exercise(id, name, description, category, equipment, 10));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
