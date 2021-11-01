@@ -60,15 +60,14 @@ public class WorkoutInformationActivity extends AppCompatActivity {
 
         // arraylist of names of all exercises in the workout
         ArrayList<String> exerciseNames = new ArrayList<>();
-        // when returning from firestore they are stored as hashmaps
-//        for (Exercises.Exercise exercise : workout.getExercisesInWorkout()) {
-//            exerciseNames.add(exercise.getName());
-//        }
+        for (Exercises.Exercise exercise : workout.getExercisesInWorkout()) {
+            exerciseNames.add(exercise.getName());
+        }
 
         // three args are context, the layout ,and the data that is to be displayed
         // wrong type of id, it wants a TextView, will look into it
         // works when it displays and empty list
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.activity_workout_information, exerciseNames);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.listview_layout_exercise_names, R.id.name, exerciseNames);
 
         // no need for an on change because they are all hardstuck immutable
         binding.lvExercises.setAdapter(adapter);

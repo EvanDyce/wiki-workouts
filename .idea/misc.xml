@@ -36,6 +36,7 @@
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/mipmap-anydpi-v26/ic_mountain_profile.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/mipmap-anydpi-v26/image_mountain_round.xml" value="0.34791666666666665" />
         <entry key="..\:/Workout/app/src/main/res/drawable/abs-targeted-image_background.xml" value="0.3828125" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/black_circle_bullet.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_button.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_input.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/edit_style.xml" value="0.19074074074074074" />
@@ -66,6 +67,7 @@
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_slideshow.xml" value="0.278125" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_workouts.xml" value="0.35104166666666664" />
+        <entry key="..\:/Workout/app/src/main/res/layout/listview_layout_exercise_names.xml" value="0.20104166666666667" />
         <entry key="..\:/Workout/app/src/main/res/layout/loading_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Workout/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
         <entry key="..\:/Workout/app/src/main/res/layout/workout_card_layout.xml" value="0.33" />
