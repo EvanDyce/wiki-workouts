@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -57,6 +58,11 @@ public class FirestoreFunctions {
      * Loads into the full exercises list and into the category specific list
      */
     public static void retrieveExercisesFromFirestore(FirestoreCallback callback) {
+
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        db.setFirestoreSettings(settings);
 
         if (Exercises.getAllExercises().size() != 0) {
             CurrentUserSingleton.getInstance();
