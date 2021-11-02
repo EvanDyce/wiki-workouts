@@ -3,6 +3,7 @@ package com.evan.workoutapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import android.view.ViewGroup.LayoutParams;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,14 +66,18 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             exerciseNames.add(exercise.getName());
         }
 
-        // three args are context, the layout ,and the data that is to be displayed
-        // wrong type of id, it wants a TextView, will look into it
-        // works when it displays and empty list
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.listview_layout_exercise_names, R.id.name, exerciseNames);
+        LinearLayout linearLayout = findViewById(R.id.ll_exercise_names);
 
-        // no need for an on change because they are all hardstuck immutable
-        binding.lvExercises.setAdapter(adapter);
-
+        // adding textviews to the above linearlayout
+        for (int i = 0; i < exerciseNames.size(); i++) {
+            TextView temp = new TextView(this);
+            temp.setText(exerciseNames.get(i));
+            temp.setId(i);
+            temp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+            temp.setTextColor(getResources().getColor(R.color.black));
+            temp.setTextSize(16.0F);
+            linearLayout.addView(temp);
+        }
 
         Toast.makeText(this, "Workout: " + PremadeWorkouts.getPremadeWorkoutsArraylist().get(index).getName(), Toast.LENGTH_SHORT).show();
     }
