@@ -15,12 +15,15 @@ import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.ui.workouts.WorkoutAdapter;
+import com.evan.workoutapp.ui.workouts.WorkoutFragment;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.evan.workoutapp.volley.VolleyUtils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -76,10 +79,41 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_exercises, R.id.nav_workouts, R.id.nav_custom_workouts, R.id.nav_history, R.id.nav_profile, R.id.nav_sign_out)
                 .setOpenableLayout(drawer)
                 .build();
+
 //        gets the navcontroller from the content_main.xml file and the main fragment
+        // navcontroller is the mobile_navigation.xml that is navGraph in file
+        // links the text to the proper fragment
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        String fragment_name = getIntent().getStringExtra("fragment");
+        Toast.makeText(this, fragment_name, Toast.LENGTH_SHORT).show();
+        if (fragment_name != null) {
+            // matching the extra to the proper fragment
+            // no need for exercise one, just path nothing and exercise will be selected
+            switch (fragment_name) {
+                case "workouts":
+                    navController.navigate(R.id.nav_workouts);
+                    break;
+
+                case "profile":
+                    navController.navigate(R.id.nav_profile);
+                    break;
+
+                case "history":
+                    navController.navigate(R.id.nav_history);
+                    break;
+
+                case "custom_workouts":
+                    navController.navigate(R.id.nav_custom_workouts);
+                    break;
+
+                default:
+                    navController.navigate(R.id.nav_exercises);
+                    break;
+            }
+        }
     }
 
     @Override
