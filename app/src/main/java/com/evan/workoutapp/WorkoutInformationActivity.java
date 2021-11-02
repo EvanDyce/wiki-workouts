@@ -91,6 +91,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("fragment", "workouts");
             startActivity(intent);
             return true;
         }
