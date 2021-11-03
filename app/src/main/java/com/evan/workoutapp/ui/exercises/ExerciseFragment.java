@@ -25,6 +25,7 @@ import com.evan.workoutapp.volley.VolleyUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class ExerciseFragment extends Fragment {
 
@@ -42,7 +43,7 @@ public class ExerciseFragment extends Fragment {
 
         final RecyclerView exerciseRV = binding.exerciseRecyclerview;
         // initialize adapter and pass arraylist with the data
-        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext(), Exercises.getAllExercises());
+        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext(), new ArrayList<>(Exercises.getMap().keySet()));
 
         // setting layout manager for the recycler view
         // making a vertical list so passing that value
