@@ -27,10 +27,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class ExerciseFragment extends Fragment {
+public class ExerciseFragment extends Fragment implements ExerciseAdapter.CategoryClickedListener {
 
     private ExerciseViewModel exerciseViewModel;
     private FragmentExercisesBinding binding;
+    private ArrayList<String> categoryNames;
     private final String TAG = "EXERCISE_FRAGMENT";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -42,8 +43,12 @@ public class ExerciseFragment extends Fragment {
         View root = binding.getRoot();
 
         final RecyclerView exerciseRV = binding.exerciseRecyclerview;
+
+        // get exercise names
+        categoryNames = new ArrayList<>(Exercises.getMap().keySet());
+
         // initialize adapter and pass arraylist with the data
-        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext(), new ArrayList<>(Exercises.getMap().keySet()));
+        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext(), categoryNames, this);
 
         // setting layout manager for the recycler view
         // making a vertical list so passing that value
@@ -60,4 +65,10 @@ public class ExerciseFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    @Override
+    public void onCategoryClicked(int position) {
+        Toast.makeText(getActivity(), "You clicked " + this.categoryNames.get(position), Toast.LENGTH_SHORT).show();
+    }
+
 }

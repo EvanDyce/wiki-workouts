@@ -20,10 +20,12 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Viewho
 
     private Context context;
     private ArrayList<String> categoryNames;
+    private CategoryClickedListener categoryListener;
 
-    public ExerciseAdapter(Context context,ArrayList<String> categories) {
+    public ExerciseAdapter(Context context,ArrayList<String> categories, CategoryClickedListener listener) {
         this.context = context;
         this.categoryNames = categories;
+        this.categoryListener = listener;
     }
 
     @NonNull
@@ -31,7 +33,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Viewho
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // inflate layout for each item in recycler view
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
-        return new Viewholder(view);
+        return new Viewholder(view, this.categoryListener);
     }
 
     @Override
@@ -78,16 +80,29 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Viewho
     }
 
     // View holder class for initializing views (TextView & ImageView)
-    public class Viewholder extends RecyclerView.ViewHolder {
+    public class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView exerciseIV;
         private TextView exerciseCategory;
+        CategoryClickedListener listener;
 
-        public Viewholder(@NonNull View itemView) {
+        public Viewholder(@NonNull View itemView, CategoryClickedListener listener) {
             super(itemView);
             exerciseIV = itemView.findViewById(R.id.workoutImageCategory);
             exerciseCategory = itemView.findViewById(R.id.workoutTitleCategory);
+
+            // getting teh listener passed with it's own implementation and setting it
+            // to teh itemview
+            this.listener = listener;
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            this.listener.onCategoryClicked(getAdapterPosition());
+        }
     }
 
+    public interface CategoryClickedListener {
+        void onCategoryClicked(int position);
+    }
 }
