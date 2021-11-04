@@ -1,5 +1,6 @@
 package com.evan.workoutapp.ui.exercises;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.ExerciseCategoriesActivity;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.FragmentExercisesBinding;
@@ -68,7 +70,8 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.Catego
 
     @Override
     public void onCategoryClicked(int position) {
-        Toast.makeText(getActivity(), "You clicked " + this.categoryNames.get(position), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), ExerciseCategoriesActivity.class);
+        intent.putExtra("category", this.categoryNames.get(position));
+        startActivity(intent);
     }
-
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExerciseCategoriesActivity"
+    android:background="@color/off_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Category Exercises"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_marginVertical="@dimen/size_10"
+        android:layout_marginHorizontal="5dp"/>
+
+    <ListView
+        android:id="@+id/exercise_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"/>
+
+</LinearLayout>
