@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/categoryName"
+        android:id="@+id/exerciseCategoryName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Category Exercises"
@@ -18,10 +18,11 @@
         android:layout_marginVertical="@dimen/size_10"
         android:layout_marginHorizontal="5dp"/>
 
-    <ListView
-        android:id="@+id/exercise_list_view"
+    <LinearLayout
+        android:id="@+id/exercise_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_marginHorizontal="5dp"/>
 
 </LinearLayout>
