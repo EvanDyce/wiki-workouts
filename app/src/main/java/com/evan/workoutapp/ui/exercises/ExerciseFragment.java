@@ -1,6 +1,5 @@
 package com.evan.workoutapp.ui.exercises;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.evan.workoutapp.ExerciseCategoriesActivity;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.FragmentExercisesBinding;
@@ -27,13 +25,11 @@ import com.evan.workoutapp.volley.VolleyUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
-public class ExerciseFragment extends Fragment implements ExerciseAdapter.CategoryClickedListener {
+public class ExerciseFragment extends Fragment {
 
     private ExerciseViewModel exerciseViewModel;
     private FragmentExercisesBinding binding;
-    private ArrayList<String> categoryNames;
     private final String TAG = "EXERCISE_FRAGMENT";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -45,12 +41,8 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.Catego
         View root = binding.getRoot();
 
         final RecyclerView exerciseRV = binding.exerciseRecyclerview;
-
-        // get exercise names
-        categoryNames = new ArrayList<>(Exercises.getMap().keySet());
-
         // initialize adapter and pass arraylist with the data
-        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext(), categoryNames, this);
+        ExerciseAdapter exerciseAdapter = new ExerciseAdapter(getContext(), Exercises.getAllExercises());
 
         // setting layout manager for the recycler view
         // making a vertical list so passing that value
@@ -66,12 +58,5 @@ public class ExerciseFragment extends Fragment implements ExerciseAdapter.Catego
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onCategoryClicked(int position) {
-        Intent intent = new Intent(getActivity(), ExerciseCategoriesActivity.class);
-        intent.putExtra("category", this.categoryNames.get(position));
-        startActivity(intent);
     }
 }
