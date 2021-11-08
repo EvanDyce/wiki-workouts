@@ -2,10 +2,14 @@ package com.evan.workoutapp.ui.exercises;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.FragmentExercisesBinding;
@@ -59,4 +64,18 @@ public class ExerciseFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    // inflate the menu like usla and looke for teh menu item that contains the searchview
+    // implement hte textlistener that we will use to listen for changes
+    @Override
+    public boolean onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+
+        return true;
+    }
+
 }
