@@ -8,21 +8,32 @@
     android:background="@color/off_white"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/exerciseCategoryName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Category Exercises"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        android:layout_marginVertical="@dimen/size_10"
-        android:layout_marginHorizontal="5dp"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/exercise_linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="5dp"/>
+            <TextView
+                android:id="@+id/exerciseCategoryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category Exercises"
+                android:textSize="35sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginVertical="@dimen/size_10"
+                android:layout_marginHorizontal="5dp"/>
+
+            <LinearLayout
+                android:id="@+id/exercise_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="5dp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
