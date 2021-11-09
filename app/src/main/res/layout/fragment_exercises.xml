@@ -9,18 +9,72 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/off_white">
 
-    <EditText
-        android:id="@+id/editTextFilter"
+    <LinearLayout
+        android:id="@+id/spinnerLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search Exercise"
-        android:paddingHorizontal="@dimen/size_20" />
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="@dimen/size_10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Filter By Category"
+            android:textSize="@dimen/text_20"
+            android:textColor="@color/black"/>
+
+        <Spinner
+            android:id="@+id/exerciseCategorySpinner"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editTextLinearLayout"
+        android:layout_below="@+id/spinnerLinearLayout"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Filter by Exercise"
+            android:textSize="@dimen/text_20"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/editTextFilter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:hint="Search Exercise"
+            android:textColorHint="@color/grey"
+            android:background="@drawable/rounded_edittext"
+            android:paddingLeft="5dp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <Space
+        android:id="@+id/spacer"
+        android:layout_below="@+id/editTextLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exercise_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:layout_below="@+id/editTextFilter" />
+        android:layout_below="@+id/spacer" />
 
 </RelativeLayout>
