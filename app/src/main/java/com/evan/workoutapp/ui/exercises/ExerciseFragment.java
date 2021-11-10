@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -103,8 +104,32 @@ public class ExerciseFragment extends Fragment {
         Spinner spinner = binding.exerciseCategorySpinner;
         spinner.setAdapter(adapter);
 
+        // setting teh onItemSelectedListener
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String name = adapterView.getAdapter().getItem(i).toString();
+                filterByCategory(name);
+                Log.d(TAG, adapterView.getAdapter().getItem(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         return root;
     }
+
+    private void filterByCategory(String s) {
+        exerciseArrayList.clear();
+        ArrayList<Exercises.Exercise> newList = Exercises.getMap().get(s);
+        assert newList != null;
+        exerciseArrayList.addAll(newList);
+        exerciseAdapter.notifyDataSetChanged();
+    }
+
 
     private void filter(String s) {
         // setting the new list to one with all teh exercises
