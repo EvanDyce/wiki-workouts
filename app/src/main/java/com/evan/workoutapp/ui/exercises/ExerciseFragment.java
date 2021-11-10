@@ -88,6 +88,7 @@ public class ExerciseFragment extends Fragment {
 
         // making list of strings that will be displayed in spinner, in this case teh categories of exercises to filter by
         List<String> spinnerList = new ArrayList<>();
+        spinnerList.add("All");
         spinnerList.add("Chest");
         spinnerList.add("Shoulders");
         spinnerList.add("Legs");
@@ -123,6 +124,13 @@ public class ExerciseFragment extends Fragment {
     }
 
     private void filterByCategory(String s) {
+        if (s.equals("All")) {
+            exerciseArrayList.clear();
+            ArrayList<Exercises.Exercise> newList = Exercises.getAllExercises();
+            exerciseArrayList.addAll(newList);
+            exerciseAdapter.notifyDataSetChanged();
+            return;
+        }
         exerciseArrayList.clear();
         ArrayList<Exercises.Exercise> newList = Exercises.getMap().get(s);
         assert newList != null;
