@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.FragmentExercisesBinding;
@@ -28,6 +31,7 @@ import com.evan.workoutapp.volley.VolleyUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class ExerciseFragment extends Fragment {
@@ -79,6 +83,25 @@ public class ExerciseFragment extends Fragment {
                 Log.e(TAG, "afterTextChanged moment");
             }
         });
+
+
+        // making list of strings that will be displayed in spinner, in this case teh categories of exercises to filter by
+        List<String> spinnerList = new ArrayList<>();
+        spinnerList.add("Chest");
+        spinnerList.add("Shoulders");
+        spinnerList.add("Legs");
+        spinnerList.add("Calves");
+        spinnerList.add("Back");
+        spinnerList.add("Arms");
+        spinnerList.add("Abs");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this.getActivity(), R.layout.spinner_item, spinnerList);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // getting the spinner and adding the adapter
+        Spinner spinner = binding.exerciseCategorySpinner;
+        spinner.setAdapter(adapter);
 
         return root;
     }
