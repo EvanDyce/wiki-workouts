@@ -51,6 +51,7 @@
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_sign_out.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/image_mountain_background.xml" value="0.19537037037037036" />
         <entry key="..\:/Workout/app/src/main/res/drawable/line_below_view.xml" value="0.3828125" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/rounded_edittext.xml" value="0.3769230769230769" />
         <entry key="..\:/Workout/app/src/main/res/layout/activity_exercise_categories.xml" value="0.17831813576494426" />
         <entry key="..\:/Workout/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Workout/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -71,6 +72,7 @@
         <entry key="..\:/Workout/app/src/main/res/layout/listview_layout_exercise_names.xml" value="0.20104166666666667" />
         <entry key="..\:/Workout/app/src/main/res/layout/loading_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Workout/app/src/main/res/layout/nav_header_main.xml" value="0.25" />
+        <entry key="..\:/Workout/app/src/main/res/layout/spinner_item.xml" value="0.2453125" />
         <entry key="..\:/Workout/app/src/main/res/layout/workout_card_layout.xml" value="0.33" />
         <entry key="..\:/Workout/app/src/main/res/menu/activity_main_drawer.xml" value="0.278125" />
         <entry key="..\:/Workout/app/src/main/res/menu/main.xml" value="0.278125" />
