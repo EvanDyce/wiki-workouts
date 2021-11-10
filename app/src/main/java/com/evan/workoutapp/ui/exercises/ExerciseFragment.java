@@ -34,11 +34,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
 
 public class ExerciseFragment extends Fragment {
 
     // boolean flag for spinner
     private static boolean firstTimeLoaded = true;
+
+    // string to track category selected
+    private String currentCategoryFilter = "All";
 
     private ExerciseViewModel exerciseViewModel;
     private FragmentExercisesBinding binding;
@@ -118,6 +123,7 @@ public class ExerciseFragment extends Fragment {
                 }
 
                 String name = adapterView.getAdapter().getItem(i).toString();
+                currentCategoryFilter = name;
                 filterByCategory(name);
                 Log.d(TAG, adapterView.getAdapter().getItem(i).toString());
             }
@@ -151,7 +157,40 @@ public class ExerciseFragment extends Fragment {
         // setting the new list to one with all teh exercises
         // removes any that don't contain the new things.
         // may be slow, but we'll see
-        ArrayList<Exercises.Exercise> newList = Exercises.getAllExercises();
+        ArrayList<Exercises.Exercise> newList = new ArrayList<>();
+        Map<String, ArrayList<Exercises.Exercise>> map = Exercises.getMap();
+        switch (currentCategoryFilter) {
+            case "Chest":
+                newList.addAll(Objects.requireNonNull(map.get("Chest")));
+                break;
+
+            case "Shoulders":
+                newList.addAll(Objects.requireNonNull(map.get("Shoulders")));
+                break;
+
+            case "Legs":
+                newList.addAll(Objects.requireNonNull(map.get("Legs")));
+                break;
+
+            case "Calves":
+                newList.addAll(Objects.requireNonNull(map.get("Calves")));
+                break;
+
+            case "Back":
+                newList.addAll(Objects.requireNonNull(map.get("Back")));
+                break;
+
+            case "Arms":
+                newList.addAll(Objects.requireNonNull(map.get("Arms")));
+                break;
+
+            case "Abs":
+                newList.addAll(Objects.requireNonNull(map.get("Abs")));
+                break;
+
+            default:
+                newList.addAll(Objects.requireNonNull(Exercises.getAllExercises()));
+        }
 
         for (int i = 0; i < newList.size(); i++) {
             if (!newList.get(i).getName().toLowerCase(Locale.ROOT).contains(s)) {
