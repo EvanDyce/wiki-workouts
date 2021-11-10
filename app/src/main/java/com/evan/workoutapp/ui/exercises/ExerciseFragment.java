@@ -37,6 +37,9 @@ import java.util.Locale;
 
 public class ExerciseFragment extends Fragment {
 
+    // boolean flag for spinner
+    private static boolean firstTimeLoaded = true;
+
     private ExerciseViewModel exerciseViewModel;
     private FragmentExercisesBinding binding;
     private final String TAG = "EXERCISE_FRAGMENT";
@@ -109,6 +112,11 @@ public class ExerciseFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (firstTimeLoaded) {
+                    firstTimeLoaded = false;
+                    return;
+                }
+
                 String name = adapterView.getAdapter().getItem(i).toString();
                 filterByCategory(name);
                 Log.d(TAG, adapterView.getAdapter().getItem(i).toString());
