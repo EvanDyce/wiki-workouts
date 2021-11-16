@@ -31,159 +31,217 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2">
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Exercises: "
-                    android:textSize="@dimen/text_20"
-                    android:textStyle="bold"
-                    android:textColor="@color/salmon"/>
 
                 <LinearLayout
-                    android:id="@+id/ll_exercise_names"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/text_20"
-                    android:textColor="@color/black"
-                    android:orientation="vertical" />
-            </LinearLayout>
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
 
-            <LinearLayout
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Exercises: "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_exercise_names"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_20"
+                        android:textColor="@color/black"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:layout_marginTop="@dimen/size_20">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Primary Muscle(s): "
-                    android:textSize="@dimen/text_20"
-                    android:textStyle="bold"
-                    android:textColor="@color/salmon"/>
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/tv_primary_muscles"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Chest"
-                    android:textSize="@dimen/text_20"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Primary Muscle(s): "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
 
-            <LinearLayout
-                android:layout_marginTop="@dimen/size_20"
+                    <TextView
+                        android:id="@+id/tv_primary_muscles"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Chest"
+                        android:textSize="@dimen/text_20"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Secondary Muscle(s): "
-                    android:textSize="@dimen/text_20"
-                    android:textStyle="bold"
-                    android:textColor="@color/salmon"/>
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/tv_secondar_muscles"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Triceps, Shoulders, Abs"
-                    android:textSize="@dimen/text_20"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Secondary Muscle(s): "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
 
-            <LinearLayout
-                android:layout_marginTop="@dimen/size_20"
+                    <TextView
+                        android:id="@+id/tv_secondar_muscles"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Triceps, Shoulders, Abs"
+                        android:textSize="@dimen/text_20"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Workout Description:"
-                    android:textSize="@dimen/text_20"
-                    android:textStyle="bold"
-                    android:textColor="@color/salmon"/>
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/tv_workout_description"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="This is a workout for your chest"
-                    android:textSize="@dimen/text_20"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Workout Description:"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
 
-            <LinearLayout
-                android:layout_marginTop="@dimen/size_20"
+                    <TextView
+                        android:id="@+id/tv_workout_description"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="This is a workout for your chest"
+                        android:textSize="@dimen/text_20"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Difficulty:"
-                    android:textSize="@dimen/text_20"
-                    android:textStyle="bold"
-                    android:textColor="@color/salmon"/>
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/tv_workout_difficulty"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Intermediate"
-                    android:textSize="@dimen/text_20"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Difficulty:"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
 
-            <LinearLayout
-                android:layout_marginTop="@dimen/size_20"
+                    <TextView
+                        android:id="@+id/tv_workout_difficulty"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Intermediate"
+                        android:textSize="@dimen/text_20"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2">
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Workout Length: "
-                    android:textSize="@dimen/text_20"
-                    android:textStyle="bold"
-                    android:textColor="@color/salmon"/>
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
 
-                <TextView
-                    android:id="@+id/tv_workout_length"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="30-60 minutes"
-                    android:textSize="@dimen/text_20"
-                    android:textColor="@color/black"/>
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Workout Length: "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <TextView
+                        android:id="@+id/tv_workout_length"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="30-60 minutes"
+                        android:textSize="@dimen/text_20"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_50"
+                android:layout_marginTop="@dimen/size_25"
                 android:layout_gravity="center_horizontal"
                 android:text="Start Workout"/>
 

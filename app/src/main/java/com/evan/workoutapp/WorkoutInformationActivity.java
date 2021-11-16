@@ -76,6 +76,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             temp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             temp.setTextColor(getResources().getColor(R.color.black));
             temp.setTextSize(16.0F);
+            temp.setPadding(0, 5, 0, 0);
             linearLayout.addView(temp);
         }
 
