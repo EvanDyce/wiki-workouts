@@ -3,6 +3,8 @@ package com.evan.workoutapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
 import android.content.Intent;
@@ -22,6 +24,7 @@ import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.ActivityMainBinding;
 import com.evan.workoutapp.databinding.ActivityWorkoutInformationBinding;
+import com.evan.workoutapp.utils.CustomExerciseDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,9 +79,17 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             temp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             temp.setTextColor(getResources().getColor(R.color.black));
             temp.setTextSize(16.0F);
+            temp.setPadding(0, 5, 0, 0);
             linearLayout.addView(temp);
         }
 
+        binding.startWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CustomExerciseDialog customExerciseDialog = new CustomExerciseDialog(WorkoutInformationActivity.this, workout.getExercisesInWorkout().get(0));
+                customExerciseDialog.show();
+            }
+        });
         Toast.makeText(this, "Workout: " + PremadeWorkouts.getPremadeWorkoutsArraylist().get(index).getName(), Toast.LENGTH_SHORT).show();
     }
 
