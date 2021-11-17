@@ -43,7 +43,7 @@ public class CustomExerciseDialog extends Dialog implements View.OnClickListener
         equipment.setText(this.exercise.getEquipment());
 
         ImageView image = exerciseCard.findViewById(R.id.exerciseCardImage);
-        image.setImageResource(R.drawable.shoulder_image);
+        image.setImageResource(this.exercise.getImageID());
 
         okButton = findViewById(R.id.dialogOkButton);
         okButton.setOnClickListener(this);
