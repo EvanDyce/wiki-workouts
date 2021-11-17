@@ -64,22 +64,23 @@ public class WorkoutInformationActivity extends AppCompatActivity {
         binding.tvWorkoutDescription.setText(description);
 
         // arraylist of names of all exercises in the workout
-        ArrayList<String> exerciseNames = new ArrayList<>();
-        for (Exercises.Exercise exercise : workout.getExercisesInWorkout()) {
-            exerciseNames.add(exercise.getName());
-        }
-
         LinearLayout linearLayout = findViewById(R.id.ll_exercise_names);
 
-        // adding textviews to the above linearlayout
-        for (int i = 0; i < exerciseNames.size(); i++) {
+        for (Exercises.Exercise exercise : workout.getExercisesInWorkout()) {
             TextView temp = new TextView(this);
-            temp.setText(exerciseNames.get(i));
-            temp.setId(i);
+            temp.setText(exercise.getName());
+            temp.setId(Integer.valueOf(exercise.getId()));
             temp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             temp.setTextColor(getResources().getColor(R.color.black));
             temp.setTextSize(16.0F);
             temp.setPadding(0, 5, 0, 0);
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CustomExerciseDialog ced = new CustomExerciseDialog(WorkoutInformationActivity.this, exercise);
+                    ced.show();
+                }
+            });
             linearLayout.addView(temp);
         }
 
