@@ -96,41 +96,7 @@ public class FirestoreFunctions {
                                     equipment.add("No Equipment");
                                 }
 
-                                int image;
-                                switch (category) {
-                                    case "Arms":
-                                        image = R.drawable.arms_image;
-                                        break;
-
-                                    case "Abs":
-                                        image = R.drawable.abs_image;
-                                        break;
-
-                                    case "Back":
-                                        image = R.drawable.back_image;
-                                        break;
-
-                                    case "Calves":
-                                        image = R.drawable.calf_image;
-                                        break;
-
-                                    case "Legs":
-                                        image = R.drawable.legs_image;
-                                        break;
-
-                                    case "Shoulders":
-                                        image = R.drawable.shoulder_image;
-                                        break;
-
-                                    case "Chest":
-                                        image = R.drawable.chest_image;
-                                        break;
-
-                                    default:
-                                        throw new IllegalStateException("Unexpected value: " + category);
-                                }
-
-                                Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment, image);
+                                Exercises.Exercise exercise = new Exercises.Exercise(id, name, description, category, equipment);
                                 Exercises.addExercise(exercise);
                             }
                             retrieveWorkoutsFromFirestore(db, callback);
@@ -163,14 +129,13 @@ public class FirestoreFunctions {
                                 ArrayList<HashMap<String, Object>> mapList = (ArrayList<HashMap<String, Object>>) documentSnapshot.get("exercises");
                                 ArrayList<Exercises.Exercise> exercises = new ArrayList<>();
                                 for (HashMap<String, Object> map : mapList) {
-                                    Long imageID = (Long) map.get("imageID");
                                     String exerciseName = (String) map.get("name");
                                     String exerciseDescription = (String) map.get("description");
                                     String equipment = (String) map.get("equipment");
                                     String id = (String) map.get("id");
                                     String exerciseCategory = (String) map.get("category");
                                     assert equipment != null;
-                                    exercises.add(new Exercises.Exercise(id, exerciseName, exerciseDescription, exerciseCategory, equipment, imageID.intValue()));
+                                    exercises.add(new Exercises.Exercise(id, exerciseName, exerciseDescription, exerciseCategory, equipment));
                                 }
 //                                ArrayList<Exercises.Exercise> exerciseArrayList = (ArrayList<Exercises.Exercise>) documentSnapshot.get("exercises");
 
