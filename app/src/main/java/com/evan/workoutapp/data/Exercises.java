@@ -5,6 +5,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.evan.workoutapp.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,18 +24,16 @@ public class Exercises {
     public static class Exercise {
         private final String id, name, description, category;
         private final String equipment;
-        private final int image_id;
 
-        public Exercise(String id, String name, String description, String category, String equipment, int image_id) {
+        public Exercise(String id, String name, String description, String category, String equipment) {
             this.id = id;
             this.name = name;
             this.description = description;
             this.category = category;
             this.equipment = equipment;
-            this.image_id = image_id;
         }
 
-        public Exercise(String id, String name, String description, String category, ArrayList<String> equipment, int image_id) {
+        public Exercise(String id, String name, String description, String category, ArrayList<String> equipment) {
             this.id = id;
             this.name = name;
             this.description = description;
@@ -43,7 +43,6 @@ public class Exercises {
                 cat1 += equip + ", ";
             }
             this.equipment = cat1;
-            this.image_id = image_id;
         }
 
         public String getId() {
@@ -66,7 +65,43 @@ public class Exercises {
             return equipment;
         }
 
-        public int getImageID() { return image_id; }
+        public int getImageID() {
+            int image;
+
+            switch (category) {
+                case "Arms":
+                    image = R.drawable.arms_image;
+                    break;
+
+                case "Abs":
+                    image = R.drawable.abs_image;
+                    break;
+
+                case "Back":
+                    image = R.drawable.back_image;
+                    break;
+
+                case "Calves":
+                    image = R.drawable.calf_image;
+                    break;
+
+                case "Legs":
+                    image = R.drawable.legs_image;
+                    break;
+
+                case "Shoulders":
+                    image = R.drawable.shoulder_image;
+                    break;
+
+                case "Chest":
+                    image = R.drawable.chest_image;
+                    break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + category);
+            }
+            return image;
+        }
     }
 
     private static final Map<String, ArrayList<Exercise>> map = new HashMap<>();
