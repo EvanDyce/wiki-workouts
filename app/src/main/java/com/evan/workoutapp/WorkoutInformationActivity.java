@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Paint;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
@@ -74,6 +75,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             temp.setTextColor(getResources().getColor(R.color.black));
             temp.setTextSize(16.0F);
             temp.setPadding(0, 5, 0, 0);
+            temp.setPaintFlags(temp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             temp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
