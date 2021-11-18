@@ -49,7 +49,7 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.75"
                         android:layout_height="wrap_content"
                         android:text="Exercises: "
                         android:textSize="@dimen/text_20"
@@ -59,7 +59,7 @@
                     <LinearLayout
                         android:id="@+id/ll_exercise_names"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/text_20"
                         android:textColor="@color/black"
@@ -83,7 +83,7 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.75"
                         android:layout_height="wrap_content"
                         android:text="Primary Muscle(s): "
                         android:textSize="@dimen/text_20"
@@ -93,9 +93,10 @@
                     <TextView
                         android:id="@+id/tv_primary_muscles"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:text="Chest"
+                        android:layout_gravity="center_vertical"
                         android:textSize="@dimen/text_20"
                         android:textColor="@color/black"/>
                 </LinearLayout>
@@ -117,7 +118,7 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.75"
                         android:layout_height="wrap_content"
                         android:text="Secondary Muscle(s): "
                         android:textSize="@dimen/text_20"
@@ -127,9 +128,10 @@
                     <TextView
                         android:id="@+id/tv_secondar_muscles"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:text="Triceps, Shoulders, Abs"
+                        android:layout_gravity="center_vertical"
                         android:textSize="@dimen/text_20"
                         android:textColor="@color/black"/>
                 </LinearLayout>
@@ -151,7 +153,7 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.75"
                         android:layout_height="wrap_content"
                         android:text="Workout Description:"
                         android:textSize="@dimen/text_20"
@@ -161,7 +163,7 @@
                     <TextView
                         android:id="@+id/tv_workout_description"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:text="This is a workout for your chest"
                         android:textSize="@dimen/text_20"
@@ -185,7 +187,7 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.75"
                         android:layout_height="wrap_content"
                         android:text="Difficulty:"
                         android:textSize="@dimen/text_20"
@@ -195,7 +197,7 @@
                     <TextView
                         android:id="@+id/tv_workout_difficulty"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:text="Intermediate"
                         android:textSize="@dimen/text_20"
@@ -220,7 +222,7 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0.75"
                         android:layout_height="wrap_content"
                         android:text="Workout Length: "
                         android:textSize="@dimen/text_20"
@@ -230,9 +232,10 @@
                     <TextView
                         android:id="@+id/tv_workout_length"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:text="30-60 minutes"
+                        android:gravity="center_vertical"
                         android:textSize="@dimen/text_20"
                         android:textColor="@color/black"/>
                 </LinearLayout>
