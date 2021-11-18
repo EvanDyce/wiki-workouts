@@ -73,9 +73,11 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             temp.setId(Integer.valueOf(exercise.getId()));
             temp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             temp.setTextColor(getResources().getColor(R.color.black));
-            temp.setTextSize(16.0F);
+            temp.setTextSize(18.0F);
             temp.setPadding(0, 5, 0, 0);
             temp.setPaintFlags(temp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            temp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.black_circle_bullet, 0, 0, 0);
+            temp.setCompoundDrawablePadding(25);
             temp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
