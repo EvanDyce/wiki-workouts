@@ -38,6 +38,7 @@
         <entry key="..\:/Workout/app/src/main/res/drawable/abs-targeted-image_background.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/black_circle_bullet.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_button.xml" value="0.3828125" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/custom_button_salmon.xml" value="0.17222222222222222" />
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_input.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/edit_style.xml" value="0.19074074074074074" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_email.xml" value="0.1" />
@@ -64,7 +65,7 @@
         <entry key="..\:/Workout/app/src/main/res/layout/cardview_layout.xml" value="0.5" />
         <entry key="..\:/Workout/app/src/main/res/layout/content_main.xml" value="0.2957427536231884" />
         <entry key="..\:/Workout/app/src/main/res/layout/exercise_card_layout.xml" value="0.36666666666666664" />
-        <entry key="..\:/Workout/app/src/main/res/layout/exercise_dialog.xml" value="0.1" />
+        <entry key="..\:/Workout/app/src/main/res/layout/exercise_dialog.xml" value="0.33" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_custom_workouts.xml" value="0.35104166666666664" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_exercises.xml" value="0.35104166666666664" />
         <entry key="..\:/Workout/app/src/main/res/layout/fragment_gallery.xml" value="0.278125" />
