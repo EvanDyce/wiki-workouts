@@ -1,9 +1,11 @@
 package com.evan.workoutapp.ui.custom;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,7 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.evan.workoutapp.R;
+import com.evan.workoutapp.data.Exercises;
+import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentCustomWorkoutsBinding;
+import com.evan.workoutapp.user.CurrentUserSingleton;
+
+import java.util.ArrayList;
 
 public class CustomFragment extends Fragment {
 
@@ -27,13 +35,8 @@ public class CustomFragment extends Fragment {
         binding = FragmentCustomWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textCustomWorkouts;
-        customViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        ArrayList<Workout> custom = CurrentUserSingleton.getInstance().getUserWorkouts();
+        Log.e("FUCKERY", custom.toString());
         return root;
     }
 
