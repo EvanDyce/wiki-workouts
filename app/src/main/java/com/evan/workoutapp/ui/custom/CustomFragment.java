@@ -1,5 +1,6 @@
 package com.evan.workoutapp.ui.custom;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,16 +14,20 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.R;
+import com.evan.workoutapp.WorkoutInformationActivity;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentCustomWorkoutsBinding;
+import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 
 import java.util.ArrayList;
 
-public class CustomFragment extends Fragment {
+public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.WorkoutClickedListener {
 
     private CustomViewModel customViewModel;
     private FragmentCustomWorkoutsBinding binding;
@@ -35,8 +40,13 @@ public class CustomFragment extends Fragment {
         binding = FragmentCustomWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        ArrayList<Workout> custom = CurrentUserSingleton.getInstance().getUserWorkouts();
-        Log.e("FUCKERY", custom.toString());
+        ArrayList<Workout> customs = CurrentUserSingleton.getInstance().getUserWorkouts();
+        customs.add(new Workout("Test", "THIS IS DESC", "Chest", null));
+        final RecyclerView workoutRV = binding.workoutRecyclerview;
+        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts(), this::onWorkoutClicked);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        workoutRV.setLayoutManager(linearLayoutManager);
+        workoutRV.setAdapter(workoutAdapter);
         return root;
     }
 
@@ -44,5 +54,12 @@ public class CustomFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onWorkoutClicked(int position) {
+        Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
+        intent.putExtra("workout_index", position);
+        startActivity(intent);
     }
 }
