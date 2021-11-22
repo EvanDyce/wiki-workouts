@@ -18,10 +18,11 @@ import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentWorkoutsBinding;
+import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
 
 import java.util.ArrayList;
 
-public class WorkoutFragment extends Fragment implements WorkoutAdapter.WorkoutClickedListener {
+public class WorkoutFragment extends Fragment implements GeneralWorkoutAdapter.WorkoutClickedListener {
 
     private WorkoutViewModel workoutViewModel;
     private FragmentWorkoutsBinding binding;
@@ -38,7 +39,7 @@ public class WorkoutFragment extends Fragment implements WorkoutAdapter.WorkoutC
         final RecyclerView workoutRV = binding.workoutRecyclerview;
 
         // init adapter and pass arraylist with the data
-        WorkoutAdapter workoutAdapter = new WorkoutAdapter(getContext(), PremadeWorkouts.getPremadeWorkoutsArraylist(), this::onWorkoutClicked);
+        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), PremadeWorkouts.getPremadeWorkoutsArraylist(), this::onWorkoutClicked);
 
         // setting layout manager for recycler view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);

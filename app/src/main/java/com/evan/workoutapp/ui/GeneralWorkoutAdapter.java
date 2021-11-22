@@ -1,4 +1,4 @@
-package com.evan.workoutapp.ui.workouts;
+package com.evan.workoutapp.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,44 +15,42 @@ import com.evan.workoutapp.data.workout.Workout;
 
 import java.util.ArrayList;
 
-public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.Viewholder> {
-
+public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAdapter.Viewholder> {
     private Context context;
-    private ArrayList<Workout> listOfWorkouts;
-    private WorkoutClickedListener mWorkoutlickedListenter;
+    private ArrayList<Workout> workoutArrayList;
+    private WorkoutClickedListener mWorkoutClickedListener;
 
-    public WorkoutAdapter(Context context, ArrayList<Workout> workoutsArrayList, WorkoutClickedListener workoutClickedListener) {
+    public GeneralWorkoutAdapter(Context context, ArrayList<Workout> workouts, WorkoutClickedListener listener) {
         this.context = context;
-        this.listOfWorkouts = workoutsArrayList;
-        this.mWorkoutlickedListenter = workoutClickedListener;
+        this.workoutArrayList = workouts;
+        this.mWorkoutClickedListener = listener;
     }
 
     @Override
     public void onBindViewHolder(@NonNull Viewholder holder, int position) {
-        Workout workout = listOfWorkouts.get(position);
+        Workout workout = this.workoutArrayList.get(position);
         holder.workoutImageView.setImageResource(workout.getImageID());
         holder.workoutTitleTextView.setText(workout.getName());
+    }
+
+    @Override
+    public int getItemCount() {
+        return this.workoutArrayList.size();
     }
 
     @NonNull
     @Override
     public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
-        return new Viewholder(view, mWorkoutlickedListenter);
+        return new Viewholder(view, mWorkoutClickedListener);
     }
 
-    @Override
-    public int getItemCount() {
-        return listOfWorkouts.size();
-    }
-
-    public class Viewholder extends RecyclerView.ViewHolder
-        implements View.OnClickListener {
+    public class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView workoutImageView;
         private TextView workoutTitleTextView;
         WorkoutClickedListener workoutClickedListener;
 
-        public Viewholder(@NonNull View itemView, WorkoutClickedListener workoutClickedListener) {
+        public Viewholder(View itemView, WorkoutClickedListener workoutClickedListener) {
             super(itemView);
             workoutImageView = itemView.findViewById(R.id.workoutImageCategory);
             workoutTitleTextView = itemView.findViewById(R.id.workoutTitleCategory);
@@ -67,8 +65,7 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.Viewhold
         }
     }
 
-    public interface WorkoutClickedListener{
+    public interface WorkoutClickedListener {
         void onWorkoutClicked(int position);
     }
-
 }
