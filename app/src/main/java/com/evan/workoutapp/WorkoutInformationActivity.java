@@ -33,6 +33,9 @@ import java.util.HashMap;
 public class WorkoutInformationActivity extends AppCompatActivity {
 
     private ActivityWorkoutInformationBinding binding;
+    private ArrayList<Workout> workoutArrayList;
+    private int index;
+    private Intent nextIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +52,20 @@ public class WorkoutInformationActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // get intent so I can get teh index that was passed
-        Intent intent = getIntent();
-        int index = (int) intent.getExtras().get("workout_index");
+        ArrayList<Workout> workouts;
+//        get the intent and retrieve the list, index, and intent to start next
+        try {
+            Intent intent = getIntent();
+            this.workoutArrayList = (ArrayList<Workout>) intent.getExtras().get("workout_list");
+            this.index = (int) intent.getExtras().get("workout_index");
+            this.nextIntent = (Intent) intent.getExtras().get("next_intent");
+
+        } catch (RuntimeException exception) {
+            Log.e("WIA", "Intent data is bad");
+            finish();
+        }
         // gets the workout that was clicked
-        Workout workout = PremadeWorkouts.getPremadeWorkoutsArraylist().get(index);
+        Workout workout = this.workoutArrayList.get(this.index);
 
         // setting all of the correct text with the new workout information
         String name = workout.getName();
