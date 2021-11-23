@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.MainActivity;
 import com.evan.workoutapp.WorkoutInformationActivity;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.PremadeWorkouts;
@@ -63,7 +64,13 @@ public class WorkoutFragment extends Fragment implements GeneralWorkoutAdapter.W
     @Override
     public void onWorkoutClicked(int position) {
         Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
+        // pass the list and the index clicked
         intent.putExtra("workout_index", position);
-        startActivity(intent );
+        intent.putExtra("workout_list", PremadeWorkouts.getPremadeWorkoutsArraylist());
+        // make the backwards intent with proper data
+        Intent next_intent = new Intent(this.getContext(), MainActivity.class);
+        next_intent.putExtra("fragment", MainActivity.WORKOUT_FRAGMENT);
+        intent.putExtra("next_intent", next_intent);
+        startActivity(intent);
     }
 }

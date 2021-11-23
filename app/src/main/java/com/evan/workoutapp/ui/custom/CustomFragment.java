@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.MainActivity;
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.WorkoutInformationActivity;
 import com.evan.workoutapp.data.Exercises;
@@ -31,6 +32,7 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
 
     private CustomViewModel customViewModel;
     private FragmentCustomWorkoutsBinding binding;
+    private ArrayList<Workout> customs;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,8 +42,8 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
         binding = FragmentCustomWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        ArrayList<Workout> customs = CurrentUserSingleton.getInstance().getUserWorkouts();
-        customs.add(new Workout("Test", "THIS IS DESC", "Chest", null));
+        customs = CurrentUserSingleton.getInstance().getUserWorkouts();
+        customs.add(new Workout("Test", "THIS IS DESC", "Chest", new ArrayList<>()));
         final RecyclerView workoutRV = binding.workoutRecyclerview;
         GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts(), this::onWorkoutClicked);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -60,6 +62,10 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
     public void onWorkoutClicked(int position) {
         Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
         intent.putExtra("workout_index", position);
+        intent.putExtra("workout_list", customs);
+        Intent next_intent = new Intent(this.getContext(), MainActivity.class);
+        next_intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
+        intent.putExtra("next_intent", next_intent);
         startActivity(intent);
     }
 }
