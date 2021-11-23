@@ -24,6 +24,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int EXERCISES_FRAGMENT = 0;
+    public static final int WORKOUT_FRAGMENT = 1;
+    public static final int CUSTOM_WORKOUT_FRAGMENT = 2;
+    public static final int HISTORY_FRAGMENT = 3;
+    public static final int PROFILE_FRAGMENT = 4;
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -72,32 +78,28 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        String fragment_name = getIntent().getStringExtra("fragment");
-        Toast.makeText(this, fragment_name, Toast.LENGTH_SHORT).show();
-        if (fragment_name != null) {
-            // matching the extra to the proper fragment
-            // no need for exercise one, just path nothing and exercise will be selected
-            switch (fragment_name) {
-                case "workouts":
-                    navController.navigate(R.id.nav_workouts);
-                    break;
+        int fragment_index = getIntent().getIntExtra("fragment", 0);
+        Toast.makeText(this, fragment_index, Toast.LENGTH_SHORT).show();
+        switch (fragment_index) {
+            case 0:
+                navController.navigate(R.id.nav_exercises);
+                break;
 
-                case "profile":
-                    navController.navigate(R.id.nav_profile);
-                    break;
+            case 1:
+                navController.navigate(R.id.nav_workouts);
+                break;
 
-                case "history":
-                    navController.navigate(R.id.nav_history);
-                    break;
+            case 2:
+                navController.navigate(R.id.nav_custom_workouts);
+                break;
 
-                case "custom_workouts":
-                    navController.navigate(R.id.nav_custom_workouts);
-                    break;
+            case 3:
+                navController.navigate(R.id.nav_history);
+                break;
 
-                default:
-                    navController.navigate(R.id.nav_exercises);
-                    break;
-            }
+            case 4:
+                navController.navigate(R.id.nav_profile);
+                break;
         }
     }
 
