@@ -78,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        int fragment_index = getIntent().getIntExtra("fragment", 0);
-        Toast.makeText(this, fragment_index, Toast.LENGTH_SHORT).show();
+        int fragment_index = getIntent().getIntExtra("fragment", -1);
         switch (fragment_index) {
             case 0:
                 navController.navigate(R.id.nav_exercises);

@@ -107,7 +107,6 @@ public class WorkoutInformationActivity extends AppCompatActivity {
                 customExerciseDialog.show();
             }
         });
-        Toast.makeText(this, "Workout: " + PremadeWorkouts.getPremadeWorkoutsArraylist().get(index).getName(), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -118,9 +117,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("fragment", "workouts");
-            startActivity(intent);
+            startActivity(this.nextIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
