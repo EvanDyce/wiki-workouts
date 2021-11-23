@@ -1,9 +1,12 @@
 package com.evan.workoutapp.ui.custom;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,13 +14,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.MainActivity;
+import com.evan.workoutapp.R;
+import com.evan.workoutapp.WorkoutInformationActivity;
+import com.evan.workoutapp.data.Exercises;
+import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentCustomWorkoutsBinding;
+import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
+import com.evan.workoutapp.user.CurrentUserSingleton;
 
-public class CustomFragment extends Fragment {
+import java.util.ArrayList;
+
+public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.WorkoutClickedListener {
 
     private CustomViewModel customViewModel;
     private FragmentCustomWorkoutsBinding binding;
+    private ArrayList<Workout> customs;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -27,13 +42,13 @@ public class CustomFragment extends Fragment {
         binding = FragmentCustomWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textCustomWorkouts;
-        customViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        customs = CurrentUserSingleton.getInstance().getUserWorkouts();
+        customs.add(new Workout("Test", "THIS IS DESC", "Chest", new ArrayList<>()));
+        final RecyclerView workoutRV = binding.workoutRecyclerview;
+        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts(), this::onWorkoutClicked);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        workoutRV.setLayoutManager(linearLayoutManager);
+        workoutRV.setAdapter(workoutAdapter);
         return root;
     }
 
@@ -41,5 +56,16 @@ public class CustomFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onWorkoutClicked(int position) {
+        Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
+        intent.putExtra("workout_index", position);
+        intent.putExtra("workout_list", customs);
+        Intent next_intent = new Intent(this.getContext(), MainActivity.class);
+        next_intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
+        intent.putExtra("next_intent", next_intent);
+        startActivity(intent);
     }
 }

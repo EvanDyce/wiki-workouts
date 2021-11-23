@@ -11,17 +11,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class Exercises {
+public class Exercises implements Serializable {
     /**
      * Exercise Class for each individual exercise
      */
-    public static class Exercise {
+    public static class Exercise implements Serializable{
         private final String id, name, description, category;
         private final String equipment;
 

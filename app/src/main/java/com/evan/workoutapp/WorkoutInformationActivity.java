@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Paint;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
@@ -32,6 +33,9 @@ import java.util.HashMap;
 public class WorkoutInformationActivity extends AppCompatActivity {
 
     private ActivityWorkoutInformationBinding binding;
+    private ArrayList<Workout> workoutArrayList;
+    private int index;
+    private Intent nextIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +52,20 @@ public class WorkoutInformationActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // get intent so I can get teh index that was passed
-        Intent intent = getIntent();
-        int index = (int) intent.getExtras().get("workout_index");
+        ArrayList<Workout> workouts;
+//        get the intent and retrieve the list, index, and intent to start next
+        try {
+            Intent intent = getIntent();
+            this.workoutArrayList = (ArrayList<Workout>) intent.getExtras().get("workout_list");
+            this.index = (int) intent.getExtras().get("workout_index");
+            this.nextIntent = (Intent) intent.getExtras().get("next_intent");
+
+        } catch (RuntimeException exception) {
+            Log.e("WIA", "Intent data is bad");
+            finish();
+        }
         // gets the workout that was clicked
-        Workout workout = PremadeWorkouts.getPremadeWorkoutsArraylist().get(index);
+        Workout workout = this.workoutArrayList.get(this.index);
 
         // setting all of the correct text with the new workout information
         String name = workout.getName();
@@ -72,8 +85,11 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             temp.setId(Integer.valueOf(exercise.getId()));
             temp.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
             temp.setTextColor(getResources().getColor(R.color.black));
-            temp.setTextSize(16.0F);
+            temp.setTextSize(18.0F);
             temp.setPadding(0, 5, 0, 0);
+            temp.setPaintFlags(temp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            temp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.black_circle_bullet, 0, 0, 0);
+            temp.setCompoundDrawablePadding(25);
             temp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -91,7 +107,6 @@ public class WorkoutInformationActivity extends AppCompatActivity {
                 customExerciseDialog.show();
             }
         });
-        Toast.makeText(this, "Workout: " + PremadeWorkouts.getPremadeWorkoutsArraylist().get(index).getName(), Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -102,9 +117,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("fragment", "workouts");
-            startActivity(intent);
+            startActivity(this.nextIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -2,28 +2,16 @@ package com.evan.workoutapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.evan.workoutapp.data.FirestoreFunctions;
-import com.evan.workoutapp.data.workout.PremadeWorkouts;
-import com.evan.workoutapp.data.workout.Workout;
-import com.evan.workoutapp.ui.workouts.WorkoutAdapter;
-import com.evan.workoutapp.ui.workouts.WorkoutFragment;
 import com.evan.workoutapp.user.CurrentUserSingleton;
-import com.evan.workoutapp.volley.VolleyUtils;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -33,11 +21,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.evan.workoutapp.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final int EXERCISES_FRAGMENT = 0;
+    public static final int WORKOUT_FRAGMENT = 1;
+    public static final int CUSTOM_WORKOUT_FRAGMENT = 2;
+    public static final int HISTORY_FRAGMENT = 3;
+    public static final int PROFILE_FRAGMENT = 4;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -87,32 +78,27 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        String fragment_name = getIntent().getStringExtra("fragment");
-        Toast.makeText(this, fragment_name, Toast.LENGTH_SHORT).show();
-        if (fragment_name != null) {
-            // matching the extra to the proper fragment
-            // no need for exercise one, just path nothing and exercise will be selected
-            switch (fragment_name) {
-                case "workouts":
-                    navController.navigate(R.id.nav_workouts);
-                    break;
+        int fragment_index = getIntent().getIntExtra("fragment", -1);
+        switch (fragment_index) {
+            case 0:
+                navController.navigate(R.id.nav_exercises);
+                break;
 
-                case "profile":
-                    navController.navigate(R.id.nav_profile);
-                    break;
+            case 1:
+                navController.navigate(R.id.nav_workouts);
+                break;
 
-                case "history":
-                    navController.navigate(R.id.nav_history);
-                    break;
+            case 2:
+                navController.navigate(R.id.nav_custom_workouts);
+                break;
 
-                case "custom_workouts":
-                    navController.navigate(R.id.nav_custom_workouts);
-                    break;
+            case 3:
+                navController.navigate(R.id.nav_history);
+                break;
 
-                default:
-                    navController.navigate(R.id.nav_exercises);
-                    break;
-            }
+            case 4:
+                navController.navigate(R.id.nav_profile);
+                break;
         }
     }
 

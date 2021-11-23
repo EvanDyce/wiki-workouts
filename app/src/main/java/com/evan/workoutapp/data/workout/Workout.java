@@ -1,11 +1,12 @@
 package com.evan.workoutapp.data.workout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises.Exercise;
 
-public class Workout {
+public class Workout implements Serializable {
     private String name, description, category;
     private ArrayList<Exercise> exercisesInWorkout;
     private int image_id;
