@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.MainActivity;
+import com.evan.workoutapp.MakeCustomWorkoutActivity;
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.WorkoutInformationActivity;
 import com.evan.workoutapp.data.Exercises;
@@ -42,6 +43,7 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
         binding = FragmentCustomWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // get and display the custom workouts of the current user
         customs = CurrentUserSingleton.getInstance().getUserWorkouts();
         customs.add(new Workout("Test", "THIS IS DESC", "Chest", new ArrayList<>()));
         final RecyclerView workoutRV = binding.workoutRecyclerview;
@@ -49,6 +51,15 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         workoutRV.setLayoutManager(linearLayoutManager);
         workoutRV.setAdapter(workoutAdapter);
+
+        // set onclick for teh button and  make it start the make workout intent
+        binding.addExerciseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(root.getContext(), MakeCustomWorkoutActivity.class);
+                startActivity(intent);
+            }
+        });
         return root;
     }
 
