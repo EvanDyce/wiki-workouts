@@ -21,10 +21,6 @@
             android:exported="true"
             android:theme="@style/Theme.WorkoutApp" />
         <activity
-            android:name=".ExerciseCategoriesActivity"
-            android:exported="true"
-            android:theme="@style/Theme.WorkoutApp" />
-        <activity
             android:name=".SignupActivity"
             android:exported="true"
             android:theme="@style/Theme.WorkoutApp.NoActionBar" />
