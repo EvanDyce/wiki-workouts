@@ -11,25 +11,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/tv_title"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="@dimen/size_20"
-            android:hint="Workout Name"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_50"
-            android:textStyle="bold" />
+            android:layout_height="@dimen/size_20"
+            android:id="@+id/topSpacer"/>
 
         <LinearLayout
             android:id="@+id/ll_workout_information"
             android:paddingHorizontal="@dimen/size_10"
-            android:layout_marginTop="@dimen/size_25"
-            android:layout_below="@+id/tv_title"
+            android:layout_below="@+id/topSpacer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Workout Name:"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <EditText
+                        android:id="@+id/et_customWorkoutName"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Enter workout name"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -76,7 +110,8 @@
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/custom_button_salmon"
                             android:text="Add Exercise"
-                            android:textColor="@color/black"/>
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"/>
 
                     </LinearLayout>
 
@@ -106,14 +141,17 @@
                         android:textStyle="bold"
                         android:textColor="@color/salmon"/>
 
-                    <TextView
-                        android:id="@+id/tv_primary_muscles"
+                    <EditText
+                        android:id="@+id/et_customAddPrimaryMuscles"
                         android:layout_width="0dp"
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
-                        android:text="Chest"
+                        android:padding="5dp"
+                        android:hint="Enter primary muscles"
+                        android:textSize="@dimen/text_16"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/text_20"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
                         android:textColor="@color/black"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -141,14 +179,17 @@
                         android:textStyle="bold"
                         android:textColor="@color/salmon"/>
 
-                    <TextView
-                        android:id="@+id/tv_secondar_muscles"
+                    <EditText
+                        android:id="@+id/et_customSecondaryMuscles"
                         android:layout_width="0dp"
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
-                        android:text="Triceps, Shoulders, Abs"
+                        android:padding="5dp"
+                        android:hint="Add secondary muscles"
+                        android:textSize="@dimen/text_16"
                         android:layout_gravity="center_vertical"
-                        android:textSize="@dimen/text_20"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
                         android:textColor="@color/black"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -177,14 +218,17 @@
                         android:textColor="@color/salmon"/>
 
                     <EditText
-                        android:id="@+id/et_workout_description"
+                        android:id="@+id/et_customEnterDescription"
                         android:layout_width="0dp"
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
-                        android:hint="Enter workout description"
-                        android:textSize="@dimen/text_16"
+                        android:padding="5dp"
+                        android:hint="Enter Description"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
                         android:textColor="@color/black"
-                        android:background="@drawable/rounded_edittext"/>
+                        android:maxLines="3"
+                        android:layout_gravity="center_vertical"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -211,13 +255,17 @@
                         android:textStyle="bold"
                         android:textColor="@color/salmon"/>
 
-                    <TextView
-                        android:id="@+id/tv_workout_difficulty"
+                    <Spinner
+                        android:id="@+id/spinner_customWorkoutDifficulty"
                         android:layout_width="0dp"
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
-                        android:text="Intermediate"
-                        android:textSize="@dimen/text_20"
+                        android:padding="5dp"
+                        android:hint="Add secondary muscles"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
                         android:textColor="@color/black"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -246,14 +294,16 @@
                         android:textStyle="bold"
                         android:textColor="@color/salmon"/>
 
-                    <TextView
-                        android:id="@+id/tv_workout_length"
+                    <Spinner
+                        android:id="@+id/spinner_customWorkoutLength"
                         android:layout_width="0dp"
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
-                        android:text="30-60 minutes"
-                        android:gravity="center_vertical"
-                        android:textSize="@dimen/text_20"
+                        android:padding="5dp"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
                         android:textColor="@color/black"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -264,7 +314,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_25"
                 android:layout_gravity="center_horizontal"
-                android:text="Start Workout"/>
+                android:text="Create Workout"/>
 
             <Space
                 android:layout_width="match_parent"
