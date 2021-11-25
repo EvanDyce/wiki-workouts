@@ -15,4 +15,28 @@
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="sign_in"><u>Sign In</u></string>
     <string name="sign_out">Sign Out</string>
+
+    <string-array name="custom_workout_categories">
+        <item>Chest</item>
+        <item>Shoulders</item>
+        <item>Arms</item>
+        <item>Abs</item>
+        <item>Legs</item>
+        <item>Back</item>
+        <item>Calves</item>
+    </string-array>
+
+    <string-array name="custom_workout_difficulties">
+        <item>Beginner</item>
+        <item>Intermediate</item>
+        <item>Expert</item>
+        <item>It's About Drive</item>
+    </string-array>
+
+    <string-array name="custom_workout_length">
+        <item>Less than 30 minutes</item>
+        <item>30–60 minutes</item>
+        <item>60–90 minutes</item>
+        <item>More than 90 minutes</item>
+    </string-array>
 </resources>
