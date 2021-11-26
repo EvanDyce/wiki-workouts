@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WorkoutInformationActivity"
+    android:background="@color/off_white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_20"
+            android:id="@+id/topSpacer"/>
+
+        <LinearLayout
+            android:id="@+id/ll_workout_information"
+            android:paddingHorizontal="@dimen/size_10"
+            android:layout_below="@+id/topSpacer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Workout Name:"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <EditText
+                        android:id="@+id/et_customWorkoutName"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Enter workout name"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Category:"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_customWorkoutCategory"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Add secondary muscles"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Exercises: "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/ll_added_exercises"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_20"
+                            android:textColor="@color/black"
+                            android:orientation="vertical"/>
+
+                        <Button
+                            android:id="@+id/button_addExerciseToCustom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/custom_button_salmon"
+                            android:text="Add Exercise"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/text_12"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Primary Muscle(s): "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <EditText
+                        android:id="@+id/et_customAddPrimaryMuscles"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Enter primary muscles"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Secondary Muscle(s): "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <EditText
+                        android:id="@+id/et_customSecondaryMuscles"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Add secondary muscles"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Workout Description:"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <EditText
+                        android:id="@+id/et_customEnterDescription"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Enter Description"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"
+                        android:maxLines="3"
+                        android:layout_gravity="center_vertical"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Difficulty:"
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_customWorkoutDifficulty"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:hint="Add secondary muscles"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:cardElevation="@dimen/size_10"
+                android:layout_marginVertical="@dimen/size_10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/size_10"
+                    android:background="@color/white"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="0.75"
+                        android:layout_height="wrap_content"
+                        android:text="Workout Length: "
+                        android:textSize="@dimen/text_20"
+                        android:textStyle="bold"
+                        android:textColor="@color/salmon"/>
+
+                    <Spinner
+                        android:id="@+id/spinner_customWorkoutLength"
+                        android:layout_width="0dp"
+                        android:layout_weight="1.25"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:textSize="@dimen/text_16"
+                        android:layout_gravity="center_vertical"
+                        android:textColorHint="@color/grey"
+                        android:background="@drawable/rounded_edittext"
+                        android:textColor="@color/black"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/startWorkoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_25"
+                android:layout_gravity="center_horizontal"
+                android:text="Create Workout"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_20"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
