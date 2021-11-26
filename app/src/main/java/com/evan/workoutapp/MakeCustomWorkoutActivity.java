@@ -10,6 +10,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.evan.workoutapp.databinding.ActivityMakeCustomWorkoutBinding;
 
@@ -31,6 +35,19 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        // setting the adapters for the spinners
+        String[] workoutCategories = {"Chest", "Shoulders", "Arms", "Abs", "Legs", "Back", "Calves"};
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(MakeCustomWorkoutActivity.this, R.layout.spinner_item, workoutCategories);
+        binding.spinnerCustomWorkoutCategory.setAdapter(adapter);
+
+        String[] workoutDifficulties = {"Beginner", "Intermediate", "Expert", "It's About Drive"};
+        ArrayAdapter<CharSequence> dapter = new ArrayAdapter<>(MakeCustomWorkoutActivity.this, R.layout.spinner_item, workoutDifficulties);
+        binding.spinnerCustomWorkoutDifficulty.setAdapter(dapter);
+
+        String[] workoutLength = {"Less than 30 minutes", "30-60 minutes", "60-90 minutes", "More than 90 minutes"};
+        ArrayAdapter<CharSequence> apter = new ArrayAdapter<>(MakeCustomWorkoutActivity.this, R.layout.spinner_item, workoutLength);
+        binding.spinnerCustomWorkoutLength.setAdapter(apter);
     }
 
     /**
