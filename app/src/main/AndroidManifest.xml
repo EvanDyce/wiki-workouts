@@ -14,6 +14,9 @@
         android:theme="@style/Theme.WorkoutApp"
         tools:replace="android:icon">
         <activity
+            android:name=".ui.custom.creation.ExerciseSelectionActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.custom.MakeCustomWorkoutActivity"
             android:exported="true" />
         <activity
