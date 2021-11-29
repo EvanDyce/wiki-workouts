@@ -1,4 +1,4 @@
-package com.evan.workoutapp;
+package com.evan.workoutapp.ui.custom;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -11,10 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 
+import com.evan.workoutapp.MainActivity;
+import com.evan.workoutapp.R;
 import com.evan.workoutapp.databinding.ActivityMakeCustomWorkoutBinding;
 
 public class MakeCustomWorkoutActivity extends AppCompatActivity {

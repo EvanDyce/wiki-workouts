@@ -1,4 +1,4 @@
-package com.evan.workoutapp;
+package com.evan.workoutapp.ui.workouts;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -14,21 +14,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
-import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
-import com.evan.workoutapp.databinding.ActivityMainBinding;
 import com.evan.workoutapp.databinding.ActivityWorkoutInformationBinding;
 import com.evan.workoutapp.utils.CustomExerciseDialog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class WorkoutInformationActivity extends AppCompatActivity {
 

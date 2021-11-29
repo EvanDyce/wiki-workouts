@@ -14,10 +14,10 @@
         android:theme="@style/Theme.WorkoutApp"
         tools:replace="android:icon">
         <activity
-            android:name=".MakeCustomWorkoutActivity"
+            android:name=".ui.custom.MakeCustomWorkoutActivity"
             android:exported="true" />
         <activity
-            android:name=".WorkoutInformationActivity"
+            android:name=".ui.workouts.WorkoutInformationActivity"
             android:exported="true"
             android:theme="@style/Theme.WorkoutApp" />
         <activity
