@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.custom.creation.ExerciseSelectionActivity">
 
-    <include layout="@layout/fragment_exercises"/>
+    <include
+        android:id="@+id/includedExerciseFragment"
+        layout="@layout/fragment_exercises"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
