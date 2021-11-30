@@ -136,7 +136,8 @@ public class ExerciseSelectionActivity extends AppCompatActivity implements Exer
     @Override
     public void onWorkoutClicked(int position) {
         MakeCustomWorkoutActivity.addExerciseToWorkout(exerciseArrayList.get(position));
-        startActivity(new Intent(this, MakeCustomWorkoutActivity.class));
+        Intent intent = new Intent(this, MakeCustomWorkoutActivity.class);
+        startActivity(intent);
     }
 
     /**

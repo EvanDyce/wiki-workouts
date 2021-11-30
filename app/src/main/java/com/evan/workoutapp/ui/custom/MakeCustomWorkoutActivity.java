@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.evan.workoutapp.MainActivity;
@@ -20,6 +23,8 @@ import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.databinding.ActivityMakeCustomWorkoutBinding;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionActivity;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionAdapter;
+import com.evan.workoutapp.ui.workouts.WorkoutInformationActivity;
+import com.evan.workoutapp.utils.CustomExerciseDialog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -45,6 +50,27 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Toast.makeText(this, String.valueOf(exercisesInWorkout.size()), Toast.LENGTH_SHORT).show();
+
+        for (Exercises.Exercise exercise : exercisesInWorkout) {
+            TextView temp = new TextView(this);
+            temp.setText(exercise.getName());
+            temp.setId(Integer.valueOf(exercise.getId()));
+            temp.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            temp.setTextColor(getResources().getColor(R.color.black));
+            temp.setTextSize(18.0F);
+            temp.setPadding(0, 5, 0, 0);
+            temp.setPaintFlags(temp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            temp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.black_circle_bullet, 0, 0, 0);
+            temp.setCompoundDrawablePadding(25);
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CustomExerciseDialog ced = new CustomExerciseDialog(MakeCustomWorkoutActivity.this, exercise);
+                    ced.show();
+                }
+            });
+            binding.llAddedExercises.addView(temp);
+        }
 
         // setting the adapters for the spinners
         String[] workoutCategories = {"Chest", "Shoulders", "Arms", "Abs", "Legs", "Back", "Calves"};
