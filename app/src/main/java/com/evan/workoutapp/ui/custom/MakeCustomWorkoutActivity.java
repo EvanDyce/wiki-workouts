@@ -10,11 +10,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 
 import com.evan.workoutapp.MainActivity;
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.databinding.ActivityMakeCustomWorkoutBinding;
+import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionActivity;
+import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionAdapter;
 
 public class MakeCustomWorkoutActivity extends AppCompatActivity {
 
@@ -47,6 +50,15 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         String[] workoutLength = {"Less than 30 minutes", "30-60 minutes", "60-90 minutes", "More than 90 minutes"};
         ArrayAdapter<CharSequence> apter = new ArrayAdapter<>(MakeCustomWorkoutActivity.this, R.layout.spinner_item, workoutLength);
         binding.spinnerCustomWorkoutLength.setAdapter(apter);
+
+        // setting add Exercise onClick
+        binding.buttonAddExerciseToCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MakeCustomWorkoutActivity.this, ExerciseSelectionActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
