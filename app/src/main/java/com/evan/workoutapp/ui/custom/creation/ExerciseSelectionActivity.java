@@ -1,16 +1,19 @@
 package com.evan.workoutapp.ui.custom.creation;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +25,7 @@ import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.databinding.ActivityExerciseSelectionBinding;
 import com.evan.workoutapp.databinding.ActivityMainBinding;
 import com.evan.workoutapp.ui.ExerciseFilteringInterface;
+import com.evan.workoutapp.ui.custom.MakeCustomWorkoutActivity;
 import com.evan.workoutapp.ui.exercises.ExerciseAdapter;
 
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ public class ExerciseSelectionActivity extends AppCompatActivity implements Exer
     private final String TAG = "Exercise_Selection";
     private ArrayList<Exercises.Exercise> exerciseArrayList;
     private ExerciseSelectionAdapter exerciseAdapter;
+    private ArrayList<Exercises.Exercise> exerciseInWorkout;
 
 
     @Override
@@ -130,6 +135,21 @@ public class ExerciseSelectionActivity extends AppCompatActivity implements Exer
 
     @Override
     public void onWorkoutClicked(int position) {
+        MakeCustomWorkoutActivity.addExerciseToWorkout(exerciseArrayList.get(position));
+        startActivity(new Intent(this, MakeCustomWorkoutActivity.class));
+    }
 
+    /**
+     * on click for the back button on action bar
+     * @param item menuitem that was clicked, always back button
+     * @return returns true
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(this, MakeCustomWorkoutActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

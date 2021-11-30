@@ -12,16 +12,22 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.evan.workoutapp.MainActivity;
 import com.evan.workoutapp.R;
+import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.databinding.ActivityMakeCustomWorkoutBinding;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionActivity;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionAdapter;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 public class MakeCustomWorkoutActivity extends AppCompatActivity {
 
     private ActivityMakeCustomWorkoutBinding binding;
+    private static ArrayList<Exercises.Exercise> exercisesInWorkout = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,8 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        Toast.makeText(this, String.valueOf(exercisesInWorkout.size()), Toast.LENGTH_SHORT).show();
 
         // setting the adapters for the spinners
         String[] workoutCategories = {"Chest", "Shoulders", "Arms", "Abs", "Legs", "Back", "Calves"};
@@ -75,5 +83,9 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static void addExerciseToWorkout(Exercises.Exercise e) {
+        exercisesInWorkout.add(e);
     }
 }
