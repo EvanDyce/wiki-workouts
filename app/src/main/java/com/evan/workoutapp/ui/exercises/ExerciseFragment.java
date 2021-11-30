@@ -4,44 +4,30 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
-import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.databinding.FragmentExercisesBinding;
-import com.evan.workoutapp.volley.VolleyUtils;
-
-import org.json.JSONObject;
+import com.evan.workoutapp.ui.ExerciseFilteringInterface;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
 
-public class ExerciseFragment extends Fragment {
+public class ExerciseFragment extends Fragment implements ExerciseFilteringInterface {
 
     // boolean flag for spinner
     private static boolean firstTimeLoaded = true;
@@ -92,7 +78,8 @@ public class ExerciseFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                filter(editable.toString());
+                // default filter call from interface
+                filter(editable.toString(), currentCategoryFilter, exerciseArrayList, exerciseAdapter);
             }
         });
 
@@ -127,7 +114,7 @@ public class ExerciseFragment extends Fragment {
 
                 String name = adapterView.getAdapter().getItem(i).toString();
                 currentCategoryFilter = name;
-                filterByCategory(name);
+                filterByCategory(name, exerciseArrayList, exerciseAdapter);
                 Log.d(TAG, adapterView.getAdapter().getItem(i).toString());
             }
 
@@ -138,72 +125,6 @@ public class ExerciseFragment extends Fragment {
         });
 
         return root;
-    }
-
-    private void filterByCategory(String s) {
-        if (s.equals("All")) {
-            exerciseArrayList.clear();
-            ArrayList<Exercises.Exercise> newList = Exercises.getAllExercises();
-            exerciseArrayList.addAll(newList);
-            exerciseAdapter.notifyDataSetChanged();
-            return;
-        }
-        exerciseArrayList.clear();
-        ArrayList<Exercises.Exercise> newList = Exercises.getMap().get(s);
-        assert newList != null;
-        exerciseArrayList.addAll(newList);
-        exerciseAdapter.notifyDataSetChanged();
-    }
-
-
-    private void filter(String s) {
-        // setting the new list to one with all teh exercises
-        // removes any that don't contain the new things.
-        // may be slow, but we'll see
-        ArrayList<Exercises.Exercise> newList = new ArrayList<>();
-        Map<String, ArrayList<Exercises.Exercise>> map = Exercises.getMap();
-        switch (currentCategoryFilter) {
-            case "Chest":
-                newList.addAll(Objects.requireNonNull(map.get("Chest")));
-                break;
-
-            case "Shoulders":
-                newList.addAll(Objects.requireNonNull(map.get("Shoulders")));
-                break;
-
-            case "Legs":
-                newList.addAll(Objects.requireNonNull(map.get("Legs")));
-                break;
-
-            case "Calves":
-                newList.addAll(Objects.requireNonNull(map.get("Calves")));
-                break;
-
-            case "Back":
-                newList.addAll(Objects.requireNonNull(map.get("Back")));
-                break;
-
-            case "Arms":
-                newList.addAll(Objects.requireNonNull(map.get("Arms")));
-                break;
-
-            case "Abs":
-                newList.addAll(Objects.requireNonNull(map.get("Abs")));
-                break;
-
-            default:
-                newList.addAll(Objects.requireNonNull(Exercises.getAllExercises()));
-        }
-
-        for (int i = 0; i < newList.size(); i++) {
-            if (!newList.get(i).getName().toLowerCase(Locale.ROOT).contains(s)) {
-                newList.remove(i);
-                i--;
-            }
-        }
-        exerciseArrayList.clear();
-        exerciseArrayList.addAll(newList);
-        exerciseAdapter.notifyDataSetChanged();
     }
 
     @Override

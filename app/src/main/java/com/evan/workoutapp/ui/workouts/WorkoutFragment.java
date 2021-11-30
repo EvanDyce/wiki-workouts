@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,14 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.evan.workoutapp.MainActivity;
-import com.evan.workoutapp.WorkoutInformationActivity;
-import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.PremadeWorkouts;
-import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentWorkoutsBinding;
 import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
-
-import java.util.ArrayList;
 
 public class WorkoutFragment extends Fragment implements GeneralWorkoutAdapter.WorkoutClickedListener {
 
