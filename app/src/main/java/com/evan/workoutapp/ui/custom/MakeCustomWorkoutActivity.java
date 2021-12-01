@@ -62,11 +62,20 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             temp.setPaintFlags(temp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
             temp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.black_circle_bullet, 0, 0, 0);
             temp.setCompoundDrawablePadding(25);
+            temp.setLongClickable(true);
             temp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     CustomExerciseDialog ced = new CustomExerciseDialog(MakeCustomWorkoutActivity.this, exercise);
                     ced.show();
+                }
+            });
+
+            temp.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast.makeText(MakeCustomWorkoutActivity.this, "FUCKERY", Toast.LENGTH_SHORT).show();
+                    return true;
                 }
             });
             binding.llAddedExercises.addView(temp);
