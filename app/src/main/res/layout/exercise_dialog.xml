@@ -19,12 +19,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/exerciseCardIncluded"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/size_10"
         android:background="@drawable/custom_button_salmon"
         android:text="OK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/exerciseCardIncluded"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/size_10"/>
+        app:layout_constraintTop_toBottomOf="@+id/exerciseCardIncluded" />
 
 </RelativeLayout>

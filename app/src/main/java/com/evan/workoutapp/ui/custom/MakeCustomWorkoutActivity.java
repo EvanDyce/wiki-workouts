@@ -3,6 +3,8 @@ package com.evan.workoutapp.ui.custom;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.ObservableArrayList;
+import androidx.databinding.ObservableList;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,6 +27,7 @@ import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionActivity;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionAdapter;
 import com.evan.workoutapp.ui.workouts.WorkoutInformationActivity;
 import com.evan.workoutapp.utils.CustomExerciseDialog;
+import com.evan.workoutapp.utils.RemoveExerciseDialog;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -32,7 +35,7 @@ import java.util.ArrayList;
 public class MakeCustomWorkoutActivity extends AppCompatActivity {
 
     private ActivityMakeCustomWorkoutBinding binding;
-    private static ArrayList<Exercises.Exercise> exercisesInWorkout = new ArrayList<>();
+    private static ObservableArrayList<Exercises.Exercise> exercisesInWorkout = new ObservableArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,35 +54,7 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
 
         Toast.makeText(this, String.valueOf(exercisesInWorkout.size()), Toast.LENGTH_SHORT).show();
 
-        for (Exercises.Exercise exercise : exercisesInWorkout) {
-            TextView temp = new TextView(this);
-            temp.setText(exercise.getName());
-            temp.setId(Integer.valueOf(exercise.getId()));
-            temp.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            temp.setTextColor(getResources().getColor(R.color.black));
-            temp.setTextSize(18.0F);
-            temp.setPadding(0, 5, 0, 0);
-            temp.setPaintFlags(temp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-            temp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.black_circle_bullet, 0, 0, 0);
-            temp.setCompoundDrawablePadding(25);
-            temp.setLongClickable(true);
-            temp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    CustomExerciseDialog ced = new CustomExerciseDialog(MakeCustomWorkoutActivity.this, exercise);
-                    ced.show();
-                }
-            });
-
-            temp.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Toast.makeText(MakeCustomWorkoutActivity.this, "FUCKERY", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-            });
-            binding.llAddedExercises.addView(temp);
-        }
+        populateExercises();
 
         // setting the adapters for the spinners
         String[] workoutCategories = {"Chest", "Shoulders", "Arms", "Abs", "Legs", "Back", "Calves"};
@@ -102,10 +77,39 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        exercisesInWorkout.addOnListChangedCallback(new ObservableList.OnListChangedCallback<ObservableList<Exercises.Exercise>>() {
+            @Override
+            public void onChanged(ObservableList<Exercises.Exercise> sender) {
+                populateExercises();
+            }
+
+            @Override
+            public void onItemRangeChanged(ObservableList<Exercises.Exercise> sender, int positionStart, int itemCount) {
+
+            }
+
+            @Override
+            public void onItemRangeInserted(ObservableList<Exercises.Exercise> sender, int positionStart, int itemCount) {
+
+            }
+
+            @Override
+            public void onItemRangeMoved(ObservableList<Exercises.Exercise> sender, int fromPosition, int toPosition, int itemCount) {
+
+            }
+
+            @Override
+            public void onItemRangeRemoved(ObservableList<Exercises.Exercise> sender, int positionStart, int itemCount) {
+                populateExercises();
+                Log.e("LISTENER", "THIS ISN'T WORKING");
+            }
+        });
     }
 
     /**
      * on click for the back button on action bar
+     *
      * @param item menuitem that was clicked, always back button
      * @return returns true
      */
@@ -122,5 +126,46 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
 
     public static void addExerciseToWorkout(Exercises.Exercise e) {
         exercisesInWorkout.add(e);
+    }
+
+    public static void removeExercise(int index) {
+        exercisesInWorkout.remove(index);
+    }
+
+    public void populateExercises() {
+        ((ViewGroup) binding.llAddedExercises).removeAllViews();
+        for (Exercises.Exercise exercise : exercisesInWorkout) {
+            Log.e("HERROR", exercise.toString());
+            TextView temp = new TextView(this);
+            temp.setText(exercise.getName());
+            temp.setId(Integer.valueOf(exercise.getId()));
+            temp.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            temp.setTextColor(getResources().getColor(R.color.black));
+            temp.setTextSize(18.0F);
+            temp.setPadding(0, 5, 0, 0);
+            temp.setPaintFlags(temp.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            temp.setCompoundDrawablesWithIntrinsicBounds(R.drawable.black_circle_bullet, 0, 0, 0);
+            temp.setCompoundDrawablePadding(25);
+            temp.setLongClickable(true);
+            temp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CustomExerciseDialog ced = new CustomExerciseDialog(MakeCustomWorkoutActivity.this, exercise);
+                    ced.show();
+                }
+            });
+
+            temp.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    // get index of view in linearlayout. Same as the index in the exercise list
+                    int index = ((ViewGroup) v.getParent()).indexOfChild(v);
+                    RemoveExerciseDialog red = new RemoveExerciseDialog(v.getContext(), exercisesInWorkout.get(index), index);
+                    red.show();
+                    return true;
+                }
+            });
+            binding.llAddedExercises.addView(temp);
+        }
     }
 }
