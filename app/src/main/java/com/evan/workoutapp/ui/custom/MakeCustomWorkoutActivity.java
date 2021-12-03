@@ -199,4 +199,10 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
                 description, difficulty, length, exercisesInWorkout);
         CurrentUserSingleton.getInstance().addUserCustomWorkout(workout);
     }
+
+    private void goBackToMainActivity() {
+        Intent intent = new Intent(MakeCustomWorkoutActivity.this, MainActivity.class);
+        intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
+        startActivity(intent);
+    }
 }
