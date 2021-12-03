@@ -37,9 +37,8 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
 
         // get and display the custom workouts of the current user
         customs = CurrentUserSingleton.getInstance().getUserWorkouts();
-        customs.add(new Workout("Test", "THIS IS DESC", "Chest", new ArrayList<>()));
         final RecyclerView workoutRV = binding.workoutRecyclerview;
-        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts(), this::onWorkoutClicked);
+        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), customs, this::onWorkoutClicked);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         workoutRV.setLayoutManager(linearLayoutManager);
         workoutRV.setAdapter(workoutAdapter);
