@@ -41,6 +41,8 @@ public class User {
         return userWorkouts;
     }
 
+    public void addUserCustomWorkout(Workout workout) {this.userWorkouts.add(workout);}
+
     @NonNull
     @Override
     public String toString() {

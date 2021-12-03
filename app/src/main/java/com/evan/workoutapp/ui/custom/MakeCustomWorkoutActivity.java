@@ -22,10 +22,12 @@ import android.widget.Toast;
 import com.evan.workoutapp.MainActivity;
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
+import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.ActivityMakeCustomWorkoutBinding;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionActivity;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionAdapter;
 import com.evan.workoutapp.ui.workouts.WorkoutInformationActivity;
+import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.evan.workoutapp.utils.CustomExerciseDialog;
 import com.evan.workoutapp.utils.RemoveExerciseDialog;
 
@@ -74,6 +76,16 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MakeCustomWorkoutActivity.this, ExerciseSelectionActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.startWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createWorkout();
+                Intent intent = new Intent(MakeCustomWorkoutActivity.this, MainActivity.class);
+                intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
                 startActivity(intent);
             }
         });
@@ -133,7 +145,7 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
     }
 
     public void populateExercises() {
-        ((ViewGroup) binding.llAddedExercises).removeAllViews();
+        binding.llAddedExercises.removeAllViews();
         for (Exercises.Exercise exercise : exercisesInWorkout) {
             Log.e("HERROR", exercise.toString());
             TextView temp = new TextView(this);
@@ -167,5 +179,24 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             });
             binding.llAddedExercises.addView(temp);
         }
+    }
+
+    private void createWorkout() {
+        // information required
+        // name, category, exercise list, primary, secondary,
+        // description, difficulty ,length
+
+        String name = String.valueOf(binding.etCustomWorkoutName.getText());
+        String category = ((String) binding.spinnerCustomWorkoutCategory.getSelectedItem());
+        String primary = String.valueOf(binding.etCustomAddPrimaryMuscles.getText());
+        String secondary = String.valueOf(binding.etCustomSecondaryMuscles.getText());
+        String description = String.valueOf(binding.etCustomEnterDescription.getText());
+        String difficulty = ((String) binding.spinnerCustomWorkoutDifficulty.getSelectedItem());
+        String length = binding.spinnerCustomWorkoutLength.toString();
+
+
+        Workout workout = new Workout(name, category, primary, secondary,
+                description, difficulty, length, exercisesInWorkout);
+        CurrentUserSingleton.getInstance().addUserCustomWorkout(workout);
     }
 }
