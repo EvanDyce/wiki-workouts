@@ -7,21 +7,34 @@
     tools:context=".ui.custom.CustomFragment"
     android:background="@color/off_white">
 
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addExerciseButton"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/custom_button_salmon"
+            android:text="Create Workout"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/size_10"
+            />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:scrollbars="vertical"
-        android:id="@+id/workout_recyclerview"/>
+        android:id="@+id/workout_recyclerview"
+        android:layout_above="@id/linearlayout"
+        android:layout_alignParentTop="true"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addExerciseButton"
-        android:layout_below="@+id/workout_recyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/custom_button_salmon"
-        android:text="Add Exercise"
-        android:layout_centerHorizontal="true"
-        android:layout_marginVertical="@dimen/size_10"/>
+
+
 
 </RelativeLayout>
 
