@@ -83,10 +83,9 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         binding.startWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createWorkout();
-                Intent intent = new Intent(MakeCustomWorkoutActivity.this, MainActivity.class);
-                intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
-                startActivity(intent);
+                if (createWorkout()) {
+                    goBackToMainActivity();
+                }
             }
         });
 
@@ -114,7 +113,6 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             @Override
             public void onItemRangeRemoved(ObservableList<Exercises.Exercise> sender, int positionStart, int itemCount) {
                 populateExercises();
-                Log.e("LISTENER", "THIS ISN'T WORKING");
             }
         });
     }
@@ -128,9 +126,7 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(MakeCustomWorkoutActivity.this, MainActivity.class);
-            intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
-            startActivity(intent);
+            goBackToMainActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -181,7 +177,11 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         }
     }
 
-    private void createWorkout() {
+    /**
+     * creates the workout and adds to current users list
+     * @return true if all inputs are valid, false if not
+     */
+    private boolean createWorkout() {
         // information required
         // name, category, exercise list, primary, secondary,
         // description, difficulty ,length
@@ -194,10 +194,25 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         String difficulty = ((String) binding.spinnerCustomWorkoutDifficulty.getSelectedItem());
         String length = binding.spinnerCustomWorkoutLength.toString();
 
+        if (name.length() == 0) {
+            binding.etCustomWorkoutName.setError("Please enter a name");
+            binding.etCustomWorkoutName.requestFocus();
+            return false;
+        } else if (primary.length() == 0) {
+            binding.etCustomAddPrimaryMuscles.setError("Please enter primary muscle");
+            binding.etCustomAddPrimaryMuscles.requestFocus();
+            return false;
+        } else if (description.length() == 0) {
+            binding.etCustomEnterDescription.setError("Please enter a description");
+            binding.etCustomEnterDescription.requestFocus();
+            return false;
+        }
+
 
         Workout workout = new Workout(name, category, primary, secondary,
                 description, difficulty, length, exercisesInWorkout);
         CurrentUserSingleton.getInstance().addUserCustomWorkout(workout);
+        return true;
     }
 
     private void goBackToMainActivity() {
