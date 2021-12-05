@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/size_350"
+    android:layout_height="match_parent"
+    android:background="@color/off_white"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/workoutCardIncluded"
+        layout="@layout/card_layout"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/workoutCardIncluded"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dialogCancelButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_10"
+            android:background="@drawable/custom_button_salmon"
+            android:text="Cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exerciseCardIncluded"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/size_10"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/dialogRemoveButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_10"
+            android:background="@drawable/custom_button_salmon"
+            android:text="Remove"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/exerciseCardIncluded"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/size_10"/>
+    </LinearLayout>
+
+</RelativeLayout>
