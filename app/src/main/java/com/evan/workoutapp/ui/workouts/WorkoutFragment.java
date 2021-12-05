@@ -17,7 +17,7 @@ import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.databinding.FragmentWorkoutsBinding;
 import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
 
-public class WorkoutFragment extends Fragment implements GeneralWorkoutAdapter.WorkoutClickedListener {
+public class WorkoutFragment extends Fragment {
 
     private WorkoutViewModel workoutViewModel;
     private FragmentWorkoutsBinding binding;
@@ -34,7 +34,7 @@ public class WorkoutFragment extends Fragment implements GeneralWorkoutAdapter.W
         final RecyclerView workoutRV = binding.workoutRecyclerview;
 
         // init adapter and pass arraylist with the data
-        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), PremadeWorkouts.getPremadeWorkoutsArraylist(), this::onWorkoutClicked);
+        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), PremadeWorkouts.getPremadeWorkoutsArraylist(), listener);
 
         // setting layout manager for recycler view
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
@@ -50,21 +50,22 @@ public class WorkoutFragment extends Fragment implements GeneralWorkoutAdapter.W
         binding = null;
     }
 
-    /**
-     * onClick for when a workout is clicked in the workout frag recycler view
-     * @param position position of workout in the recycler view so I know which one it
-     *                 is to start teh intent
-     */
-    @Override
-    public void onWorkoutClicked(int position) {
-        Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
-        // pass the list and the index clicked
-        intent.putExtra("workout_index", position);
-        intent.putExtra("workout_list", PremadeWorkouts.getPremadeWorkoutsArraylist());
-        // make the backwards intent with proper data
-        Intent next_intent = new Intent(this.getContext(), MainActivity.class);
-        next_intent.putExtra("fragment", MainActivity.WORKOUT_FRAGMENT);
-        intent.putExtra("next_intent", next_intent);
-        startActivity(intent);
-    }
+    GeneralWorkoutAdapter.WorkoutClickedListener listener = new GeneralWorkoutAdapter.WorkoutClickedListener() {
+        @Override
+        public void onWorkoutClicked(int position) {
+            Intent intent = new Intent(getContext(), WorkoutInformationActivity.class);
+            // pass the list and the index clicked
+            intent.putExtra("workout_index", position);
+            intent.putExtra("workout_list", PremadeWorkouts.getPremadeWorkoutsArraylist());
+            // make the backwards intent with proper data
+            Intent next_intent = new Intent(getContext(), MainActivity.class);
+            next_intent.putExtra("fragment", MainActivity.WORKOUT_FRAGMENT);
+            intent.putExtra("next_intent", next_intent);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onWorkoutLongClicked(int position) {
+        }
+    };
 }

@@ -1,6 +1,7 @@
 package com.evan.workoutapp.ui;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +46,7 @@ public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAd
         return new Viewholder(view, mWorkoutClickedListener);
     }
 
-    public class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private ImageView workoutImageView;
         private TextView workoutTitleTextView;
         WorkoutClickedListener workoutClickedListener;
@@ -56,16 +57,27 @@ public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAd
             workoutTitleTextView = itemView.findViewById(R.id.workoutTitleCategory);
 
             this.workoutClickedListener = workoutClickedListener;
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this::onClick);
+
+            itemView.setLongClickable(true);
+            itemView.setOnLongClickListener(this::onLongClick);
         }
 
         @Override
         public void onClick(View view) {
             this.workoutClickedListener.onWorkoutClicked(getAdapterPosition());
         }
+
+        @Override
+        public boolean onLongClick(View view) {
+            this.workoutClickedListener.onWorkoutLongClicked(getAdapterPosition());
+            Log.e("WORKOUT", "Long clicked");
+            return true;
+        };
     }
 
     public interface WorkoutClickedListener {
         void onWorkoutClicked(int position);
+        void onWorkoutLongClicked(int position);
     }
 }

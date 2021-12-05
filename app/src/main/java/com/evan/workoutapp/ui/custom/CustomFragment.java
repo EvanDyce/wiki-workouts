@@ -18,10 +18,11 @@ import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentCustomWorkoutsBinding;
 import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
 import com.evan.workoutapp.user.CurrentUserSingleton;
+import com.evan.workoutapp.utils.RemoveWorkoutDialog;
 
 import java.util.ArrayList;
 
-public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.WorkoutClickedListener {
+public class CustomFragment extends Fragment {
 
     private CustomViewModel customViewModel;
     private FragmentCustomWorkoutsBinding binding;
@@ -38,7 +39,7 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
         // get and display the custom workouts of the current user
         customs = CurrentUserSingleton.getInstance().getUserWorkouts();
         final RecyclerView workoutRV = binding.workoutRecyclerview;
-        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), customs, this::onWorkoutClicked);
+        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), customs, listener);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         workoutRV.setLayoutManager(linearLayoutManager);
         workoutRV.setAdapter(workoutAdapter);
@@ -60,14 +61,24 @@ public class CustomFragment extends Fragment implements GeneralWorkoutAdapter.Wo
         binding = null;
     }
 
-    @Override
-    public void onWorkoutClicked(int position) {
-        Intent intent = new Intent(this.getContext(), WorkoutInformationActivity.class);
-        intent.putExtra("workout_index", position);
-        intent.putExtra("workout_list", customs);
-        Intent next_intent = new Intent(this.getContext(), MainActivity.class);
-        next_intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
-        intent.putExtra("next_intent", next_intent);
-        startActivity(intent);
-    }
+    GeneralWorkoutAdapter.WorkoutClickedListener listener = new GeneralWorkoutAdapter.WorkoutClickedListener() {
+        @Override
+        public void onWorkoutClicked(int position) {
+            Intent intent = new Intent(getContext(), WorkoutInformationActivity.class);
+            intent.putExtra("workout_index", position);
+            intent.putExtra("workout_list", customs);
+            Intent next_intent = new Intent(getContext(), MainActivity.class);
+            next_intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
+            intent.putExtra("next_intent", next_intent);
+            startActivity(intent);
+        }
+
+        @Override
+        public void onWorkoutLongClicked(int position) {
+            RemoveWorkoutDialog rwd = new RemoveWorkoutDialog(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts().get(position),
+                    position);
+
+            rwd.show();
+        }
+    };
 }
