@@ -9,15 +9,8 @@ import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises.Exercise;
 
 public class Workout implements Serializable {
-    private String name, description, category, primary, secondary, length, difficulty = "";
+    private String name = "", description= "", category= "", primary= "", secondary= "", length= "", difficulty = "";
     private ArrayList<Exercise> exercisesInWorkout;
-
-    public Workout(String name, String description, String category, ArrayList<Exercise> exercises) {
-        this.name = name;
-        this.description = description;
-        this.exercisesInWorkout = exercises;
-        this.category = category;
-    }
 
     public Workout(String name, String category, String primary, String secondary,
                    String description, String difficulty, String length, ArrayList<Exercise> exercises) {

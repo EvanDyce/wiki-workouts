@@ -125,7 +125,11 @@ public class FirestoreFunctions {
 
                                 String name = documentSnapshot.getString("name");
                                 String category = documentSnapshot.getString("category");
+                                String primary = documentSnapshot.getString("primary");
+                                String secondary = documentSnapshot.getString("secondary");
                                 String description = documentSnapshot.getString("description");
+                                String difficulty = documentSnapshot.getString("difficulty");
+                                String length = documentSnapshot.getString("length");
                                 ArrayList<HashMap<String, Object>> mapList = (ArrayList<HashMap<String, Object>>) documentSnapshot.get("exercises");
                                 ArrayList<Exercises.Exercise> exercises = new ArrayList<>();
                                 for (HashMap<String, Object> map : mapList) {
@@ -139,7 +143,9 @@ public class FirestoreFunctions {
                                 }
 //                                ArrayList<Exercises.Exercise> exerciseArrayList = (ArrayList<Exercises.Exercise>) documentSnapshot.get("exercises");
 
-                                PremadeWorkouts.addWorkoutToList(new Workout(name, description, category, exercises));
+                                PremadeWorkouts.addWorkoutToList(new Workout(name, category, primary, secondary,
+                                        description, difficulty, length, exercises));
+//                                PremadeWorkouts.addWorkoutToList(new Workout(name, description, category, exercises));
                             }
                             callback.dataRetrieved();
                         } else {
