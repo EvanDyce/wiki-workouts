@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.evan.workoutapp.MainActivity;
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
+import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.ActivityMakeCustomWorkoutBinding;
 import com.evan.workoutapp.ui.custom.creation.ExerciseSelectionActivity;
@@ -30,6 +31,7 @@ import com.evan.workoutapp.ui.workouts.WorkoutInformationActivity;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.evan.workoutapp.utils.CustomExerciseDialog;
 import com.evan.workoutapp.utils.RemoveExerciseDialog;
+import com.evan.workoutapp.volley.VolleySingleton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -219,5 +221,12 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         Intent intent = new Intent(MakeCustomWorkoutActivity.this, MainActivity.class);
         intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
         startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FirestoreFunctions.updateUserData();
     }
 }

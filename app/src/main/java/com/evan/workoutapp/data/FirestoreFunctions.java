@@ -149,6 +149,32 @@ public class FirestoreFunctions {
                 });
     }
 
+    public static void updateUserData() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("email",CurrentUserSingleton.getInstance().getEmail());
+        data.put("name", CurrentUserSingleton.getInstance().getName());
+        data.put("workouts_completed", CurrentUserSingleton.getInstance().getWorkoutsCompleted());
+        data.put("custom_workouts", CurrentUserSingleton.getInstance().getUserWorkouts());
+
+        db.collection("users")
+                .document(CurrentUserSingleton.getInstance().getEmail())
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d(TAG, "User data updated success");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "User data not updated successfully");
+                    }
+                });
+    }
+
     public static void loadExercisesIntoFirestore(HashMap<String, ArrayList<Exercises.Exercise>> map) {
         for (String category : map.keySet()) {
             for (Exercises.Exercise exercise : map.get(category)) {
