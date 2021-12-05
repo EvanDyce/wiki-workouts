@@ -156,7 +156,35 @@ public class FirestoreFunctions {
         data.put("email",CurrentUserSingleton.getInstance().getEmail());
         data.put("name", CurrentUserSingleton.getInstance().getName());
         data.put("workouts_completed", CurrentUserSingleton.getInstance().getWorkoutsCompleted());
-        data.put("custom_workouts", CurrentUserSingleton.getInstance().getUserWorkouts());
+
+        // create a list of maps with each map being a workout
+        ArrayList<HashMap<String, Object>> workouts = new ArrayList<>();
+        for (Workout workout : CurrentUserSingleton.getInstance().getUserWorkouts()) {
+            HashMap<String, Object> obj = new HashMap<>();
+            obj.put("name", workout.getName());
+            obj.put("category", workout.getCategory());
+            obj.put("primary", workout.getPrimary());
+            obj.put("secondary", workout.getSecondary());
+            obj.put("description", workout.getDescription());
+            obj.put("difficulty", workout.getDifficulty());
+            obj.put("length", workout.getLength());
+
+            // new list of maps for each exercise
+            ArrayList<HashMap<String, Object>> exercises = new ArrayList<>();
+            for (Exercises.Exercise exercise : workout.getExercisesInWorkout()) {
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("id", exercise.getId());
+                map.put("name", exercise.getName());
+                map.put("description", exercise.getDescription());
+                map.put("category", exercise.getCategory());
+                map.put("equipment", exercise.getEquipment());
+                exercises.add(map);
+            }
+            // adding exericse list to workout map
+            obj.put("exercises", exercises);
+            workouts.add(obj);
+        }
+        data.put("custom_workouts", workouts);
 
         db.collection("users")
                 .document(CurrentUserSingleton.getInstance().getEmail())
