@@ -9,7 +9,7 @@ import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises.Exercise;
 
 public class Workout implements Serializable {
-    private String name, description, category, primary, secondary, length, difficulty;
+    private String name, description, category, primary, secondary, length, difficulty = "";
     private ArrayList<Exercise> exercisesInWorkout;
 
     public Workout(String name, String description, String category, ArrayList<Exercise> exercises) {
@@ -29,6 +29,18 @@ public class Workout implements Serializable {
         this.difficulty = difficulty;
         this.length = length;
         this.exercisesInWorkout = exercises;
+    }
+
+    public String getLength() { return this.length; }
+
+    public String getDifficulty() { return this.difficulty; }
+
+    public String getPrimary() {
+        return this.primary;
+    }
+
+    public String getSecondary() {
+        return this.secondary;
     }
 
     public String getCategory() { return this.category; }
