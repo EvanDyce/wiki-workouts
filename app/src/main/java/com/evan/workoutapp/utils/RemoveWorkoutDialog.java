@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.workout.Workout;
+import com.evan.workoutapp.ui.custom.CustomFragment;
 import com.evan.workoutapp.ui.custom.MakeCustomWorkoutActivity;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 
@@ -18,11 +21,13 @@ public class RemoveWorkoutDialog extends Dialog {
     private Button cancelButton, removeButton;
     private int index;
     private Workout workout;
+    private Fragment fragment;
 
-    public RemoveWorkoutDialog(Context context, Workout workout, int index) {
+    public RemoveWorkoutDialog(Context context, Workout workout, int index, Fragment fragment) {
         super(context);
         this.workout = workout;
         this.index = index;
+        this.fragment = fragment;
     }
 
     @Override
@@ -53,7 +58,12 @@ public class RemoveWorkoutDialog extends Dialog {
             public void onClick(View v) {
                 CurrentUserSingleton.getInstance().getUserWorkouts().remove(index);
                 dismiss();
+
+                if (fragment instanceof CustomFragment) {
+                    ((CustomFragment) fragment).setAdapter();
+                }
             }
         });
     }
+
 }

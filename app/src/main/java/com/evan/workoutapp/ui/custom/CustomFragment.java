@@ -27,6 +27,7 @@ public class CustomFragment extends Fragment {
     private CustomViewModel customViewModel;
     private FragmentCustomWorkoutsBinding binding;
     private ArrayList<Workout> customs;
+    private GeneralWorkoutAdapter workoutAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,13 +37,7 @@ public class CustomFragment extends Fragment {
         binding = FragmentCustomWorkoutsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // get and display the custom workouts of the current user
-        customs = CurrentUserSingleton.getInstance().getUserWorkouts();
-        final RecyclerView workoutRV = binding.workoutRecyclerview;
-        GeneralWorkoutAdapter workoutAdapter = new GeneralWorkoutAdapter(getContext(), customs, listener);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        workoutRV.setLayoutManager(linearLayoutManager);
-        workoutRV.setAdapter(workoutAdapter);
+        setAdapter();
 
         // set onclick for teh button and  make it start the make workout intent
         binding.addExerciseButton.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +48,16 @@ public class CustomFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    public void setAdapter() {
+        // get and display the custom workouts of the current user
+        customs = CurrentUserSingleton.getInstance().getUserWorkouts();
+        final RecyclerView workoutRV = binding.workoutRecyclerview;
+        workoutAdapter = new GeneralWorkoutAdapter(getContext(), customs, listener);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        workoutRV.setLayoutManager(linearLayoutManager);
+        workoutRV.setAdapter(workoutAdapter);
     }
 
     @Override
@@ -76,9 +81,10 @@ public class CustomFragment extends Fragment {
         @Override
         public void onWorkoutLongClicked(int position) {
             RemoveWorkoutDialog rwd = new RemoveWorkoutDialog(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts().get(position),
-                    position);
+                    position, CustomFragment.this);
 
             rwd.show();
         }
     };
+
 }
