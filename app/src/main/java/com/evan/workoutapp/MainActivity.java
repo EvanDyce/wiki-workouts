@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -128,4 +129,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FirestoreFunctions.updateUserData();
+    }
 }
