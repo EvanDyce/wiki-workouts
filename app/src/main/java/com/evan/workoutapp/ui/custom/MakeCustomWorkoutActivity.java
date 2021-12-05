@@ -194,7 +194,7 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         String secondary = String.valueOf(binding.etCustomSecondaryMuscles.getText());
         String description = String.valueOf(binding.etCustomEnterDescription.getText());
         String difficulty = ((String) binding.spinnerCustomWorkoutDifficulty.getSelectedItem());
-        String length = binding.spinnerCustomWorkoutLength.toString();
+        String length = ((String) binding.spinnerCustomWorkoutLength.getSelectedItem());
 
         if (name.length() == 0) {
             binding.etCustomWorkoutName.setError("Please enter a name");
@@ -222,11 +222,5 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        FirestoreFunctions.updateUserData();
     }
 }
