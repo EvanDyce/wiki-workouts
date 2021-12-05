@@ -145,7 +145,6 @@ public class FirestoreFunctions {
 
                                 PremadeWorkouts.addWorkoutToList(new Workout(name, category, primary, secondary,
                                         description, difficulty, length, exercises));
-//                                PremadeWorkouts.addWorkoutToList(new Workout(name, description, category, exercises));
                             }
                             callback.dataRetrieved();
                         } else {
