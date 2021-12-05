@@ -166,6 +166,7 @@
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:text="This is a workout for your chest"
+                        android:layout_gravity="center_vertical"
                         android:textSize="@dimen/text_20"
                         android:textColor="@color/black"/>
                 </LinearLayout>
@@ -199,6 +200,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:text="Intermediate"
                         android:textSize="@dimen/text_20"
                         android:textColor="@color/black"/>
@@ -235,7 +237,7 @@
                         android:layout_weight="1.25"
                         android:layout_height="wrap_content"
                         android:text="30-60 minutes"
-                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
                         android:textSize="@dimen/text_20"
                         android:textColor="@color/black"/>
                 </LinearLayout>
