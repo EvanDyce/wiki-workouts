@@ -247,10 +247,6 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             binding.etCustomWorkoutName.setError("Please enter a name");
             binding.etCustomWorkoutName.requestFocus();
             return false;
-        } else if (primary.length() == 0) {
-            binding.etCustomAddPrimaryMuscles.setError("Please enter primary muscle");
-            binding.etCustomAddPrimaryMuscles.requestFocus();
-            return false;
         } else if (description.length() == 0) {
             binding.etCustomEnterDescription.setError("Please enter a description");
             binding.etCustomEnterDescription.requestFocus();
@@ -261,6 +257,18 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         Workout workout = new Workout(name, category, primary, secondary,
                 description, difficulty, length, exercisesInWorkout);
         CurrentUserSingleton.getInstance().addUserCustomWorkout(workout);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("workout", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("name", "");
+        editor.putInt("category", 0);
+        editor.putString("primary", "");
+        editor.putString("secondary", "");
+        editor.putString("description", "");
+        editor.putInt("difficulty", 0);
+        editor.putInt("length", 0);
+        editor.apply();
+
         return true;
     }
 
@@ -268,6 +276,5 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         Intent intent = new Intent(MakeCustomWorkoutActivity.this, MainActivity.class);
         intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
         startActivity(intent);
-//        finish();
     }
 }
