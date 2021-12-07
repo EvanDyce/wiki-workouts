@@ -269,6 +269,7 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         editor.putInt("length", 0);
         editor.apply();
 
+        FirestoreFunctions.updateUserData();
         return true;
     }
 

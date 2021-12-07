@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.evan.workoutapp.R;
+import com.evan.workoutapp.data.FirestoreFunctions;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.ui.custom.CustomFragment;
 import com.evan.workoutapp.ui.custom.MakeCustomWorkoutActivity;
@@ -57,6 +58,7 @@ public class RemoveWorkoutDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 CurrentUserSingleton.getInstance().getUserWorkouts().remove(index);
+                FirestoreFunctions.updateUserData();
                 dismiss();
 
                 if (fragment instanceof CustomFragment) {

@@ -128,10 +128,4 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        FirestoreFunctions.updateUserData();
-    }
 }
