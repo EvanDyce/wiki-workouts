@@ -7,6 +7,7 @@ import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
@@ -77,6 +78,7 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         binding.buttonAddExerciseToCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                setSharedPreferences();
                 Intent intent = new Intent(MakeCustomWorkoutActivity.this, ExerciseSelectionActivity.class);
                 startActivity(intent);
             }
@@ -117,6 +119,8 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
                 populateExercises();
             }
         });
+
+        setViewsWithPreferences();
     }
 
     /**
@@ -132,6 +136,49 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setSharedPreferences() {
+        // context method that returns some class with SharedPreferences interface implemented
+        SharedPreferences sp = getSharedPreferences("workout", 0);
+        // returns nested Editor interface to make the changes
+        SharedPreferences.Editor editor = sp.edit();
+
+        String name = String.valueOf(binding.etCustomWorkoutName.getText());
+        int category_index = binding.spinnerCustomWorkoutCategory.getSelectedItemPosition();
+        String primary = String.valueOf(binding.etCustomAddPrimaryMuscles.getText());
+        String secondary = String.valueOf(binding.etCustomSecondaryMuscles.getText());
+        String description = String.valueOf(binding.etCustomEnterDescription.getText());
+        int difficulty_index = binding.spinnerCustomWorkoutDifficulty.getSelectedItemPosition();
+        int length_index = binding.spinnerCustomWorkoutLength.getSelectedItemPosition();
+
+        editor.putString("name", name);
+        editor.putInt("category", category_index);
+        editor.putString("primary", primary);
+        editor.putString("secondary", secondary);
+        editor.putString("description", description);
+        editor.putInt("difficulty", difficulty_index);
+        editor.putInt("length", length_index);
+        editor.apply();
+    }
+
+    private void setViewsWithPreferences() {
+        SharedPreferences sp = this.getSharedPreferences("workout", 0);
+        String name = sp.getString("name", "");
+        int category_index = sp.getInt("category", 0);
+        String primary = sp.getString("primary", "");
+        String secondary = sp.getString("secondary", "");
+        String description = sp.getString("description", "");
+        int difficulty_index = sp.getInt("difficulty", 0);
+        int length_index = sp.getInt("length", 0);
+
+        binding.etCustomWorkoutName.setText(name);
+        binding.spinnerCustomWorkoutCategory.setSelection(category_index);
+        binding.etCustomAddPrimaryMuscles.setText(primary);
+        binding.etCustomSecondaryMuscles.setText(secondary);
+        binding.etCustomEnterDescription.setText(description);
+        binding.spinnerCustomWorkoutDifficulty.setSelection(difficulty_index);
+        binding.spinnerCustomWorkoutLength.setSelection(length_index);
     }
 
     public static void addExerciseToWorkout(Exercises.Exercise e) {
@@ -221,6 +268,6 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         Intent intent = new Intent(MakeCustomWorkoutActivity.this, MainActivity.class);
         intent.putExtra("fragment", MainActivity.CUSTOM_WORKOUT_FRAGMENT);
         startActivity(intent);
-        finish();
+//        finish();
     }
 }
