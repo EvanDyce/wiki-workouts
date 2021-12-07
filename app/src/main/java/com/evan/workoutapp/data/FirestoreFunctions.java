@@ -155,6 +155,11 @@ public class FirestoreFunctions {
     }
 
     public static void updateUserData() {
+        if (CurrentUserSingleton.getInstance() == null) {
+            Log.e("FirestoreUpdate", "User is null unable to update firestore");
+            return;
+        }
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         Map<String, Object> data = new HashMap<>();

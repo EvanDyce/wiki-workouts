@@ -28,9 +28,9 @@ public class CurrentUserSingleton {
     public static synchronized User getInstance() {
         if (instance == null) {
             FirebaseUser current = FirebaseAuth.getInstance().getCurrentUser();
-            assert current != null;
+            if (current == null) return null;
             String email = current.getEmail();
-            assert email != null;
+            if (email == null) return null;
 
             db.collection("users")
                     .document(email).get()
