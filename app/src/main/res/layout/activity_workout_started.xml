@@ -45,7 +45,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_arrow_left"
-                android:layout_marginHorizontal="@dimen/size_25"/>
+                android:layout_marginLeft="@dimen/size_25"/>
 
             <Button
                 android:id="@+id/button_next"
@@ -53,7 +53,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_arrow_right"
-                android:layout_marginHorizontal="@dimen/size_25"/>
+                android:layout_marginRight="@dimen/size_25"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -80,28 +80,28 @@
 
     <LinearLayout
         android:id="@+id/ll_cancelFinishButtons"
-        android:layout_below="@+id/ll_exerciseCardClickThrough"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_exerciseCardClickThrough"
+        android:layout_marginVertical="@dimen/size_50"
         android:orientation="horizontal"
-        android:layout_marginVertical="@dimen/size_38"
         android:weightSum="2">
 
         <Button
             android:id="@+id/button_cancel_workout"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Cancel Workout"
-            android:layout_marginHorizontal="@dimen/size_25"/>
+            android:layout_marginHorizontal="@dimen/size_25"
+            android:layout_weight="1"
+            android:text="Cancel Workout" />
 
         <Button
             android:id="@+id/button_finish_workout"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Finish Workout"
-            android:layout_marginHorizontal="@dimen/size_25"/>
+            android:layout_marginHorizontal="@dimen/size_25"
+            android:layout_weight="1"
+            android:text="Finish Workout" />
     </LinearLayout>
 
 </RelativeLayout>
