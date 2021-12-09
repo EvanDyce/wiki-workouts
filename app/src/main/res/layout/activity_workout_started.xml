@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/off_white"
     tools:context=".ui.workouts.started.WorkoutStarted">
 
     <TextView
@@ -18,17 +19,17 @@
         android:textColor="@color/black"/>
 
     <LinearLayout
-        android:layout_below="@+id/tv_title"
-        android:id="@+id/exerciseImageView"
+        android:id="@+id/ll_exerciseCardClickThrough"
+        android:layout_below="@+id/ll_stopwatch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/size_25">
 
         <include
-            android:id="@+id/exerciseCardClickThrough"
+            android:id="@+id/exerciseCard"
             layout="@layout/exercise_card_layout"
-            android:layout_marginHorizontal="@dimen/size_25"
+            android:layout_marginHorizontal="@dimen/size_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -39,23 +40,68 @@
             android:weightSum="2">
 
             <Button
+                android:id="@+id/button_previous"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Previous"
+                android:background="@drawable/ic_arrow_left"
                 android:layout_marginHorizontal="@dimen/size_25"/>
 
             <Button
+                android:id="@+id/button_next"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Next"
+                android:background="@drawable/ic_arrow_right"
                 android:layout_marginHorizontal="@dimen/size_25"/>
         </LinearLayout>
+    </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/ll_stopwatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginTop="@dimen/size_38"
+        android:layout_marginBottom="@dimen/size_10"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="45:37"
+            android:gravity="center"
+            android:textSize="70sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
 
 
+    <LinearLayout
+        android:id="@+id/ll_cancelFinishButtons"
+        android:layout_below="@+id/ll_exerciseCardClickThrough"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="@dimen/size_38"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/button_cancel_workout"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Cancel Workout"
+            android:layout_marginHorizontal="@dimen/size_25"/>
+
+        <Button
+            android:id="@+id/button_finish_workout"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Finish Workout"
+            android:layout_marginHorizontal="@dimen/size_25"/>
     </LinearLayout>
 
 </RelativeLayout>
