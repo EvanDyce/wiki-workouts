@@ -14,7 +14,7 @@
         android:theme="@style/Theme.WorkoutApp"
         tools:replace="android:icon">
         <activity
-            android:name=".ui.workouts.started.WorkoutStarted"
+            android:name=".ui.workouts.started.WorkoutStartedActivity"
             android:exported="true" />
         <activity
             android:name=".ui.custom.creation.ExerciseSelectionActivity"

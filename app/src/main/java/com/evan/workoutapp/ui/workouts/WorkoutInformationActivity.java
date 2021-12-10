@@ -21,7 +21,7 @@ import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.ActivityWorkoutInformationBinding;
-import com.evan.workoutapp.ui.workouts.started.WorkoutStarted;
+import com.evan.workoutapp.ui.workouts.started.WorkoutStartedActivity;
 import com.evan.workoutapp.utils.CustomExerciseDialog;
 
 import java.util.ArrayList;
@@ -113,7 +113,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
         binding.startWorkoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WorkoutInformationActivity.this, WorkoutStarted.class);
+                Intent intent = new Intent(WorkoutInformationActivity.this, WorkoutStartedActivity.class);
                 startActivity(intent);
 //                CustomExerciseDialog customExerciseDialog = new CustomExerciseDialog(WorkoutInformationActivity.this, workout.getExercisesInWorkout().get(0));
 //                customExerciseDialog.show();

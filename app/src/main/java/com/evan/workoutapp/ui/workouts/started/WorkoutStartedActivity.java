@@ -12,7 +12,7 @@ import com.evan.workoutapp.R;
 import com.evan.workoutapp.databinding.ActivityWorkoutInformationBinding;
 import com.evan.workoutapp.databinding.ActivityWorkoutStartedBinding;
 
-public class WorkoutStarted extends AppCompatActivity {
+public class WorkoutStartedActivity extends AppCompatActivity {
 
     private ActivityWorkoutStartedBinding binding;
 
