@@ -21,6 +21,7 @@ import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.ActivityWorkoutInformationBinding;
+import com.evan.workoutapp.ui.workouts.started.StartedWorkout;
 import com.evan.workoutapp.ui.workouts.started.WorkoutStartedActivity;
 import com.evan.workoutapp.utils.CustomExerciseDialog;
 
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 public class WorkoutInformationActivity extends AppCompatActivity {
 
     private ActivityWorkoutInformationBinding binding;
+    private Workout workout;
     private ArrayList<Workout> workoutArrayList;
     private int index;
     private Intent nextIntent;
@@ -61,7 +63,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             finish();
         }
         // gets the workout that was clicked
-        Workout workout = this.workoutArrayList.get(this.index);
+        workout = this.workoutArrayList.get(this.index);
 
         // setting all of the correct text with the new workout information
         String name = workout.getName();
@@ -114,6 +116,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WorkoutInformationActivity.this, WorkoutStartedActivity.class);
+                intent.putExtra("workout", new StartedWorkout(workout));
                 startActivity(intent);
 //                CustomExerciseDialog customExerciseDialog = new CustomExerciseDialog(WorkoutInformationActivity.this, workout.getExercisesInWorkout().get(0));
 //                customExerciseDialog.show();

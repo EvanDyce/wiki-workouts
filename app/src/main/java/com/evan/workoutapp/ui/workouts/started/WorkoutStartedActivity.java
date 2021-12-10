@@ -24,8 +24,9 @@ public class WorkoutStartedActivity extends AppCompatActivity {
 
     private ActivityWorkoutStartedBinding binding;
 
+    private StartedWorkout workout;
     private ArrayList<Exercises.Exercise> exerciseArrayList;
-    private int exerciseCardIndex;
+    private int exerciseCardIndex = 0;
 
     private int seconds;
     private boolean is_running, was_running;
@@ -43,6 +44,36 @@ public class WorkoutStartedActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        // getting workout passed through intent
+        workout = (StartedWorkout) getIntent().getExtras().get("workout");
+        exerciseArrayList = workout.getExercisesInWorkout();
+        updateExerciseCard();
+
+        binding.tvTitle.setText(workout.getName());
+
+        binding.buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int index = (exerciseCardIndex + 1) % exerciseArrayList.size();
+                exerciseCardIndex = index;
+                updateExerciseCard();
+            }
+        });
+
+        binding.buttonPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int index = exerciseCardIndex - 1;
+                if (index < 0) {
+                    index = exerciseArrayList.size() - 1;
+                }
+
+                exerciseCardIndex = index;
+                updateExerciseCard();
+            }
+        });
+
 
         is_running = true;
 
@@ -86,6 +117,14 @@ public class WorkoutStartedActivity extends AppCompatActivity {
 
     private void onStopwatchClicked() {
         is_running = !is_running;
+    }
+
+    private void updateExerciseCard() {
+        Exercises.Exercise exercise = exerciseArrayList.get(exerciseCardIndex);
+
+        binding.exerciseCard.exerciseCardImage.setImageResource(exercise.getImageID());
+        binding.exerciseCard.exerciseTitle.setText(exercise.getName());
+        binding.exerciseCard.exerciseDescription.setText(exercise.getDescription());
     }
 
     private void startTimer() {

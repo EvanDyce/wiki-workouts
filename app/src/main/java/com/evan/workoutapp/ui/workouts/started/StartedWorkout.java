@@ -3,11 +3,12 @@ package com.evan.workoutapp.ui.workouts.started;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.workout.Workout;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class StartedWorkout extends Workout {
+public class StartedWorkout extends Workout implements Serializable {
 
     private Date startedDate;
 
