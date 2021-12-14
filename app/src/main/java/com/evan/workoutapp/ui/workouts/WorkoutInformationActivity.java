@@ -116,6 +116,7 @@ public class WorkoutInformationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WorkoutInformationActivity.this, WorkoutStartedActivity.class);
+                intent.putExtra("return_intent", nextIntent);
                 intent.putExtra("workout", new StartedWorkout(workout));
                 startActivity(intent);
 //                CustomExerciseDialog customExerciseDialog = new CustomExerciseDialog(WorkoutInformationActivity.this, workout.getExercisesInWorkout().get(0));

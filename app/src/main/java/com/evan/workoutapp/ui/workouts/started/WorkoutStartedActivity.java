@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import java.util.Locale;
 public class WorkoutStartedActivity extends AppCompatActivity {
 
     private ActivityWorkoutStartedBinding binding;
+    private Intent returnIntent;
 
     private StartedWorkout workout;
     private ArrayList<Exercises.Exercise> exerciseArrayList;
@@ -45,7 +47,8 @@ public class WorkoutStartedActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        // getting workout passed through intent
+        // getting data passed through intent
+        returnIntent = (Intent) getIntent().getExtras().get("return_intent");
         workout = (StartedWorkout) getIntent().getExtras().get("workout");
         exerciseArrayList = workout.getExercisesInWorkout();
         updateExerciseCard();
@@ -74,7 +77,13 @@ public class WorkoutStartedActivity extends AppCompatActivity {
             }
         });
 
-
+        binding.buttonCancelWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(returnIntent);
+            }
+        });
+        
         is_running = true;
 
         if (savedInstanceState != null) {
