@@ -15,10 +15,13 @@ import android.widget.TextView;
 
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
+import com.evan.workoutapp.data.FirestoreFunctions;
+import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.ActivityWorkoutInformationBinding;
 import com.evan.workoutapp.databinding.ActivityWorkoutStartedBinding;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class WorkoutStartedActivity extends AppCompatActivity {
@@ -26,7 +29,8 @@ public class WorkoutStartedActivity extends AppCompatActivity {
     private ActivityWorkoutStartedBinding binding;
     private Intent returnIntent;
 
-    private StartedWorkout workout;
+    private Workout workout;
+    private Date start_date;
     private ArrayList<Exercises.Exercise> exerciseArrayList;
     private int exerciseCardIndex = 0;
 
@@ -47,9 +51,11 @@ public class WorkoutStartedActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        start_date = new Date();
+
         // getting data passed through intent
         returnIntent = (Intent) getIntent().getExtras().get("return_intent");
-        workout = (StartedWorkout) getIntent().getExtras().get("workout");
+        workout = (Workout) getIntent().getExtras().get("workout");
         exerciseArrayList = workout.getExercisesInWorkout();
         updateExerciseCard();
 
@@ -83,7 +89,17 @@ public class WorkoutStartedActivity extends AppCompatActivity {
                 startActivity(returnIntent);
             }
         });
-        
+
+        binding.buttonFinishWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onStopwatchClicked();
+                String duration = (String) binding.tvStopwatch.getText();
+
+
+            }
+        });
+
         is_running = true;
 
         if (savedInstanceState != null) {

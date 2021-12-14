@@ -5,24 +5,28 @@ import androidx.annotation.NonNull;
 import com.evan.workoutapp.data.workout.Workout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class User {
     private String name, email;
     private int workouts_completed;
     private ArrayList<Workout> userWorkouts;
+    private ArrayList<ArrayList<Object>> finishedWorkouts;
 
     public User(String name, String email) {
         this.name = name;
         this.email = email;
         this.workouts_completed = 0;
         this.userWorkouts = new ArrayList<>();
+        this.finishedWorkouts = new ArrayList<>();
     }
 
-    public User(String name, String email, ArrayList<Workout> workouts, int workoutsCompleted) {
+    public User(String name, String email, ArrayList<Workout> workouts, int workoutsCompleted, ArrayList<ArrayList<Object>> finishedWorkouts) {
         this.name = name;
         this.email = email;
         this.userWorkouts = workouts;
         this.workouts_completed = workoutsCompleted;
+        this.finishedWorkouts = finishedWorkouts;
     }
 
     public String getName() {
@@ -41,7 +45,7 @@ public class User {
         return userWorkouts;
     }
 
-    public void addUserCustomWorkout(Workout workout) {this.userWorkouts.add(workout);}
+    public void addUserCustomWorkout(Workout workout) { this.userWorkouts.add(workout); }
 
     @NonNull
     @Override

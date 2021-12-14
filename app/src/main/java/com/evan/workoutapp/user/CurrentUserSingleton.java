@@ -74,7 +74,7 @@ public class CurrentUserSingleton {
                                                 difficulty, length, exerciseArrayList));
                                     }
 
-                                    instance = new User(name, email, workouts, workouts_completed);
+                                    instance = new User(name, email, workouts, workouts_completed, new ArrayList<>());
                                 } else {
                                     Log.e(TAG, "Document doesn't exist");
                                 }
