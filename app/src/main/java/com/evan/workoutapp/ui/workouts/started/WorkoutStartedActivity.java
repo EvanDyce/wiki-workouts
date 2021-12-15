@@ -16,9 +16,11 @@ import android.widget.TextView;
 import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.Exercises;
 import com.evan.workoutapp.data.FirestoreFunctions;
+import com.evan.workoutapp.data.workout.FinishedWorkout;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.ActivityWorkoutInformationBinding;
 import com.evan.workoutapp.databinding.ActivityWorkoutStartedBinding;
+import com.evan.workoutapp.user.CurrentUserSingleton;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,8 +97,10 @@ public class WorkoutStartedActivity extends AppCompatActivity {
             public void onClick(View v) {
                 onStopwatchClicked();
                 String duration = (String) binding.tvStopwatch.getText();
-
-
+                FinishedWorkout finishedWorkout = new FinishedWorkout(workout, duration);
+                CurrentUserSingleton.getInstance().getFinishedWorkouts().add(finishedWorkout);
+                FirestoreFunctions.updateUserData();
+                startActivity(returnIntent);
             }
         });
 

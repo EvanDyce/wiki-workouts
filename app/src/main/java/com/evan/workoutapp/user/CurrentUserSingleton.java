@@ -81,6 +81,7 @@ public class CurrentUserSingleton {
                                     ArrayList<FinishedWorkout> finishedWorkouts = new ArrayList<>();
                                     // getting the stuff for the finished workouts
                                     ArrayList<HashMap<String, Object>> mapArrayList = (ArrayList<HashMap<String, Object>>) document.get("finished_workouts");
+                                    assert mapArrayList != null;
                                     for (HashMap<String, Object> mappy : mapArrayList) {
                                         String category = (String) mappy.get("category");
                                         String description = (String) mappy.get("description");
