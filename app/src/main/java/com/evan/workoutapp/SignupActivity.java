@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.evan.workoutapp.databinding.ActivityLoginBinding;
 import com.evan.workoutapp.databinding.ActivitySignupBinding;
+import com.evan.workoutapp.user.CurrentUserSingleton;
 import com.evan.workoutapp.user.User;
 import com.evan.workoutapp.utils.DialogMessage;
 import com.evan.workoutapp.utils.UI;
@@ -101,7 +102,8 @@ public class SignupActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-//                            insertUserIntoFirestore(name, email);
+                            User user = new User(mAuth.getCurrentUser().getDisplayName(), mAuth.getCurrentUser().getEmail());
+                            CurrentUserSingleton.setCurrentUser(user);
                         } else {
                             Log.d(TAG, "User creation failed");
 
@@ -192,6 +194,7 @@ public class SignupActivity extends AppCompatActivity {
         data.put("email", user.getEmail());
         data.put("workouts_completed", user.getWorkoutsCompleted());
         data.put("custom_workouts", user.getUserWorkouts());
+        data.put("finished_workouts", user.getFinishedWorkouts());
 
         db.collection("users")
                 .document(user.getEmail())

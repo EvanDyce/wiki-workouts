@@ -127,4 +127,7 @@ public class CurrentUserSingleton {
     public static void signOutCurrentUser() {
         CurrentUserSingleton.instance = null;
     }
+
+    public static void setCurrentUser(User user) { CurrentUserSingleton.instance = user; }
+
 }
