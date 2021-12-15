@@ -2,16 +2,18 @@ package com.evan.workoutapp.user;
 
 import androidx.annotation.NonNull;
 
+import com.evan.workoutapp.data.workout.FinishedWorkout;
 import com.evan.workoutapp.data.workout.Workout;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class User {
     private String name, email;
     private int workouts_completed;
     private ArrayList<Workout> userWorkouts;
-    private ArrayList<ArrayList<Object>> finishedWorkouts;
+    private ArrayList<FinishedWorkout> finishedWorkouts;
 
     public User(String name, String email) {
         this.name = name;
@@ -21,7 +23,8 @@ public class User {
         this.finishedWorkouts = new ArrayList<>();
     }
 
-    public User(String name, String email, ArrayList<Workout> workouts, int workoutsCompleted, ArrayList<ArrayList<Object>> finishedWorkouts) {
+    public User(String name, String email, ArrayList<Workout> workouts,
+                int workoutsCompleted, ArrayList<FinishedWorkout> finishedWorkouts) {
         this.name = name;
         this.email = email;
         this.userWorkouts = workouts;
@@ -46,6 +49,8 @@ public class User {
     }
 
     public void addUserCustomWorkout(Workout workout) { this.userWorkouts.add(workout); }
+
+    public ArrayList<FinishedWorkout> getFinishedWorkouts() { return this.finishedWorkouts; }
 
     @NonNull
     @Override

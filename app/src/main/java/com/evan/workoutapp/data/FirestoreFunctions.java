@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.evan.workoutapp.LoginActivity;
 import com.evan.workoutapp.R;
+import com.evan.workoutapp.data.workout.FinishedWorkout;
 import com.evan.workoutapp.data.workout.PremadeWorkouts;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.user.CurrentUserSingleton;
@@ -195,6 +196,38 @@ public class FirestoreFunctions {
             workouts.add(obj);
         }
         data.put("custom_workouts", workouts);
+
+        // creating the list of maps, just like before, but this is for the completed data
+        ArrayList<HashMap<String, Object>> finishedWorkouts = new ArrayList<>();
+        for (FinishedWorkout workout : CurrentUserSingleton.getInstance().getFinishedWorkouts()) {
+            HashMap<String, Object> obj = new HashMap<>();
+            obj.put("name", workout.getName());
+            obj.put("category", workout.getCategory());
+            obj.put("primary", workout.getPrimary());
+            obj.put("secondary", workout.getSecondary());
+            obj.put("description", workout.getDescription());
+            obj.put("difficulty", workout.getDifficulty());
+            obj.put("length", workout.getLength());
+            obj.put("duration", workout.getDuration());
+            obj.put("date", workout.getFinishedDate());
+
+
+            // new list of maps for each exercise
+            ArrayList<HashMap<String, Object>> exercises = new ArrayList<>();
+            for (Exercises.Exercise exercise : workout.getExercisesInWorkout()) {
+                HashMap<String, Object> map = new HashMap<>();
+                map.put("id", exercise.getId());
+                map.put("name", exercise.getName());
+                map.put("description", exercise.getDescription());
+                map.put("category", exercise.getCategory());
+                map.put("equipment", exercise.getEquipment());
+                exercises.add(map);
+            }
+            // adding exericse list to workout map
+            obj.put("exercises", exercises);
+            finishedWorkouts.add(obj);
+        }
+        data.put("finished_workouts", finishedWorkouts);
 
         db.collection("users")
                 .document(CurrentUserSingleton.getInstance().getEmail())
