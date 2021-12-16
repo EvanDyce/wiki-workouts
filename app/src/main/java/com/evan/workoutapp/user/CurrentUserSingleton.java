@@ -78,7 +78,7 @@ public class CurrentUserSingleton {
                                     }
 
 
-                                    ArrayList<FinishedWorkout> finishedWorkouts = new ArrayList<>();
+                                    ArrayList<Workout> finishedWorkouts = new ArrayList<>();
                                     // getting the stuff for the finished workouts
                                     ArrayList<HashMap<String, Object>> mapArrayList = (ArrayList<HashMap<String, Object>>) document.get("finished_workouts");
                                     assert mapArrayList != null;
