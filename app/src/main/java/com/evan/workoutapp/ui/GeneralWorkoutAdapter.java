@@ -18,10 +18,10 @@ import java.util.ArrayList;
 
 public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAdapter.Viewholder> {
     private Context context;
-    private ArrayList<Workout> workoutArrayList;
+    private ArrayList<? extends Workout> workoutArrayList;
     private WorkoutClickedListener mWorkoutClickedListener;
 
-    public GeneralWorkoutAdapter(Context context, ArrayList<Workout> workouts, WorkoutClickedListener listener) {
+    public GeneralWorkoutAdapter(Context context, ArrayList<? extends Workout> workouts, WorkoutClickedListener listener) {
         this.context = context;
         this.workoutArrayList = workouts;
         this.mWorkoutClickedListener = listener;

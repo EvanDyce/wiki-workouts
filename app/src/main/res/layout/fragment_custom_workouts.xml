@@ -32,10 +32,6 @@
         android:id="@+id/workout_recyclerview"
         android:layout_above="@id/linearlayout"
         android:layout_alignParentTop="true"/>
-
-
-
-
 </RelativeLayout>
 
 

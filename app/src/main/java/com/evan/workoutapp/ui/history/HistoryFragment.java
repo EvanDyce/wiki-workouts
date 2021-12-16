@@ -7,20 +7,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.evan.workoutapp.data.workout.FinishedWorkout;
+import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentHistoryBinding;
+import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
 import com.evan.workoutapp.ui.history.HistoryViewModel;
+import com.evan.workoutapp.user.CurrentUserSingleton;
+
+import java.util.ArrayList;
 
 public class HistoryFragment extends Fragment {
 
     private HistoryViewModel historyViewModel;
     private FragmentHistoryBinding binding;
+    private ArrayList<FinishedWorkout> finishedWorkouts;
+    private GeneralWorkoutAdapter workoutAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -30,14 +41,18 @@ public class HistoryFragment extends Fragment {
         binding = FragmentHistoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHistory;
-        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        setAdapter();
+
         return root;
+    }
+
+    public void setAdapter() {
+        finishedWorkouts = CurrentUserSingleton.getInstance().getFinishedWorkouts();
+        final RecyclerView workoutRV = binding.workoutRecyclerview;
+        workoutAdapter = new GeneralWorkoutAdapter(getContext(), finishedWorkouts, listener);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        workoutRV.setLayoutManager(linearLayoutManager);
+        workoutRV.setAdapter(workoutAdapter);
     }
 
     @Override
@@ -45,4 +60,16 @@ public class HistoryFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    GeneralWorkoutAdapter.WorkoutClickedListener listener = new GeneralWorkoutAdapter.WorkoutClickedListener() {
+        @Override
+        public void onWorkoutClicked(int position) {
+            Toast.makeText(getContext(), "Good one champ", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onWorkoutLongClicked(int position) {
+            Toast.makeText(getContext(), "Herro long click man", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
