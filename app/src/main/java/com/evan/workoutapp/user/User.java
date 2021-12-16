@@ -13,7 +13,7 @@ public class User {
     private String name, email;
     private int workouts_completed;
     private ArrayList<Workout> userWorkouts;
-    private ArrayList<Workout> finishedWorkouts;
+    private ArrayList<FinishedWorkout> finishedWorkouts;
 
     public User(String name, String email) {
         this.name = name;
@@ -24,7 +24,7 @@ public class User {
     }
 
     public User(String name, String email, ArrayList<Workout> workouts,
-                int workoutsCompleted, ArrayList<Workout> finishedWorkouts) {
+                int workoutsCompleted, ArrayList<FinishedWorkout> finishedWorkouts) {
         this.name = name;
         this.email = email;
         this.userWorkouts = workouts;
@@ -50,7 +50,7 @@ public class User {
 
     public void addUserCustomWorkout(Workout workout) { this.userWorkouts.add(workout); }
 
-    public ArrayList<Workout> getFinishedWorkouts() { return this.finishedWorkouts; }
+    public ArrayList<FinishedWorkout> getFinishedWorkouts() { return this.finishedWorkouts; }
 
     @NonNull
     @Override
