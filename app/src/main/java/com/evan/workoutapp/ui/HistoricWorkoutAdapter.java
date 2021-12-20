@@ -14,7 +14,9 @@ import com.evan.workoutapp.R;
 import com.evan.workoutapp.data.workout.FinishedWorkout;
 import com.evan.workoutapp.data.workout.Workout;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class HistoricWorkoutAdapter extends GeneralWorkoutAdapter {
     public HistoricWorkoutAdapter(Context context, ArrayList<? extends Workout> workouts, WorkoutClickedListener listener) {
@@ -28,7 +30,11 @@ public class HistoricWorkoutAdapter extends GeneralWorkoutAdapter {
         FinishedWorkout workout = (FinishedWorkout) this.workoutArrayList.get(position);
 
         ((HistoricViewholder) holder).durationTextView.setText(String.format("Duration %s", workout.getDuration()));
-        ((HistoricViewholder) holder).dateTextView.setText(String.format("Completed On: %s", workout.getFinishedDate().toString()));
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.CANADA);
+        SimpleDateFormat dmyFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.CANADA);
+        String time = timeFormat.format(workout.getFinishedDate());
+        String date = dmyFormat.format(workout.getFinishedDate());
+        ((HistoricViewholder) holder).dateTextView.setText(String.format("Completed At: %s on %s", time, date));
     }
 
     @NonNull
