@@ -44,11 +44,6 @@ public class ProfileFragment extends Fragment {
                 view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + email + "?subject=Workout App Review")));
             }
         });
-//        gets the textview from fragment_profilei.xml file
-//        if the data is changed then update teh textview
-//        checks the viewmodel for the mutable live data class and then attatches observer so if it changes it will updata
-
-
         return root;
     }
 }

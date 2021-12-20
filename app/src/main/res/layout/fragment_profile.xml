@@ -157,26 +157,6 @@
                 android:textSize="@dimen/text_20"
                 android:textColor="@color/grey"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/size_25"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/ic_phone_salmon"/>
-            <TextView
-                android:id="@+id/tv_phone_number"
-                android:layout_gravity="center_vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/size_20"
-                android:text="No Phone Number Provided"
-                android:textSize="@dimen/text_20"
-                android:textColor="@color/grey"/>
-        </LinearLayout>
     </LinearLayout>
 
     <Button

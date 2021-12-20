@@ -45,14 +45,7 @@ public class MainActivity extends AppCompatActivity {
 //        sets the action bar as app_bar_main.toolbar
 //        binding allows you to access with . notation
         setSupportActionBar(binding.appBarMain.toolbar);
-//        set on click listener for the floating action button
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 //        accessing the drawer layout and the nav view
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
