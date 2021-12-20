@@ -27,7 +27,7 @@ public class HistoricWorkoutAdapter extends GeneralWorkoutAdapter {
     public void onBindViewHolder(@NonNull GeneralViewholder holder, int position) {
         super.onBindViewHolder(holder, position);
 
-        FinishedWorkout workout = (FinishedWorkout) this.workoutArrayList.get(position);
+        FinishedWorkout workout = (FinishedWorkout) this.workoutArrayList.get((this.workoutArrayList.size() - 1) - position);
 
         ((HistoricViewholder) holder).durationTextView.setText(String.format("Duration %s", workout.getDuration()));
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.CANADA);
