@@ -21,6 +21,7 @@ import com.evan.workoutapp.data.workout.FinishedWorkout;
 import com.evan.workoutapp.data.workout.Workout;
 import com.evan.workoutapp.databinding.FragmentHistoryBinding;
 import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
+import com.evan.workoutapp.ui.HistoricWorkoutAdapter;
 import com.evan.workoutapp.ui.history.HistoryViewModel;
 import com.evan.workoutapp.user.CurrentUserSingleton;
 
@@ -49,7 +50,7 @@ public class HistoryFragment extends Fragment {
     public void setAdapter() {
         finishedWorkouts = CurrentUserSingleton.getInstance().getFinishedWorkouts();
         final RecyclerView workoutRV = binding.workoutRecyclerview;
-        workoutAdapter = new GeneralWorkoutAdapter(getContext(), finishedWorkouts, listener);
+        workoutAdapter = new HistoricWorkoutAdapter(getContext(), finishedWorkouts, listener);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         workoutRV.setLayoutManager(linearLayoutManager);
         workoutRV.setAdapter(workoutAdapter);
