@@ -16,10 +16,10 @@ import com.evan.workoutapp.data.workout.Workout;
 
 import java.util.ArrayList;
 
-public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAdapter.Viewholder> {
-    private Context context;
-    private ArrayList<? extends Workout> workoutArrayList;
-    private WorkoutClickedListener mWorkoutClickedListener;
+public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAdapter.GeneralViewholder> {
+    protected Context context;
+    protected ArrayList<? extends Workout> workoutArrayList;
+    protected WorkoutClickedListener mWorkoutClickedListener;
 
     public GeneralWorkoutAdapter(Context context, ArrayList<? extends Workout> workouts, WorkoutClickedListener listener) {
         this.context = context;
@@ -28,7 +28,7 @@ public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull GeneralViewholder holder, int position) {
         Workout workout = this.workoutArrayList.get(position);
         holder.workoutImageView.setImageResource(workout.getImageID());
         holder.workoutTitleTextView.setText(workout.getName());
@@ -41,17 +41,17 @@ public class GeneralWorkoutAdapter extends RecyclerView.Adapter<GeneralWorkoutAd
 
     @NonNull
     @Override
-    public Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GeneralViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
-        return new Viewholder(view, mWorkoutClickedListener);
+        return new GeneralViewholder(view, mWorkoutClickedListener);
     }
 
-    public class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+    public class GeneralViewholder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         private ImageView workoutImageView;
         private TextView workoutTitleTextView;
         WorkoutClickedListener workoutClickedListener;
 
-        public Viewholder(View itemView, WorkoutClickedListener workoutClickedListener) {
+        public GeneralViewholder(View itemView, WorkoutClickedListener workoutClickedListener) {
             super(itemView);
             workoutImageView = itemView.findViewById(R.id.workoutImageCategory);
             workoutTitleTextView = itemView.findViewById(R.id.workoutTitleCategory);
