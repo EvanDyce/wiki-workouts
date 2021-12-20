@@ -65,12 +65,12 @@ public class HistoryFragment extends Fragment {
     GeneralWorkoutAdapter.WorkoutClickedListener listener = new GeneralWorkoutAdapter.WorkoutClickedListener() {
         @Override
         public void onWorkoutClicked(int position) {
-            Toast.makeText(getContext(), "Good one champ", Toast.LENGTH_SHORT).show();
+
         }
 
         @Override
         public void onWorkoutLongClicked(int position) {
-            Toast.makeText(getContext(), "Herro long click man", Toast.LENGTH_SHORT).show();
+
         }
     };
 }
