@@ -34,7 +34,7 @@ public class ProfileFragment extends Fragment {
         binding.tvNameUpper.setText(CurrentUserSingleton.getInstance().getName());
         binding.tvName.setText(CurrentUserSingleton.getInstance().getName());
         binding.tvEmail.setText(CurrentUserSingleton.getInstance().getEmail());
-        binding.tvWorkoutsCompleted.setText(String.valueOf(CurrentUserSingleton.getInstance().getWorkoutsCompleted()));
+        binding.tvWorkoutsCompleted.setText(String.valueOf(CurrentUserSingleton.getInstance().getFinishedWorkouts().size()));
         binding.tvWorkoutsCreated.setText(String.valueOf(CurrentUserSingleton.getInstance().getUserWorkouts().size()));
 
         binding.buttonLeaveReview.setOnClickListener(new View.OnClickListener() {
