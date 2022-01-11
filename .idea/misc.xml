@@ -37,12 +37,8 @@
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/app/src/main/res/mipmap-anydpi-v26/image_mountain_round.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/activity_make_custom_workout.xml" value="0.1" />
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/activity_workout_information.xml" value="0.30833333333333335" />
-        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/app_bar_main.xml" value="0.4140625" />
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/card_layout.xml" value="0.23550724637681159" />
-        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/fragment_history.xml" value="0.1" />
-        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/fragment_profile.xml" value="0.4140625" />
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/fragment_workouts.xml" value="0.23550724637681159" />
-        <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/historic_workout_card.xml" value="0.1" />
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/remove_exercise_dialog.xml" value="0.23550724637681159" />
         <entry key="..\:/Users/Evan/Coding/AndroidStudioProjects/workout-app/workout-app/app/src/main/res/layout/remove_workout_dialog.xml" value="0.4466666666666667" />
         <entry key="..\:/Workout/app/src/main/res/drawable-xxhdpi/ic_menu_workout.xml" value="0.31979166666666664" />
@@ -53,6 +49,7 @@
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_input.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/custom_input_nicer.xml" value="0.3769230769230769" />
         <entry key="..\:/Workout/app/src/main/res/drawable/edit_style.xml" value="0.19074074074074074" />
+        <entry key="..\:/Workout/app/src/main/res/drawable/ic_baseline_person_80.xml" value="0.3828125" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_email.xml" value="0.1" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_email_salmon.xml" value="0.1" />
         <entry key="..\:/Workout/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3509259259259259" />
