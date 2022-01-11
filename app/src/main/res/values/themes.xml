@@ -22,4 +22,9 @@
     <style name="Theme.WorkoutApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.WorkoutApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="NavigationBarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>
