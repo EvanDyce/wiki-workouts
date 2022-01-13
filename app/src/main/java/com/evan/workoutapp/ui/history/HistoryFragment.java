@@ -24,6 +24,8 @@ import com.evan.workoutapp.ui.GeneralWorkoutAdapter;
 import com.evan.workoutapp.ui.HistoricWorkoutAdapter;
 import com.evan.workoutapp.ui.history.HistoryViewModel;
 import com.evan.workoutapp.user.CurrentUserSingleton;
+import com.evan.workoutapp.utils.RemoveWorkoutDialog;
+import com.google.firebase.firestore.model.mutation.ArrayTransformOperation;
 
 import java.util.ArrayList;
 
@@ -70,7 +72,9 @@ public class HistoryFragment extends Fragment {
 
         @Override
         public void onWorkoutLongClicked(int position) {
-
+            RemoveWorkoutDialog rwd = new RemoveWorkoutDialog(getContext(), CurrentUserSingleton.getInstance().getFinishedWorkouts(),
+                    position, HistoryFragment.this);
+            rwd.show();
         }
     };
 }

@@ -81,7 +81,7 @@ public class CustomFragment extends Fragment {
 
         @Override
         public void onWorkoutLongClicked(int position) {
-            RemoveWorkoutDialog rwd = new RemoveWorkoutDialog(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts().get(position),
+            RemoveWorkoutDialog rwd = new RemoveWorkoutDialog(getContext(), CurrentUserSingleton.getInstance().getUserWorkouts(),
                     position, CustomFragment.this);
 
             rwd.show();
