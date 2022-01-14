@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
         binding.buttonLeaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = "treykristensen@gmail.com";
+                String email = "evandyce.developer@gmail.com";
                 view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + email + "?subject=Workout App Review")));
             }
         });
