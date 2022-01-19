@@ -70,7 +70,6 @@ public class SignupActivity extends AppCompatActivity {
 
     private void createAccount(String name, String email, String password, String confirmPassword) {
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(SignupActivity.this, password + "   " + confirmPassword, Toast.LENGTH_SHORT).show();
             DialogMessage.Failure(this, "Given Passwords Do Not Match");
             return;
         }

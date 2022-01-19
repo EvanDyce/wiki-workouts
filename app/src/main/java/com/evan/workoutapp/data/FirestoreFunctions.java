@@ -47,7 +47,6 @@ public class FirestoreFunctions {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d("FIRESTORE", document.getString("name"));
-                                Toast.makeText(context, document.getString("name"), Toast.LENGTH_SHORT).show();
                             }
                         }
                      }

@@ -102,6 +102,8 @@
         <entry key="..\:/Workout/app/src/main/res/mipmap-anydpi-v26/ic_app_icon_full_round.xml" value="0.3671875" />
         <entry key="..\:/Workout/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22083333333333333" />
         <entry key="..\:/Workout/app/src/main/res/mipmap-anydpi-v26/salmon-background-image.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.37916666666666665" />
+        <entry key="app/src/main/res/layout/loading_screen.xml" value="0.37916666666666665" />
       </map>
     </option>
   </component>

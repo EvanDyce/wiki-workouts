@@ -57,8 +57,6 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#D26466")));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Toast.makeText(this, String.valueOf(exercisesInWorkout.size()), Toast.LENGTH_SHORT).show();
-
         populateExercises();
 
         // setting the adapters for the spinners
