@@ -144,17 +144,11 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
 
         String name = String.valueOf(binding.etCustomWorkoutName.getText());
         int category_index = binding.spinnerCustomWorkoutCategory.getSelectedItemPosition();
-        String primary = String.valueOf(binding.etCustomAddPrimaryMuscles.getText());
-        String secondary = String.valueOf(binding.etCustomSecondaryMuscles.getText());
-        String description = String.valueOf(binding.etCustomEnterDescription.getText());
         int difficulty_index = binding.spinnerCustomWorkoutDifficulty.getSelectedItemPosition();
         int length_index = binding.spinnerCustomWorkoutLength.getSelectedItemPosition();
 
         editor.putString("name", name);
         editor.putInt("category", category_index);
-        editor.putString("primary", primary);
-        editor.putString("secondary", secondary);
-        editor.putString("description", description);
         editor.putInt("difficulty", difficulty_index);
         editor.putInt("length", length_index);
         editor.apply();
@@ -164,17 +158,11 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
         SharedPreferences sp = this.getSharedPreferences("workout", 0);
         String name = sp.getString("name", "");
         int category_index = sp.getInt("category", 0);
-        String primary = sp.getString("primary", "");
-        String secondary = sp.getString("secondary", "");
-        String description = sp.getString("description", "");
         int difficulty_index = sp.getInt("difficulty", 0);
         int length_index = sp.getInt("length", 0);
 
         binding.etCustomWorkoutName.setText(name);
         binding.spinnerCustomWorkoutCategory.setSelection(category_index);
-        binding.etCustomAddPrimaryMuscles.setText(primary);
-        binding.etCustomSecondaryMuscles.setText(secondary);
-        binding.etCustomEnterDescription.setText(description);
         binding.spinnerCustomWorkoutDifficulty.setSelection(difficulty_index);
         binding.spinnerCustomWorkoutLength.setSelection(length_index);
     }
@@ -235,9 +223,6 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
 
         String name = String.valueOf(binding.etCustomWorkoutName.getText());
         String category = ((String) binding.spinnerCustomWorkoutCategory.getSelectedItem());
-        String primary = String.valueOf(binding.etCustomAddPrimaryMuscles.getText());
-        String secondary = String.valueOf(binding.etCustomSecondaryMuscles.getText());
-        String description = String.valueOf(binding.etCustomEnterDescription.getText());
         String difficulty = ((String) binding.spinnerCustomWorkoutDifficulty.getSelectedItem());
         String length = ((String) binding.spinnerCustomWorkoutLength.getSelectedItem());
 
@@ -245,24 +230,16 @@ public class MakeCustomWorkoutActivity extends AppCompatActivity {
             binding.etCustomWorkoutName.setError("Please enter a name");
             binding.etCustomWorkoutName.requestFocus();
             return false;
-        } else if (description.length() == 0) {
-            binding.etCustomEnterDescription.setError("Please enter a description");
-            binding.etCustomEnterDescription.requestFocus();
-            return false;
         }
 
 
-        Workout workout = new Workout(name, category, primary, secondary,
-                description, difficulty, length, exercisesInWorkout);
+        Workout workout = new Workout(name, category, difficulty, length, exercisesInWorkout);
         CurrentUserSingleton.getInstance().addUserCustomWorkout(workout);
 
         SharedPreferences sharedPreferences = getSharedPreferences("workout", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("name", "");
         editor.putInt("category", 0);
-        editor.putString("primary", "");
-        editor.putString("secondary", "");
-        editor.putString("description", "");
         editor.putInt("difficulty", 0);
         editor.putInt("length", 0);
         editor.apply();

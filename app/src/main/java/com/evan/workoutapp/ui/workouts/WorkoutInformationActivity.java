@@ -67,25 +67,11 @@ public class WorkoutInformationActivity extends AppCompatActivity {
         // setting all of the correct text with the new workout information
         String name = workout.getName();
         String category = workout.getCategory();
-        String primary = workout.getPrimary();
-        String secondary = workout.getSecondary();
-        String description = workout.getDescription();
         String difficulty = workout.getDifficulty();
         String length = workout.getLength();
 
         binding.tvTitle.setText(name);
-        binding.tvPrimaryMuscles.setText(primary);
-        binding.tvSecondarMuscles.setText(secondary);
-        binding.tvWorkoutDescription.setText(description);
-        binding.tvWorkoutDifficulty.setText(difficulty);
         binding.tvWorkoutLength.setText(length);
-
-        if (primary == null || primary.length() == 0) {
-            binding.tvPrimaryMuscles.setText("Not Specified");
-        }
-        if (secondary == null || secondary.length() == 0) {
-            binding.tvSecondarMuscles.setText("Not Spedified");
-        }
 
         // arraylist of names of all exercises in the workout
         LinearLayout linearLayout = findViewById(R.id.ll_exercise_names);

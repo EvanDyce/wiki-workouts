@@ -73,7 +73,7 @@ public class CurrentUserSingleton {
                                             exerciseArrayList.add(new Exercises.Exercise(exercise_id, exercise_name, exercise_description,
                                                     exercise_category, exercise_equipment));
                                         }
-                                        workouts.add(new Workout(workout_name, category, primary, secondary, description,
+                                        workouts.add(new Workout(workout_name, category,
                                                 difficulty, length, exerciseArrayList));
                                     }
 
@@ -107,7 +107,7 @@ public class CurrentUserSingleton {
                                             exerciseArrayList.add(new Exercises.Exercise(exercise_id, exercise_name, exercise_description,
                                                     exercise_category, exercise_equipment));
                                         }
-                                        finishedWorkouts.add(new FinishedWorkout(new Workout(workout_name, category, primary, secondary, description,
+                                        finishedWorkouts.add(new FinishedWorkout(new Workout(workout_name, category,
                                                 difficulty, length, exerciseArrayList), date, duration));
                                     }
 

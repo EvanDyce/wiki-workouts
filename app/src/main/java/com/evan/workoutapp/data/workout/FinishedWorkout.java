@@ -10,16 +10,14 @@ public class FinishedWorkout extends Workout {
     private String duration;
 
     public FinishedWorkout(Workout workout, Date date, String duration) {
-        super(workout.getName(), workout.getCategory(), workout.getPrimary(), workout.getSecondary(),
-                workout.getDescription(), workout.getDifficulty(), workout.getLength(), workout.getExercisesInWorkout());
+        super(workout.getName(), workout.getCategory(), workout.getDifficulty(), workout.getLength(), workout.getExercisesInWorkout());
 
         this.finishedDate = date;
         this.duration = duration;
     }
 
     public FinishedWorkout(Workout workout, String duration) {
-        super(workout.getName(), workout.getCategory(), workout.getPrimary(), workout.getSecondary(),
-                workout.getDescription(), workout.getDifficulty(), workout.getLength(), workout.getExercisesInWorkout());
+        super(workout.getName(), workout.getCategory(), workout.getDifficulty(), workout.getLength(), workout.getExercisesInWorkout());
 
         this.duration = duration;
         this.finishedDate = new Date();

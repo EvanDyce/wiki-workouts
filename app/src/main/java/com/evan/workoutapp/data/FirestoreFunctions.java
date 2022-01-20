@@ -125,9 +125,6 @@ public class FirestoreFunctions {
 
                                 String name = documentSnapshot.getString("name");
                                 String category = documentSnapshot.getString("category");
-                                String primary = documentSnapshot.getString("primary");
-                                String secondary = documentSnapshot.getString("secondary");
-                                String description = documentSnapshot.getString("description");
                                 String difficulty = documentSnapshot.getString("difficulty");
                                 String length = documentSnapshot.getString("length");
                                 ArrayList<HashMap<String, Object>> mapList = (ArrayList<HashMap<String, Object>>) documentSnapshot.get("exercises");
@@ -143,8 +140,7 @@ public class FirestoreFunctions {
                                 }
 //                                ArrayList<Exercises.Exercise> exerciseArrayList = (ArrayList<Exercises.Exercise>) documentSnapshot.get("exercises");
 
-                                PremadeWorkouts.addWorkoutToList(new Workout(name, category, primary, secondary,
-                                        description, difficulty, length, exercises));
+                                PremadeWorkouts.addWorkoutToList(new Workout(name, category, difficulty, length, exercises));
                             }
                             callback.dataRetrieved();
                         } else {
@@ -173,9 +169,6 @@ public class FirestoreFunctions {
             HashMap<String, Object> obj = new HashMap<>();
             obj.put("name", workout.getName());
             obj.put("category", workout.getCategory());
-            obj.put("primary", workout.getPrimary());
-            obj.put("secondary", workout.getSecondary());
-            obj.put("description", workout.getDescription());
             obj.put("difficulty", workout.getDifficulty());
             obj.put("length", workout.getLength());
 
@@ -202,9 +195,6 @@ public class FirestoreFunctions {
             HashMap<String, Object> obj = new HashMap<>();
             obj.put("name", workout.getName());
             obj.put("category", workout.getCategory());
-            obj.put("primary", workout.getPrimary());
-            obj.put("secondary", workout.getSecondary());
-            obj.put("description", workout.getDescription());
             obj.put("difficulty", workout.getDifficulty());
             obj.put("length", workout.getLength());
             obj.put("duration", workout.getDuration());
