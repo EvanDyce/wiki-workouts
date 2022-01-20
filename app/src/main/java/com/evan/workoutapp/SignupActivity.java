@@ -101,7 +101,7 @@ public class SignupActivity extends AppCompatActivity {
                                             }
                                         }
                                     });
-                            User user = new User(mAuth.getCurrentUser().getDisplayName(), mAuth.getCurrentUser().getEmail());
+                            User user = new User(name, email);
                             CurrentUserSingleton.setCurrentUser(user);
                         } else {
                             Log.d(TAG, "User creation failed");
