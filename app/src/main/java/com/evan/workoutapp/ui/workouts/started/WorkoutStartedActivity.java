@@ -35,9 +35,13 @@ public class WorkoutStartedActivity extends AppCompatActivity {
     private Date start_date;
     private ArrayList<Exercises.Exercise> exerciseArrayList;
     private int exerciseCardIndex = 0;
+    private String timeTracker = "";
 
     private int seconds;
     private boolean is_running, was_running;
+
+    private int restTimerSeconds = 60;
+    private boolean isResting = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +99,22 @@ public class WorkoutStartedActivity extends AppCompatActivity {
         binding.buttonFinishWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onStopwatchClicked();
-                String duration = (String) binding.tvStopwatch.getText();
+                is_running = !is_running;
+                String duration = timeTracker;
                 FinishedWorkout finishedWorkout = new FinishedWorkout(workout, duration);
                 CurrentUserSingleton.getInstance().getFinishedWorkouts().add(finishedWorkout);
                 FirestoreFunctions.updateUserData();
                 startActivity(returnIntent);
+            }
+        });
+
+        binding.restButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!isResting) {
+                    isResting = true;
+                    startRestTimer();
+                }
             }
         });
 
@@ -112,12 +126,6 @@ public class WorkoutStartedActivity extends AppCompatActivity {
             was_running = savedInstanceState.getBoolean("wasRunning");
         }
 
-        binding.tvStopwatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onStopwatchClicked();
-            }
-        });
         startTimer();
     }
 
@@ -144,8 +152,29 @@ public class WorkoutStartedActivity extends AppCompatActivity {
         }
     }
 
-    private void onStopwatchClicked() {
-        is_running = !is_running;
+    private void startRestTimer() {
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                if (isResting) {
+                    int secs = restTimerSeconds % 60;
+
+                    String time = String.format(Locale.CANADA, "    %02d    ",
+                            secs);
+                    binding.restButton.setText(time);
+                    restTimerSeconds--;
+                    handler.postDelayed(this, 1000);
+                }
+
+                if (restTimerSeconds == 0) {
+                    isResting = false;
+                    restTimerSeconds = 60;
+                    binding.restButton.setText("REST");
+                }
+
+            }
+        });
     }
 
     private void updateExerciseCard() {
@@ -157,7 +186,6 @@ public class WorkoutStartedActivity extends AppCompatActivity {
     }
 
     private void startTimer() {
-        TextView textView = binding.tvStopwatch;
         Handler handler = new Handler();
 
         handler.post(new Runnable() {
@@ -169,12 +197,10 @@ public class WorkoutStartedActivity extends AppCompatActivity {
                 String time = String.format(Locale.CANADA, "    %02d:%02d    ",
                         mins, secs);
 
-                textView.setText(time);
-
                 if (is_running) {
                     seconds++;
                 }
-
+                timeTracker = time;
                 handler.postDelayed(this, 1000);
             }
         });

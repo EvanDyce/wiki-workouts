@@ -83,15 +83,24 @@
                 android:layout_marginBottom="@dimen/size_10"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_stopwatch"
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/restButton"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="45:37"
-                    android:gravity="center"
-                    android:textSize="70sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
+                    android:layout_gravity="center"
+                    android:text="REST"
+                    android:textSize="25sp"
+                    android:paddingHorizontal="@dimen/size_38"
+                    />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_stopwatch"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="45:37"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textSize="70sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="@color/black"/>-->
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
